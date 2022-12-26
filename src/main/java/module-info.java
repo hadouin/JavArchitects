@@ -1,6 +1,7 @@
 module fr.isep.javarchitects {
     requires javafx.controls;
     requires javafx.fxml;
+    requires junit;
 
 
     opens fr.isep.javarchitects to javafx.fxml;

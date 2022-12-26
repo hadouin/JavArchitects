@@ -90,4 +90,6 @@ public enum ProgressToken {
 		this.imageResource = "images/tokens-progress/" + imageResource;
 	}
 
+
+
 }

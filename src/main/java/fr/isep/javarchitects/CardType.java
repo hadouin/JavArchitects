@@ -89,4 +89,42 @@ public enum CardType {
 		this(cardDisplayName, CardCategory.PoliticCard, null, null, 0, 0, laurelCount, cat, imageResource);
 	}
 
+	// -----------------------------------------------------------------------
+
+
+	public String getCardDisplayName() {
+		return cardDisplayName;
+	}
+
+	public CardCategory getCardCategory() {
+		return cardCategory;
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public ScienceCategory getScienceCategory() {
+		return scienceCategory;
+	}
+
+	public int getShieldCount() {
+		return shieldCount;
+	}
+
+	public int getCornCount() {
+		return cornCount;
+	}
+
+	public int getLaurelCount() {
+		return laurelCount;
+	}
+
+	public boolean isCat() {
+		return cat;
+	}
+
+	public String getImageResource() {
+		return imageResource;
+	}
 }

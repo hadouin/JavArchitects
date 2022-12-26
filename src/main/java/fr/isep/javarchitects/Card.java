@@ -10,5 +10,16 @@ public class Card {
 		this.back = back;
 	}
 
-	
+	public Card piocherUneCarte(Card[] deck) {
+		Card carte = deck[0];
+		return carte;
+	}
+
+	public CardType getFront() {
+		return front;
+	}
+
+	public CardBack getBack() {
+		return back;
+	}
 }
