@@ -54,6 +54,10 @@ public class Joueur {
         return SelfDeck;
     }
 
+    public Decks getRightDeck() {
+        return rightDeck;
+    }
+
     //-------------------------------------------------------------
 
     public void setNom(String nom) {

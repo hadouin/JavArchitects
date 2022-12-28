@@ -6,4 +6,6 @@ module fr.isep.javarchitects {
 
     opens fr.isep.javarchitects to javafx.fxml;
     exports fr.isep.javarchitects;
+    exports Application;
+    opens Application to javafx.fxml;
 }

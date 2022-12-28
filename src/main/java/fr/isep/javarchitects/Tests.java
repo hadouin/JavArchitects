@@ -1,6 +1,8 @@
 package fr.isep.javarchitects;
 
+import Fenetres.FenetrePrincipale;
 import JeuDePlateau.Joueur;
+import JeuDePlateau.Partie;
 import org.junit.Test;
 
 import java.util.*;
@@ -41,6 +43,26 @@ public class Tests {
         }
         for (Joueur J : listeJoueurs) {
             J.setSelfDeck(decks.remove(R.nextInt(decks.size())));
+        }
+    }
+
+    @Test
+    public void testPartie() {
+
+        FenetrePrincipale fp = new FenetrePrincipale();
+        ArrayList<String> listeJoueurs = new ArrayList<>();
+        listeJoueurs.add("Romeo");
+        listeJoueurs.add("J2");
+        listeJoueurs.add("J3");
+        listeJoueurs.add("J4");
+
+        Partie partie = new Partie(4, listeJoueurs, fp);
+        fp.setWonder(partie.getJoueurs());
+        fp.setDecks(partie.getJoueurs());
+        for (Joueur J : partie.getJoueurs()) {
+            //System.out.println(J.getWonder().displayName);
+            System.out.println((J.getSelfDeck()));
+            System.out.println("A droite " + (J.getRightDeck()));
         }
     }
 }

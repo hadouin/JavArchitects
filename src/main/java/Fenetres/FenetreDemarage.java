@@ -20,25 +20,23 @@ import java.util.ArrayList;
 
 public class FenetreDemarage {
 
+    private FenetrePrincipale fp;
     private AnchorPane mainPane;
     private Stage stage;
     private Scene mainScene;
-    private FenetrePrincipale fp;
     private ArrayList <Label> l_Joueurs = new ArrayList <Label>();
     private ArrayList<TextField> listeJoueurs = new ArrayList<TextField>();
     private Label l_NbJoueurs;
-    private static final int HEIGHT = 600;
-    private static final int WIDTH = 800;
-    private GridPane gridPane1;
-    private GridPane gridPane2;
-    private AnimationTimer gameTimer;
+    private static final int HEIGHT = 800;
+    private static final int WIDTH = 1000;
 
-    public FenetreDemarage() {
-        initialisationFenetrePrincipale();
+    public FenetreDemarage(FenetrePrincipale fp) {
+        initialisationFenetreDemarage(fp);
 
     }
 
-    private void initialisationFenetrePrincipale() {
+    private void initialisationFenetreDemarage(FenetrePrincipale fp) {
+        this.fp = fp;
         mainPane = new AnchorPane();
 
         VBox root = new VBox();
@@ -50,8 +48,10 @@ public class FenetreDemarage {
         l_NbJoueurs = new Label("Noms des joueurs (2 minimum) :");
         l_NbJoueurs.setTextFill(Color.web("#5F0404"));
         ImageView imageView1=new ImageView();
-        imageView1.setFitHeight(500);
-        imageView1.setFitWidth(600.0);
+        // imageView1.setFitHeight(100);
+        // imageView1.setFitWidth(1000.0);
+        AnchorPane.setBottomAnchor(root, 100.);
+        AnchorPane.setRightAnchor(root, 20.);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
 
@@ -59,13 +59,13 @@ public class FenetreDemarage {
         // imageView1.setImage(new Image(getClass().getResourceAsStream("/images/Titre.png")));
 
         root.getChildren().add(imageView1);
-        VBox.setMargin((imageView1), new Insets(30,0,0,100));
+        //VBox.setMargin((imageView1), new Insets(30,0,0,100));
 
         GridPane grilleJoueur = new GridPane();
         grilleJoueur.setPadding(new Insets(10));
         grilleJoueur.setVgap(30);
         grilleJoueur.setHgap(25);
-        VBox.setMargin((grilleJoueur), new Insets(100, 10, 10, 100));
+        //VBox.setMargin((grilleJoueur), new Insets(100, 10, 10, 100));
 
         grilleJoueur.add(l_NbJoueurs, 0,0, 3, 1);
 
@@ -89,7 +89,7 @@ public class FenetreDemarage {
         grilleJoueur.setAlignment(Pos.CENTER);
         Button b_Valider = new Button("Valider");
         b_Valider.setDefaultButton(true);
-        VBox.setMargin((b_Valider), new Insets(10,0,10,350));
+        VBox.setMargin((b_Valider), new Insets(30,0,10,120));
 
         b_Valider.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -112,6 +112,7 @@ public class FenetreDemarage {
 
         root.getChildren().add(b_Valider);
         b_Valider.setEffect(dropShadow);
+
         mainPane.getChildren().add(root);
 
         mainScene = new Scene(mainPane,WIDTH, HEIGHT);

@@ -6,8 +6,6 @@ import fr.isep.javarchitects.Decks;
 import fr.isep.javarchitects.Wonder;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.skin.SliderSkin;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -22,16 +20,24 @@ public class FenetrePrincipale {
     private ArrayList <Label> l_Joueurs = new ArrayList<Label>();
     private ArrayList <Joueur> ListeJoueurs = new ArrayList<Joueur>();
     private FenetrePrincipale Fp;
+    private FenetreDemarage fd = new FenetreDemarage(this);
     private Partie partie;
+    private static final int HEIGHT = 800;
+    private static final int WIDTH = 1000;
 
     public FenetrePrincipale(Stage primaryStage) {
         this.mainStage = primaryStage;
         mainPane = new StackPane();
-        Scene scene = new Scene(mainPane);
-
+        Scene scene = new Scene(mainPane, WIDTH, HEIGHT);
+        mainStage = new Stage();
         mainStage.setScene(scene);
         mainStage.setTitle("Seven Wonders Architect");
-        Fp.getMainStage().show();
+
+        fd.getStage().show();
+        //Fp.getMainStage().show();
+    };
+
+    public FenetrePrincipale() {
     };
 
     public void setWonder(ArrayList<Joueur> listeJoueurs) {
@@ -54,16 +60,29 @@ public class FenetrePrincipale {
         }
 
         for (Joueur J : listeJoueurs) {
-            J.setSelfDeck(decks.remove(J.getWonder().getID()));
+            J.setSelfDeck(decks.get(J.getWonder().getID()));
         }
+
+        for (int i = listeJoueurs.size() - 1; i >= 0 ; i--) {
+            Joueur joueur = listeJoueurs.get(i);
+            if(i > 0) {
+                joueur.setRightDeck(listeJoueurs.get(i - 1).getSelfDeck());
+            }
+            else {
+                joueur.setRightDeck(listeJoueurs.get(listeJoueurs.size() - 1).getSelfDeck());
+            }
+        }
+    }
+
+    public void setRightDecks(ArrayList<Joueur> listeJoueurs) {
+
     }
 
     public void setPartie(int nbrJoueur, ArrayList<String> nomJoueurs) {
         partie = new Partie(nbrJoueur, nomJoueurs, this);
-
+        setWonder(partie.getJoueurs());
+        setDecks(partie.getJoueurs());
         for(int i = 0; i < nbrJoueur; i++) {
-            setWonder(partie.getJoueurs());
-            setDecks(partie.getJoueurs());
 
             Label labelJoueur = new Label(partie.getJoueurs().get(i).getNom());
 
