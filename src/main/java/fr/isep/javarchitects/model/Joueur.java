@@ -16,7 +16,7 @@ public class Joueur {
         this.ID = builder.ID;
         this.wonder = builder.wonder;
         this.pointsDeVictoire = builder.pointsDeVictoire;
-        this.pointCombats = builder.pointCombats;
+        this.pointDeGuerre = builder.pointDeGuerre;
         this.possedeLeChat = builder.possedeLeChat;
         this.selfDeck = builder.selfDeck;
     }
@@ -29,7 +29,7 @@ public class Joueur {
         // Params facultatifs
         private Wonder wonder = Wonder.Gizeh;
         private int pointsDeVictoire = 0;
-        private int pointCombats = 0;
+        private int pointDeGuerre = 0;
         private boolean possedeLeChat = false;
         private Decks selfDeck = Decks.D_Gizeh;
 
@@ -43,8 +43,8 @@ public class Joueur {
         public Builder setPointsDeVictoire(int pointsDeVictoire){
             this.pointsDeVictoire = pointsDeVictoire; return this;
         }
-        public Builder setPointCombats(int pointCombats) {
-            this.pointCombats = pointCombats; return this;
+        public Builder setPointDeGuerre(int pointDeGuerre) {
+            this.pointDeGuerre = pointDeGuerre; return this;
         }
         public Builder setPossedeLeChat(boolean possedeLeChat) {
             this.possedeLeChat = possedeLeChat; return this;
