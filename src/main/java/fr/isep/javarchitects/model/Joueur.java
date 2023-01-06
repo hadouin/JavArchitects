@@ -17,7 +17,6 @@ public class Joueur {
         this.wonder = builder.wonder;
         this.pointsDeVictoire = builder.pointsDeVictoire;
         this.pointCombats = builder.pointCombats;
-        this.pointsDeVictoire = builder.pointsDeVictoire;
         this.possedeLeChat = builder.possedeLeChat;
         this.selfDeck = builder.selfDeck;
     }
