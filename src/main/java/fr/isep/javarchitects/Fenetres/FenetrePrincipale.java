@@ -4,23 +4,29 @@ import fr.isep.javarchitects.model.Joueur;
 import fr.isep.javarchitects.model.Partie;
 import fr.isep.javarchitects.model.Decks;
 import fr.isep.javarchitects.model.Wonder;
+import fr.isep.javarchitects.model.ProgressToken;
+import fr.isep.javarchitects.model.ProgressTokens;
 import javafx.geometry.Insets;
+import javafx.scene.LightBase;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class FenetrePrincipale {
 
     private Stage mainStage;
     private Stage menuStage;
-    private StackPane mainPane;
+    private AnchorPane mainPane;
     private ArrayList <Label> l_Joueurs = new ArrayList<Label>();
     private ArrayList <Joueur> ListeJoueurs = new ArrayList<Joueur>();
     private FenetrePrincipale Fp;
@@ -28,10 +34,17 @@ public class FenetrePrincipale {
     private Partie partie;
     private static final int HEIGHT = 800;
     private static final int WIDTH = 1000;
+    private ArrayList<ImageView> ImagesDecks;
+    private ArrayList<ImageView> imageProgressToken;
+    private HBox jetonsGuerre;
+    private int compteurCorne = 0;
+    private VBox jetonsProgres;
+    private Label descLab;
+
 
     public FenetrePrincipale(Stage primaryStage) {
         this.mainStage = primaryStage;
-        mainPane = new StackPane();
+        mainPane = new AnchorPane();
         Scene scene = new Scene(mainPane, WIDTH, HEIGHT);
         mainStage = new Stage();
         mainStage.setScene(scene);
@@ -41,10 +54,11 @@ public class FenetrePrincipale {
         //Fp.getMainStage().show();
     };
 
-    public FenetrePrincipale() {
-    };
+    public FenetrePrincipale() {};
 
     public void setWonder(ArrayList<Joueur> listeJoueurs) {
+        // fonction qui va assigner à chaque joueur une merveille.
+
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
         for (Wonder W : Wonder.values()) {
@@ -58,6 +72,10 @@ public class FenetrePrincipale {
     }
     
     public void setDecks(ArrayList<Joueur> listeJoueurs) {
+
+        // fonction qui va assigner à chaque joueur deux decks : son propre deck, positionné à sa droite, et le deck
+        // de son voisin de gauche
+
         ArrayList<Decks> decks = new ArrayList<>();
         for (Decks D : Decks.values()) {
             decks.add(D);
@@ -66,7 +84,6 @@ public class FenetrePrincipale {
         for (Joueur J : listeJoueurs) {
             J.setSelfDeck(decks.get(J.getWonder().getID()));
         }
-
         for (int i = listeJoueurs.size() - 1; i >= 0 ; i--) {
             Joueur joueur = listeJoueurs.get(i);
             if(i > 0) {
@@ -86,7 +103,15 @@ public class FenetrePrincipale {
         partie = new Partie(nbrJoueur, nomJoueurs, this);
         setWonder(partie.getJoueurs());
         setDecks(partie.getJoueurs());
-        VBox Alexandrie = setHalicarnasse();
+        VBox Alexandrie = setRhodes();
+        jetonsProgres = setProgressToken();
+        descLab = new Label("description");
+        AnchorPane.setRightAnchor(descLab, 2.);
+        AnchorPane.setTopAnchor(descLab, 60.);
+
+        AnchorPane.setRightAnchor(jetonsProgres, 2.);
+        mainPane.getChildren().add(jetonsProgres);
+        mainPane.getChildren().add(descLab);
         mainPane.getChildren().add(Alexandrie);
         for(int i = 0; i < nbrJoueur; i++) {
 
@@ -300,6 +325,84 @@ public class FenetrePrincipale {
 
         return wonder;
     }
+
+    public VBox setRhodes() {
+        VBox wonder = new VBox();
+        ImageView image1 = new ImageView(new Image(getClass().getResourceAsStream("/images/wonders/rhodes/piece-back-rhodes-1bis.png")));
+        // image1.setFitHeight(100);
+        image1.setFitWidth(image1.getImage().getWidth()/3);
+        image1.setPreserveRatio(true);
+        image1.setSmooth(true);
+
+        ImageView image2 = new ImageView(new Image(getClass().getResourceAsStream("/images/wonders/rhodes/piece-back-rhodes-2bis.png")));
+        image2.setFitWidth(image2.getImage().getWidth()/3);
+        image2.setPreserveRatio(true);
+
+        ImageView image3 = new ImageView(new Image(getClass().getResourceAsStream("/images/wonders/rhodes/piece-back-rhodes-3.png")));
+        image3.setFitWidth(image3.getImage().getWidth()/3);
+        image3.setPreserveRatio(true);
+
+        ImageView image4 = new ImageView(new Image(getClass().getResourceAsStream("/images/wonders/rhodes/piece-back-rhodes-4.png")));
+        image4.setFitWidth(image4.getImage().getWidth()/3);
+        image4.setPreserveRatio(true);
+
+        ImageView image5 = new ImageView(new Image(getClass().getResourceAsStream("/images/wonders/rhodes/piece-back-rhodes-5.png")));
+        image5.setFitWidth(image5.getImage().getWidth()/3);
+        image5.setPreserveRatio(true);
+
+
+
+
+        VBox.setMargin(image2, new Insets(0, 0, -47., 85));
+        VBox.setMargin(image3, new Insets(0, 0, 0, 25));
+        VBox.setMargin(image4, new Insets(0, 0, 0., 18));
+        VBox.setMargin(image5, new Insets(0, 0, -3., 24));
+
+        wonder.getChildren().addAll(image5, image4,  image3, image2, image1);
+        //((ImageView) wonder.getChildren().get(0)).setImage(new Image(getClass().getResourceAsStream("/images/wonders/alexandrie/piece-front-alexandrie-6.png")));
+
+        return wonder;
+    }
+
+    public VBox setProgressToken() {
+        imageProgressToken = new ArrayList<>();
+        VBox vboxToken = new VBox();
+        HBox H = new HBox();
+
+        List<ProgressToken> listToken = ProgressTokens.TOKENS;
+        ArrayList<ProgressToken> L = new ArrayList<>();
+        for(ProgressToken P : listToken) {
+            L.add(P);
+        }
+        Collections.shuffle(L);
+        ImageView imageIP = new ImageView(new Image(getClass().getResourceAsStream("/images/tokens-progress/back/token-back.png")));
+        imageIP.setFitWidth(imageIP.getImage().getWidth() / 3);
+        imageIP.setPreserveRatio(true);
+        H.getChildren().add(imageIP);
+        for(int i = 0; i < 3; i++) {
+
+            imageProgressToken.add(new ImageView(new Image(getClass().getResourceAsStream(L.get(i).imageResource))));
+            ImageView imageT = imageProgressToken.get(i);
+            int finalI = i;
+            imageT.setOnMouseEntered(event -> {
+                descLab.setText(L.get(finalI).effectDescription);
+            });
+
+            imageT.setOnMouseExited(event1 -> {
+                descLab.setText("");
+            });
+
+            imageT.setFitWidth(imageT.getImage().getWidth() / 3);
+            imageT.setPreserveRatio(true);
+
+
+            H.getChildren().add(imageT);
+        }
+        vboxToken.getChildren().add(H);
+
+        return vboxToken;
+    }
+
     // -------------------------------------------------------
 
     public Stage getMainStage() {
