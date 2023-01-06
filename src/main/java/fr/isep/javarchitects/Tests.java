@@ -1,8 +1,8 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
-import fr.isep.javarchitects.JeuDePlateau.Joueur;
-import fr.isep.javarchitects.JeuDePlateau.Partie;
+import fr.isep.javarchitects.model.Joueur;
+import fr.isep.javarchitects.model.Partie;
 import fr.isep.javarchitects.model.Card;
 import fr.isep.javarchitects.model.Decks;
 import fr.isep.javarchitects.model.Wonder;

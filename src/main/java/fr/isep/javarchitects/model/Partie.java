@@ -1,6 +1,7 @@
-package fr.isep.javarchitects.JeuDePlateau;
+package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
+import fr.isep.javarchitects.model.Joueur;
 
 import java.util.ArrayList;
 

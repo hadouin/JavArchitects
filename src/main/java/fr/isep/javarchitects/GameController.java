@@ -1,6 +1,6 @@
 package fr.isep.javarchitects;
 
-import fr.isep.javarchitects.JeuDePlateau.Joueur;
+import fr.isep.javarchitects.model.Joueur;
 import fr.isep.javarchitects.model.WonderFragment;
 
 import java.util.ArrayList;

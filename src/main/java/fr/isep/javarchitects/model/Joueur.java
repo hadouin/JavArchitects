@@ -1,7 +1,4 @@
-package fr.isep.javarchitects.JeuDePlateau;
-
-import fr.isep.javarchitects.model.Decks;
-import fr.isep.javarchitects.model.Wonder;
+package fr.isep.javarchitects.model;
 
 public class Joueur {
 
