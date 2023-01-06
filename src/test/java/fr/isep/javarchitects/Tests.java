@@ -68,4 +68,18 @@ public class Tests {
             System.out.println("A droite " + (J.getRightDeck()));
         }
     }
+
+    @Test
+    public void testProgressToken() {
+        List<ProgressToken> listToken = ProgressTokens.TOKENS;
+        ProgressToken token = ProgressToken.Architecture;
+        ArrayList<ProgressToken> L = new ArrayList<>();
+        for(ProgressToken P : listToken) {
+            L.add(P);
+        }
+        Collections.shuffle(L);
+        for(int i = 0; i < listToken.size(); i++) {
+            System.out.println(L.get(i).displayName);
+        }
+    }
 }

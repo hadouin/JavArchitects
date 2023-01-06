@@ -342,7 +342,6 @@ public enum Decks {
         this.listeCartes = listeCartes;
     }
 
-
     public List<Card> getListeCartes() {
         return listeCartes;
     }

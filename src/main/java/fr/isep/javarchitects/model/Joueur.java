@@ -6,7 +6,7 @@ public class Joueur {
     private int ID;
     private Wonder wonder;
     private int pointsDeVictoire = 0;
-    private int pointCombats = 0;
+    private int pointDeGuerre = 0;
     private boolean possedeLeChat = false;
     private Decks selfDeck;
     private Decks rightDeck;
@@ -87,8 +87,8 @@ public class Joueur {
         return pointsDeVictoire;
     }
 
-    public int getPointCombats() {
-        return pointCombats;
+    public int getPointDeGuerre() {
+        return pointDeGuerre;
     }
 
     public boolean isPossedeLeChat() {
@@ -121,8 +121,8 @@ public class Joueur {
         this.pointsDeVictoire = pointsDeVictoire;
     }
 
-    public void setPointCombats(int pointCombats) {
-        this.pointCombats = pointCombats;
+    public void setPointDeGuerre(int pointDeGuerre) {
+        this.pointDeGuerre = pointDeGuerre;
     }
 
     public void setPossedeLeChat(boolean possedeLeChat) {

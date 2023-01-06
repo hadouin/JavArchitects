@@ -87,7 +87,7 @@ public enum ProgressToken {
 		this.displayName = displayName;
 		this.frenchName = frenchName;
 		this.effectDescription = effectDescription;
-		this.imageResource = "images/tokens-progress/" + imageResource;
+		this.imageResource = "/images/tokens-progress/" + imageResource;
 	}
 
 
