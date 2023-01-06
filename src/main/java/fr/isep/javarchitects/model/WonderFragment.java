@@ -1,4 +1,4 @@
-package fr.isep.javarchitects;
+package fr.isep.javarchitects.model;
 
 public class WonderFragment {
 
@@ -6,14 +6,14 @@ public class WonderFragment {
     //attributes
     private final String image;
     private final int floorNumber;
-    private boolean triggerEffectFragment;
+    private boolean triggerEffect;
 
 
     //constructor
-    public WonderFragment(String image, int floorNumber, boolean triggerEffectFragment) {
+    public WonderFragment(String image, int floorNumber, boolean triggerEffect) {
         this.image = image;
         this.floorNumber = floorNumber;
-        this.triggerEffectFragment = triggerEffectFragment;
+        this.triggerEffect = triggerEffect;
     }
 
     //members

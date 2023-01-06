@@ -1,8 +1,11 @@
 package fr.isep.javarchitects;
 
-import Fenetres.FenetrePrincipale;
-import JeuDePlateau.Joueur;
-import JeuDePlateau.Partie;
+import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
+import fr.isep.javarchitects.model.Joueur;
+import fr.isep.javarchitects.model.Partie;
+import fr.isep.javarchitects.model.Card;
+import fr.isep.javarchitects.model.Decks;
+import fr.isep.javarchitects.model.Wonder;
 import org.junit.Test;
 
 import java.util.*;

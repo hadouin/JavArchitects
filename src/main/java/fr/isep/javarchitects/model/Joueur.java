@@ -1,7 +1,4 @@
-package JeuDePlateau;
-
-import fr.isep.javarchitects.Decks;
-import fr.isep.javarchitects.Wonder;
+package fr.isep.javarchitects.model;
 
 public class Joueur {
 
@@ -11,8 +8,56 @@ public class Joueur {
     private int pointsDeVictoire = 0;
     private int pointCombats = 0;
     private boolean possedeLeChat = false;
-    private Decks SelfDeck;
+    private Decks selfDeck;
     private Decks rightDeck;
+
+    Joueur(Builder builder){
+        this.nom = builder.nom;
+        this.ID = builder.ID;
+        this.wonder = builder.wonder;
+        this.pointsDeVictoire = builder.pointsDeVictoire;
+        this.pointCombats = builder.pointCombats;
+        this.possedeLeChat = builder.possedeLeChat;
+        this.selfDeck = builder.selfDeck;
+    }
+
+    public static class Builder {
+        // Params obligatoires
+        private final String nom;
+        private final int ID;
+
+        // Params facultatifs
+        private Wonder wonder = Wonder.Gizeh;
+        private int pointsDeVictoire = 0;
+        private int pointCombats = 0;
+        private boolean possedeLeChat = false;
+        private Decks selfDeck = Decks.D_Gizeh;
+
+        public Builder(String name, int id) {
+            this.nom = name;
+            ID = id;
+        }
+        public Builder setWonder(Wonder wonder){
+            this.wonder = wonder; return this;
+        }
+        public Builder setPointsDeVictoire(int pointsDeVictoire){
+            this.pointsDeVictoire = pointsDeVictoire; return this;
+        }
+        public Builder setPointCombats(int pointCombats) {
+            this.pointCombats = pointCombats; return this;
+        }
+        public Builder setPossedeLeChat(boolean possedeLeChat) {
+            this.possedeLeChat = possedeLeChat; return this;
+        }
+        public Builder setSelfDeck(Decks selfDeck) {
+            this.selfDeck = selfDeck; return this;
+        }
+
+        public Joueur build(){
+            return new Joueur(this);
+        }
+
+    }
     public Joueur(String nom, int ID, Wonder wonder) {
         this.nom = nom;
         this.ID = ID;
@@ -51,7 +96,7 @@ public class Joueur {
     }
 
     public Decks getSelfDeck() {
-        return SelfDeck;
+        return selfDeck;
     }
 
     public Decks getRightDeck() {
@@ -85,7 +130,7 @@ public class Joueur {
     }
 
     public void setSelfDeck(Decks selfDeck) {
-        SelfDeck = selfDeck;
+        selfDeck = selfDeck;
     }
 
     public void setRightDeck(Decks rightDeck) {

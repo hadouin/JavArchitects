@@ -1,7 +1,6 @@
-package Application;
+package fr.isep.javarchitects.Application;
 
-import Fenetres.FenetreDemarage;
-import Fenetres.FenetrePrincipale;
+import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
