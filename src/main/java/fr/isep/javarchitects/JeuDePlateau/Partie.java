@@ -1,6 +1,6 @@
-package JeuDePlateau;
+package fr.isep.javarchitects.JeuDePlateau;
 
-import Fenetres.FenetrePrincipale;
+import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
 
 import java.util.ArrayList;
 

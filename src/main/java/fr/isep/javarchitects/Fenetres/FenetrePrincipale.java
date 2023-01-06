@@ -1,9 +1,9 @@
-package Fenetres;
+package fr.isep.javarchitects.Fenetres;
 
-import JeuDePlateau.Joueur;
-import JeuDePlateau.Partie;
-import fr.isep.javarchitects.Decks;
-import fr.isep.javarchitects.Wonder;
+import fr.isep.javarchitects.JeuDePlateau.Joueur;
+import fr.isep.javarchitects.JeuDePlateau.Partie;
+import fr.isep.javarchitects.model.Decks;
+import fr.isep.javarchitects.model.Wonder;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
