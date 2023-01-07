@@ -55,9 +55,12 @@ public class FenetrePrincipale {
 
     public FenetrePrincipale() {};
 
+    /**
+     * Fonction qui va assigner à chaque joueur de listeJoueurs merveille.
+     * De manière random
+     * @param listeJoueurs
+     */
     public void setWonder(ArrayList<Joueur> listeJoueurs) {
-        // fonction qui va assigner à chaque joueur une merveille.
-
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
         for (Wonder W : Wonder.values()) {

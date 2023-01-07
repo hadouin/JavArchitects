@@ -9,6 +9,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * An app to test the creation of multiple stage and the global implementation of the observer patter
+ * Verifying the update on either button click
+ */
 public class MultipleStageTest extends Application {
 
     GameController gameController;
