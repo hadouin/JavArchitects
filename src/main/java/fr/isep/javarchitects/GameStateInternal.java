@@ -1,5 +1,5 @@
 package fr.isep.javarchitects;
 
-public class GameInternal {
+public class GameStateInternal {
 
 }

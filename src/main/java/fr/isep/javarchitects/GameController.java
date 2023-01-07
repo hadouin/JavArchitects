@@ -8,11 +8,23 @@ import java.util.List;
 
 public class GameController {
 
-    /**
-     * @param joueur the player you want to test for
-     * @return a list of WonderFragment the player can build from its wonder
-     */
-    public List<WonderFragment> getBuildableFragments(Joueur joueur){
-        return new ArrayList<>();
+    ArrayList<Subscriber> subscribers = new ArrayList<>();
+    private GameStateInternal gameStateInternal;
+    private GameStateVisible visibleState;
+
+    public void subscribe(Subscriber subscriber){
+        this.subscribers.add(subscriber);
     }
+
+    public void unsubscribe(Subscriber subscriber){
+        this.subscribers.remove(subscriber);
+    }
+
+    public void notifySubscribers(){
+        for (Subscriber subscriber: subscribers) {
+            subscriber.update(visibleState);
+        }
+    }
+
+
 }

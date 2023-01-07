@@ -46,7 +46,6 @@ public class FenetrePrincipale {
         this.mainStage = primaryStage;
         mainPane = new AnchorPane();
         Scene scene = new Scene(mainPane, WIDTH, HEIGHT);
-        mainStage = new Stage();
         mainStage.setScene(scene);
         mainStage.setTitle("Seven Wonders Architect");
 
