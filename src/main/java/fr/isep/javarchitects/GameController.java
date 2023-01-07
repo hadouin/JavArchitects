@@ -1,16 +1,17 @@
 package fr.isep.javarchitects;
 
-import fr.isep.javarchitects.model.Joueur;
-import fr.isep.javarchitects.model.WonderFragment;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GameController {
 
     ArrayList<Subscriber> subscribers = new ArrayList<>();
     private GameStateInternal gameStateInternal;
     private GameStateVisible visibleState;
+    private TestState testState = new TestState();
 
     public void subscribe(Subscriber subscriber){
         this.subscribers.add(subscriber);
@@ -22,9 +23,14 @@ public class GameController {
 
     public void notifySubscribers(){
         for (Subscriber subscriber: subscribers) {
-            subscriber.update(visibleState);
+            subscriber.update(testState);
         }
     }
 
 
+    public void triggerOkDepart(ActionEvent e) {
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        testState.labelString = stage.getTitle();
+        notifySubscribers();
+    }
 }
