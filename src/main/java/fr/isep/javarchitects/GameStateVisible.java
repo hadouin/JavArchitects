@@ -6,6 +6,9 @@ import fr.isep.javarchitects.model.ProgressToken;
 
 import java.util.ArrayList;
 
+/**
+ * Visble state of the game that will be passed to graphical interface
+ */
 public class GameStateVisible {
     private ArrayList<Joueur> joueurs;
     private int currentPlayerID;
