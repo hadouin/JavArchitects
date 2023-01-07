@@ -5,7 +5,7 @@ public enum ProgressToken {
 	Urbanism("urbanism", "urbanisme", //
 			"Lorsque vous prenez une carte grise 'bois' ou 'brique', " //
 			+ "choisissez 1 carte suppl�mentaire parmi les 3 disponibles et posez-la devant vous", //
-			"token-culture.png"),
+			"token-urbanism.png"),
 	
 	ArtsAndCrafts("Arts and crafts", "artisanat", //
 			"Lorsque vous prenez une carte grise 'papier' ou 'verre', " //
@@ -72,7 +72,6 @@ public enum ProgressToken {
 			"token-culture.png");
 	
 	// ------------------------------------------------------------------------
-	
 	public final String displayName;
 
 	public final String frenchName;
