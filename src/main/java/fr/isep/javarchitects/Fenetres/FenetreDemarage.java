@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class FenetreDemarage {
 
-    private FenetrePrincipale fp;
+    private GamePlayFieldWindow gamePlayField;
     private AnchorPane mainPane;
     private Stage stage;
     private Scene mainScene;
@@ -29,13 +29,13 @@ public class FenetreDemarage {
     private static final int HEIGHT = 800;
     private static final int WIDTH = 1000;
 
-    public FenetreDemarage(FenetrePrincipale fp) {
+    public FenetreDemarage(GamePlayFieldWindow fp) {
         initialisationFenetreDemarage(fp);
 
     }
 
-    private void initialisationFenetreDemarage(FenetrePrincipale fp) {
-        this.fp = fp;
+    private void initialisationFenetreDemarage(GamePlayFieldWindow gamePlayField) {
+        this.gamePlayField = gamePlayField;
         mainPane = new AnchorPane();
 
         VBox root = new VBox();
@@ -102,8 +102,8 @@ public class FenetreDemarage {
                 }
                 if(nomJoueur.size()>=2) {
                     // choix = 1;
-                    fp.setPartie(nomJoueur.size(), nomJoueur);
-                    fp.getMainStage().show();
+                    gamePlayField.setPartie(nomJoueur.size(), nomJoueur);
+                    gamePlayField.getMainStage().show();
                     stage.close();
                 }
                 event.consume();

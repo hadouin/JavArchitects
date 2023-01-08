@@ -19,7 +19,7 @@ public class MultipleStageTest extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.gameController = new GameController();
+        this.gameController = new GameController(null);
         Button button = new Button("Ok depart");
         button.setOnAction(e -> {
             gameController.triggerOkDepart(e);
