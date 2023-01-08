@@ -47,7 +47,14 @@ public enum Wonder {
 			)),
 	
 	Babylone(4,"Babylone", "Babylone", //
-			"Choisissez 1 jeton Progr�s parmi les 4 disponibles, et posez-le devant vous",),
+			"Choisissez 1 jeton Progr�s parmi les 4 disponibles, et posez-le devant vous",
+			Arrays.asList(
+					new WonderFragment("images/wonders/babylon/piece-front-babylon-1.png", "images/wonders/babylon/piece-back-babylon-1.png", 0, false ),
+					new WonderFragment("images/wonders/babylon/piece-front-babylon-2.png", "images/wonders/babylon/piece-back-babylon-2.png", 1, true ),
+					new WonderFragment("images/wonders/babylon/piece-front-babylon-3.png", "images/wonders/babylon/piece-back-babylon-3.png", 2, false ),
+					new WonderFragment("images/wonders/babylon/piece-front-babylon-4.png", "images/wonders/babylon/piece-back-babylon-4.png", 3, false ),
+					new WonderFragment("images/wonders/babylon/piece-front-babylon-5.png", "images/wonders/babylon/piece-back-babylon-5.png", 3, true )
+			)),
 	
 	Rhodes(5,"Rhodes", "Rhodes", //
 			"Ajoutez 1 Bouclier � votre total de Boucliers",),
