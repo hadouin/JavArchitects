@@ -37,7 +37,14 @@ public enum Wonder {
 			)),
 	
 	Olympie(3,"Olympie", "Olympie", //
-			"Prenez la premi�re carte de la pioche � votre cauche et de celle � votre droite, et posez-les devant vous",),
+			"Prenez la premi�re carte de la pioche � votre cauche et de celle � votre droite, et posez-les devant vous",
+			Arrays.asList(
+					new WonderFragment("images/wonders/olympie/piece-front-olympie-1.png", "images/wonders/olympie/piece-back-olympie-1.png", 0, false ),
+					new WonderFragment("images/wonders/olympie/piece-front-olympie-2.png", "images/wonders/olympie/piece-back-olympie-2.png", 2, true ),
+					new WonderFragment("images/wonders/olympie/piece-front-olympie-3.png", "images/wonders/olympie/piece-back-olympie-3.png", 1, false ),
+					new WonderFragment("images/wonders/olympie/piece-front-olympie-4.png", "images/wonders/olympie/piece-back-olympie-4.png", 2, true ),
+					new WonderFragment("images/wonders/olympie/piece-front-olympie-5.png", "images/wonders/olympie/piece-back-olympie-5.png", 3, false )
+			)),
 	
 	Babylone(4,"Babylone", "Babylone", //
 			"Choisissez 1 jeton Progr�s parmi les 4 disponibles, et posez-le devant vous",),
