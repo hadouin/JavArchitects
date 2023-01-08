@@ -12,13 +12,19 @@ public enum Wonder {
 					new WonderFragment("images/wonders/alexandrie/piece-front-alexandrie-2.png", "images/wonders/alexandrie/piece-back-alexandrie-2.png", 1, true ),
 					new WonderFragment("images/wonders/alexandrie/piece-front-alexandrie-3.png", "images/wonders/alexandrie/piece-back-alexandrie-3.png", 2, false ),
 					new WonderFragment("images/wonders/alexandrie/piece-front-alexandrie-4.png", "images/wonders/alexandrie/piece-back-alexandrie-4.png", 3, true ),
-					new WonderFragment("images/wonders/alexandrie/piece-front-alexandrie-5.png", "images/wonders/alexandrie/piece-back-alexandrie-5.png", 4, false ),
-					new WonderFragment("images/wonders/alexandrie/piece-front-alexandrie-6.png", "images/wonders/alexandrie/piece-back-alexandrie-6.png", 5, false )
+					new WonderFragment("images/wonders/alexandrie/piece-front-alexandrie-5.png", "images/wonders/alexandrie/piece-back-alexandrie-5.png", 4, false )
 			)),
 	
 	Halicarnasse(1,"Halicarnasse", "Halicarnasse", //
 			"Prenez les 5 premi�res cartes de la pioche � votre gauche ou � votre droite, choisissez-en 1 et posez-la devant vous" //
-			+ "M�langez-les cartes restantes dans leur pioche",),
+			+ "M�langez-les cartes restantes dans leur pioche",
+			Arrays.asList(
+					new WonderFragment("images/wonders/halicarnasse/piece-front-halicarnasse-1.png", "images/wonders/halicarnasse/piece-back-halicarnasse-1.png", 0, false ),
+					new WonderFragment("images/wonders/halicarnasse/piece-front-halicarnasse-2.png", "images/wonders/halicarnasse/piece-back-halicarnasse-2.png", 1, true ),
+					new WonderFragment("images/wonders/halicarnasse/piece-front-halicarnasse-3.png", "images/wonders/halicarnasse/piece-back-halicarnasse-3.png", 2, true ),
+					new WonderFragment("images/wonders/halicarnasse/piece-front-halicarnasse-4.png", "images/wonders/halicarnasse/piece-back-halicarnasse-4.png", 2, false ),
+					new WonderFragment("images/wonders/halicarnasse/piece-front-halicarnasse-5.png", "images/wonders/halicarnasse/piece-back-halicarnasse-5.png", 3, false )
+			)),
 	
 	Ephese(2,"Ephese", "Eph�se", //
 			"Prenez la premi�re carte de la pioche centrale et posez-la devant vous",),
