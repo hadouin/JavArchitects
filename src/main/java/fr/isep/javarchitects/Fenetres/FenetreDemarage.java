@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class FenetreDemarage {
 
-    private FenetrePrincipale fp;
+    private GamePlayFieldWindow gamePlayField;
     private AnchorPane mainPane;
     private Stage stage;
     private Scene mainScene;
@@ -29,13 +29,13 @@ public class FenetreDemarage {
     private static final int HEIGHT = 800;
     private static final int WIDTH = 1000;
 
-    public FenetreDemarage(FenetrePrincipale fp) {
+    public FenetreDemarage(GamePlayFieldWindow fp) {
         initialisationFenetreDemarage(fp);
 
     }
 
-    private void initialisationFenetreDemarage(FenetrePrincipale fp) {
-        this.fp = fp;
+    private void initialisationFenetreDemarage(GamePlayFieldWindow gamePlayField) {
+        this.gamePlayField = gamePlayField;
         mainPane = new AnchorPane();
 
         VBox root = new VBox();
@@ -45,6 +45,7 @@ public class FenetreDemarage {
         root.setPadding(new Insets(10,10,10,10));
         root.setSpacing(5);
         l_NbJoueurs = new Label("Noms des joueurs (2 minimum) :");
+        l_NbJoueurs.setStyle("-fx-font-size:20");
         l_NbJoueurs.setTextFill(Color.web("#5F0404"));
         ImageView imageView1=new ImageView();
         // imageView1.setFitHeight(100);
@@ -68,9 +69,9 @@ public class FenetreDemarage {
 
         grilleJoueur.add(l_NbJoueurs, 0,0, 3, 1);
 
-        final Color shadowColor = Color.BLACK.deriveColor(0, 0, 0, 1);
-        DropShadow dropShadow = new DropShadow(BlurType.THREE_PASS_BOX, shadowColor, 2, 1, 0,0);
-        grilleJoueur.setEffect(dropShadow);
+        //final Color shadowColor = Color.BLACK.deriveColor(0, 0, 0, 1);
+        //DropShadow dropShadow = new DropShadow(BlurType.THREE_PASS_BOX, shadowColor, 2, 1, 0,0);
+        //grilleJoueur.setEffect(dropShadow);
 
         for(int i=0; i<7; i++) {
             listeJoueurs.add(new TextField(i<2?"Joueur "+(i+1):""));
@@ -88,6 +89,7 @@ public class FenetreDemarage {
         grilleJoueur.setAlignment(Pos.CENTER);
         Button b_Valider = new Button("Valider");
         b_Valider.setDefaultButton(true);
+        b_Valider.setStyle("-fx-font-size:16");
         VBox.setMargin((b_Valider), new Insets(30,0,10,120));
 
         b_Valider.setOnAction(new EventHandler<ActionEvent>() {
@@ -100,8 +102,8 @@ public class FenetreDemarage {
                 }
                 if(nomJoueur.size()>=2) {
                     // choix = 1;
-                    fp.setPartie(nomJoueur.size(), nomJoueur);
-                    fp.getMainStage().show();
+                    gamePlayField.setPartie(nomJoueur.size(), nomJoueur);
+                    gamePlayField.getMainStage().show();
                     stage.close();
                 }
                 event.consume();
@@ -110,7 +112,7 @@ public class FenetreDemarage {
 
 
         root.getChildren().add(b_Valider);
-        b_Valider.setEffect(dropShadow);
+        //b_Valider.setEffect(dropShadow);
 
         mainPane.getChildren().add(root);
 

@@ -1,6 +1,7 @@
 package fr.isep.javarchitects.Application;
 
-import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
+//import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
+import fr.isep.javarchitects.Fenetres.GamePlayFieldWindow;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -89,7 +90,7 @@ public class Main extends Application {
         mainStage = new Stage(StageStyle.DECORATED);
         mainStage.setTitle("7 Wonders Architect");
         try {
-            new FenetrePrincipale(mainStage);
+            new GamePlayFieldWindow(mainStage);
         } catch (Exception e) {
             e.printStackTrace();
         }
