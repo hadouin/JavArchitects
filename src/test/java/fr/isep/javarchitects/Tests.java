@@ -1,8 +1,8 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
-import fr.isep.javarchitects.model.Joueur;
-import fr.isep.javarchitects.model.Partie;
+import fr.isep.javarchitects.model.Player;
+import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.Card;
 import fr.isep.javarchitects.model.Decks;
 import fr.isep.javarchitects.model.Wonder;
@@ -37,14 +37,14 @@ public class Tests {
 
     @Test
     public void setDecksTest() {
-        ArrayList<Joueur> listeJoueurs = new ArrayList<>();
-        listeJoueurs.add(new Joueur("Romeo", 0, Wonder.Gizeh));
+        ArrayList<Player> listePlayers = new ArrayList<>();
+        listePlayers.add(new Player("Romeo", 0, Wonder.Gizeh));
         ArrayList<Decks> decks = new ArrayList<>();
         Random R = new Random();
         for (Decks D : Decks.values()) {
             decks.add(D);
         }
-        for (Joueur J : listeJoueurs) {
+        for (Player J : listePlayers) {
             J.setSelfDeck(decks.remove(R.nextInt(decks.size())));
         }
     }
@@ -59,10 +59,10 @@ public class Tests {
         listeJoueurs.add("J3");
         listeJoueurs.add("J4");
 
-        Partie partie = new Partie(4, listeJoueurs, fp);
-        fp.setWonder(partie.getJoueurs());
-        fp.setDecks(partie.getJoueurs());
-        for (Joueur J : partie.getJoueurs()) {
+        Game game = new Game(4, listeJoueurs, fp);
+        fp.setWonder(game.getJoueurs());
+        fp.setDecks(game.getJoueurs());
+        for (Player J : game.getJoueurs()) {
             //System.out.println(J.getWonder().displayName);
             System.out.println((J.getSelfDeck()));
             System.out.println("A droite " + (J.getRightDeck()));
