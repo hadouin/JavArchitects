@@ -27,7 +27,14 @@ public enum Wonder {
 			)),
 	
 	Ephese(2,"Ephese", "Eph�se", //
-			"Prenez la premi�re carte de la pioche centrale et posez-la devant vous",),
+			"Prenez la premi�re carte de la pioche centrale et posez-la devant vous",
+			Arrays.asList(
+					new WonderFragment("images/wonders/ephese/piece-front-ephese-1.png", "images/wonders/ephese/piece-back-ephese-1.png", 0, false ),
+					new WonderFragment("images/wonders/ephese/piece-front-ephese-2.png", "images/wonders/ephese/piece-back-ephese-2.png", 1, true ),
+					new WonderFragment("images/wonders/ephese/piece-front-ephese-3.png", "images/wonders/ephese/piece-back-ephese-3.png", 1, true ),
+					new WonderFragment("images/wonders/ephese/piece-front-ephese-4.png", "images/wonders/ephese/piece-back-ephese-4.png", 1, true ),
+					new WonderFragment("images/wonders/ephese/piece-front-ephese-5.png", "images/wonders/ephese/piece-back-ephese-5.png", 2, false )
+			)),
 	
 	Olympie(3,"Olympie", "Olympie", //
 			"Prenez la premi�re carte de la pioche � votre cauche et de celle � votre droite, et posez-les devant vous",),
