@@ -1,13 +1,12 @@
 package fr.isep.javarchitects.Fenetres;
 
-import fr.isep.javarchitects.model.Joueur;
-import fr.isep.javarchitects.model.Partie;
+import fr.isep.javarchitects.model.Player;
+import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.Decks;
 import fr.isep.javarchitects.model.Wonder;
 import fr.isep.javarchitects.model.ProgressToken;
 import fr.isep.javarchitects.model.ProgressTokens;
 import javafx.geometry.Insets;
-import javafx.scene.LightBase;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -28,10 +27,10 @@ public class FenetrePrincipale {
     private Stage menuStage;
     private AnchorPane mainPane;
     private ArrayList <Label> l_Joueurs = new ArrayList<Label>();
-    private ArrayList <Joueur> ListeJoueurs = new ArrayList<Joueur>();
+    private ArrayList <Player> listePlayers = new ArrayList<Player>();
     private FenetrePrincipale Fp;
     private FenetreDemarage fd = new FenetreDemarage(this);
-    private Partie partie;
+    private Game game;
     private static final int HEIGHT = 800;
     private static final int WIDTH = 1000;
     private ArrayList<ImageView> ImagesDecks;
@@ -58,22 +57,22 @@ public class FenetrePrincipale {
     /**
      * Fonction qui va assigner à chaque joueur de listeJoueurs merveille.
      * De manière random
-     * @param listeJoueurs
+     * @param listePlayers
      */
-    public void setWonder(ArrayList<Joueur> listeJoueurs) {
+    public void setWonder(ArrayList<Player> listePlayers) {
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
         for (Wonder W : Wonder.values()) {
             listeWonder.add(W);
         }
 
-        for (Joueur J : listeJoueurs) {
+        for (Player J : listePlayers) {
             int C = R.nextInt(listeWonder.size());
             J.setWonder(listeWonder.remove(C));
         }
     }
     
-    public void setDecks(ArrayList<Joueur> listeJoueurs) {
+    public void setDecks(ArrayList<Player> listePlayers) {
 
         // fonction qui va assigner à chaque joueur deux decks : son propre deck, positionné à sa droite, et le deck
         // de son voisin de gauche
@@ -83,28 +82,28 @@ public class FenetrePrincipale {
             decks.add(D);
         }
 
-        for (Joueur J : listeJoueurs) {
+        for (Player J : listePlayers) {
             J.setSelfDeck(decks.get(J.getWonder().getID()));
         }
-        for (int i = listeJoueurs.size() - 1; i >= 0 ; i--) {
-            Joueur joueur = listeJoueurs.get(i);
+        for (int i = listePlayers.size() - 1; i >= 0 ; i--) {
+            Player player = listePlayers.get(i);
             if(i > 0) {
-                joueur.setRightDeck(listeJoueurs.get(i - 1).getSelfDeck());
+                player.setRightDeck(listePlayers.get(i - 1).getSelfDeck());
             }
             else {
-                joueur.setRightDeck(listeJoueurs.get(listeJoueurs.size() - 1).getSelfDeck());
+                player.setRightDeck(listePlayers.get(listePlayers.size() - 1).getSelfDeck());
             }
         }
     }
 
-    public void setRightDecks(ArrayList<Joueur> listeJoueurs) {
+    public void setRightDecks(ArrayList<Player> listePlayers) {
 
     }
 
-    public void setPartie(int nbrJoueur, ArrayList<String> nomJoueurs) {
-        partie = new Partie(nbrJoueur, nomJoueurs, this);
-        setWonder(partie.getJoueurs());
-        setDecks(partie.getJoueurs());
+    public void setPartie(int nbPlayers, ArrayList<String> playerNames) {
+        game = new Game(nbPlayers, playerNames, this);
+        setWonder(game.getPlayers());
+        setDecks(game.getPlayers());
         VBox Alexandrie = setRhodes();
         jetonsProgres = setProgressToken();
         descLab = new Label("description");
@@ -115,11 +114,11 @@ public class FenetrePrincipale {
         mainPane.getChildren().add(jetonsProgres);
         mainPane.getChildren().add(descLab);
         mainPane.getChildren().add(Alexandrie);
-        for(int i = 0; i < nbrJoueur; i++) {
+        for(int i = 0; i < nbPlayers; i++) {
 
-            Label labelJoueur = new Label(partie.getJoueurs().get(i).getNom());
+            Label labelPlayer = new Label(game.getPlayers().get(i).getName());
 
-            l_Joueurs.add(labelJoueur);
+            l_Joueurs.add(labelPlayer);
 
             mainPane.getChildren().add(l_Joueurs.get(i));
         }
