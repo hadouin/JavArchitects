@@ -67,7 +67,14 @@ public enum Wonder {
 			)),
 	
 	Gizeh(6,"Gizeh", "Gizeh", //
-			"Cette merveille n'a pas d'effet particulier, mais rapporte plus de points de victoire que les autres Merveilles",);
+			"Cette merveille n'a pas d'effet particulier, mais rapporte plus de points de victoire que les autres Merveilles",
+			Arrays.asList(
+					new WonderFragment("images/wonders/giseh/piece-front-giseh-1.png", "images/wonders/giseh/piece-back-giseh-1.png", 0, false ),
+					new WonderFragment("images/wonders/giseh/piece-front-giseh-2.png", "images/wonders/giseh/piece-back-giseh-2.png", 1, false ),
+					new WonderFragment("images/wonders/giseh/piece-front-giseh-3.png", "images/wonders/giseh/piece-back-giseh-3.png", 2, false ),
+					new WonderFragment("images/wonders/giseh/piece-front-giseh-4.png", "images/wonders/giseh/piece-back-giseh-4.png", 3, false ),
+					new WonderFragment("images/wonders/giseh/piece-front-giseh-5.png", "images/wonders/giseh/piece-back-giseh-5.png", 4, false )
+			));
 
 	// ------------------------------------------------------------------------
 	
