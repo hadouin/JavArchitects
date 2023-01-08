@@ -1,5 +1,3 @@
-/*
-
 package fr.isep.javarchitects.Fenetres;
 
 import fr.isep.javarchitects.model.Player;
@@ -23,14 +21,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class FenetrePrincipale {
+public class GamePlayFieldWindow {
 
     private Stage mainStage;
     private Stage menuStage;
     private AnchorPane mainPane;
-    private ArrayList <Label> l_Joueurs = new ArrayList<Label>();
-    private ArrayList <Player> listePlayers = new ArrayList<Player>();
-    private FenetrePrincipale Fp;
+    private GamePlayFieldWindow gamePlayField ;
     private FenetreDemarage fd = new FenetreDemarage(this);
     private Game game;
     private static final int HEIGHT = 800;
@@ -43,7 +39,8 @@ public class FenetrePrincipale {
     private Label descLab;
 
 
-    public FenetrePrincipale(Stage primaryStage) {
+
+    public GamePlayFieldWindow(Stage primaryStage) {
         this.mainStage = primaryStage;
         mainPane = new AnchorPane();
         Scene scene = new Scene(mainPane, WIDTH, HEIGHT);
@@ -51,16 +48,15 @@ public class FenetrePrincipale {
         mainStage.setTitle("Seven Wonders Architect");
 
         fd.getStage().show();
-        //Fp.getMainStage().show();
     };
 
-    public FenetrePrincipale() {};
+    public GamePlayFieldWindow() {};
 
     /**
      * Fonction qui va assigner à chaque joueur de listeJoueurs merveille.
      * De manière random
      * @param listePlayers
-
+     */
     public void setWonder(ArrayList<Player> listePlayers) {
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
@@ -73,7 +69,7 @@ public class FenetrePrincipale {
             J.setWonder(listeWonder.remove(C));
         }
     }
-    
+
     public void setDecks(ArrayList<Player> listePlayers) {
 
         // fonction qui va assigner à chaque joueur deux decks : son propre deck, positionné à sa droite, et le deck
@@ -104,31 +100,22 @@ public class FenetrePrincipale {
 
     public void setPartie(int nbPlayers, ArrayList<String> playerNames) {
         game = new Game(nbPlayers, playerNames, this);
-        setWonder(game.getPlayers());
-        setDecks(game.getPlayers());
-        VBox Alexandrie = setRhodes();
-        jetonsProgres = setProgressToken();
-        descLab = new Label("description");
-        AnchorPane.setRightAnchor(descLab, 2.);
-        AnchorPane.setTopAnchor(descLab, 60.);
+        VBox overallArea = new VBox();
+        GamePlayFieldHeaderArea headerArea = new GamePlayFieldHeaderArea(this.game, overallArea);
+        //VBox wonderArea = new WonderArea(overallArea);
 
-        AnchorPane.setRightAnchor(jetonsProgres, 2.);
-        mainPane.getChildren().add(jetonsProgres);
-        mainPane.getChildren().add(descLab);
-        mainPane.getChildren().add(Alexandrie);
+
+        overallArea.getChildren().add(headerArea.getHeaderArea());
+        mainPane.getChildren().add(overallArea);
+
         for(int i = 0; i < nbPlayers; i++) {
-
-            Label labelPlayer = new Label(game.getPlayers().get(i).getName());
-
-            l_Joueurs.add(labelPlayer);
-
-            mainPane.getChildren().add(l_Joueurs.get(i));
+            //mainPane.getChildren().add(setBabylon());
         }
     }
 
-    public void creationFenetrePrincipale(Stage menuStage, FenetrePrincipale Fp) {
+    public void creationFenetrePrincipale(Stage menuStage, GamePlayFieldWindow gamePlayField) {
         this.menuStage = menuStage;
-        this.Fp = Fp;
+        this.gamePlayField = gamePlayField;
         //createBackgroud();
         //gameLoop();
 
@@ -141,7 +128,6 @@ public class FenetrePrincipale {
         VBox wonder = new VBox();
         Image I = new Image(getClass().getResourceAsStream("/images/wonders/alexandrie/piece-back-alexandrie-1.png"));
         ImageView image1 = new ImageView(new Image(getClass().getResourceAsStream("/images/wonders/alexandrie/piece-back-alexandrie-1.png")));
-        // image1.setFitHeight(100);
         image1.setFitWidth(image1.getImage().getWidth()/3);
         image1.setPreserveRatio(true);
         image1.setSmooth(true);
@@ -412,5 +398,3 @@ public class FenetrePrincipale {
         return mainStage;
     }
 }
-
-*/
