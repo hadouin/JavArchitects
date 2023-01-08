@@ -57,7 +57,14 @@ public enum Wonder {
 			)),
 	
 	Rhodes(5,"Rhodes", "Rhodes", //
-			"Ajoutez 1 Bouclier � votre total de Boucliers",),
+			"Ajoutez 1 Bouclier � votre total de Boucliers",
+			Arrays.asList(
+					new WonderFragment("images/wonders/rhodes/piece-front-rhodes-1.png", "images/wonders/rhodes/piece-back-rhodes-1.png", 0, false ),
+					new WonderFragment("images/wonders/rhodes/piece-front-rhodes-2.png", "images/wonders/rhodes/piece-back-rhodes-2.png", 0, true ),
+					new WonderFragment("images/wonders/rhodes/piece-front-rhodes-3.png", "images/wonders/rhodes/piece-back-rhodes-3.png", 1, false ),
+					new WonderFragment("images/wonders/rhodes/piece-front-rhodes-4.png", "images/wonders/rhodes/piece-back-rhodes-4.png", 2, true ),
+					new WonderFragment("images/wonders/rhodes/piece-front-rhodes-5.png", "images/wonders/rhodes/piece-back-rhodes-5.png", 3, false )
+			)),
 	
 	Gizeh(6,"Gizeh", "Gizeh", //
 			"Cette merveille n'a pas d'effet particulier, mais rapporte plus de points de victoire que les autres Merveilles",);
