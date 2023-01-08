@@ -2,20 +2,21 @@ package fr.isep.javarchitects.Fenetres;
 
 import fr.isep.javarchitects.Subscriber;
 import fr.isep.javarchitects.TestState;
+import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
+import fr.isep.javarchitects.model.ConflictToken;
 import fr.isep.javarchitects.model.ProgressToken;
 import fr.isep.javarchitects.model.ProgressTokens;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * GameUI is the main compent of ui view for the game.
@@ -43,13 +44,17 @@ public class GameUI extends Stage implements Subscriber {
     }
 
     private void setupGame(){
-        setProgressTokens();
-    }
-
-    private void setProgressTokens() {
         Pane progressTokenView = new ProgressTokenPane(new ArrayList<>(ProgressTokens.TOKENS).subList(0,3));
         AnchorPane.setRightAnchor(progressTokenView, 2.);
-
         rootPane.getChildren().add(progressTokenView);
+
+        ConflictTokensHBox conflictTokensHBox = new ConflictTokensHBox(Arrays.asList(
+                new ConflictToken(false),
+                new ConflictToken(true),
+                new ConflictToken(true)
+        ));
+        AnchorPane.setLeftAnchor(conflictTokensHBox, 2.);
+        rootPane.getChildren().add(conflictTokensHBox);
     }
+
 }

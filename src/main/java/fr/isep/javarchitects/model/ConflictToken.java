@@ -4,7 +4,7 @@ public class ConflictToken {
     private String imageRessource;
     private boolean isPeace;
 
-    ConflictToken(boolean isPeace){
+    public ConflictToken(boolean isPeace){
         this.isPeace = isPeace;
         updateImage();
     }
@@ -21,9 +21,13 @@ public class ConflictToken {
 
     private void updateImage(){
         if (this.isPeace){
-            this.imageRessource = "images/tokens/token-conflict-peace.png";
+            this.imageRessource = "/images/tokens/token-conflict-peace.png";
         } else {
-            this.imageRessource = "images/tokens/token-conflict-war.png";
+            this.imageRessource = "/images/tokens/token-conflict-war.png";
         }
+    }
+
+    public String getImage() {
+        return this.imageRessource;
     }
 }
