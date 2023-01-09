@@ -5,9 +5,11 @@ import fr.isep.javarchitects.Subscriber;
 import fr.isep.javarchitects.TestState;
 import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
+import fr.isep.javarchitects.components.WonderDisplay;
 import fr.isep.javarchitects.model.ConflictToken;
 import fr.isep.javarchitects.model.ProgressToken;
 import fr.isep.javarchitects.model.ProgressTokens;
+import fr.isep.javarchitects.model.Wonder;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -62,6 +64,10 @@ public class GameUI extends Stage implements Subscriber {
         conflictTokensHBox = new ConflictTokensHBox(gameStateVisible.conflictTokens);
         AnchorPane.setLeftAnchor(conflictTokensHBox, 2.);
         rootPane.getChildren().add(conflictTokensHBox);
+
+        WonderDisplay wonderDisplay = new WonderDisplay(Wonder.Alexandrie);
+        AnchorPane.setRightAnchor(wonderDisplay, 100.);
+        rootPane.getChildren().add(wonderDisplay);
     }
 
 }
