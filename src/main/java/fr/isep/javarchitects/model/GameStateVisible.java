@@ -11,8 +11,8 @@ public class GameStateVisible {
 
     public static final GameStateVisible BASE_STATE = new GameStateVisible(
             Arrays.asList(
-                    new PlayerVisible(Wonder.Alexandrie, new Card(CardType.CardMaterialGold, CardBack.Alexandrie), new ArrayList<>(), new ArrayList<>()),
-                    new PlayerVisible(Wonder.Rhodes, new Card(CardType.CardMaterialStone, CardBack.Rhodes), new ArrayList<>(), new ArrayList<>())
+                    new PlayerVisible(Wonder.Alexandrie, new Card(CardType.CardMaterialGold, CardBack.Alexandrie), new ArrayList<>(), new ArrayList<>(), true),
+                    new PlayerVisible(Wonder.Rhodes, new Card(CardType.CardMaterialStone, CardBack.Rhodes), new ArrayList<>(), new ArrayList<>(), false)
             ),
             0,
             Arrays.asList(
@@ -46,4 +46,10 @@ public class GameStateVisible {
         this.gameActionList = gameActionList;
     }
 
+    public PlayerVisible getCatOwner(List<PlayerVisible> playerList) {
+        return playerList.stream()
+                .filter(PlayerVisible::getHasCat)
+                .findFirst()
+                .orElse(null);
+    }
 }
