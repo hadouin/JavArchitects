@@ -1,9 +1,9 @@
 package fr.isep.javarchitects;
 
-import fr.isep.javarchitects.model.ConflictToken;
-import fr.isep.javarchitects.model.ProgressToken;
+import fr.isep.javarchitects.model.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,36 +11,31 @@ import java.util.List;
  */
 public class GameStateVisible {
 
-    private List<PlayerVisible> players;
-    private int currentPlayerID;
+    public static final GameStateVisible BASE_STATE = new GameStateVisible(
+            Arrays.asList(
+                    new PlayerVisible(Wonder.Alexandrie, new Card(CardType.CardMaterialGold, CardBack.Alexandrie), new ArrayList<>(), new ArrayList<>()),
+                    new PlayerVisible(Wonder.Rhodes, new Card(CardType.CardMaterialStone, CardBack.Rhodes), new ArrayList<>(), new ArrayList<>())
+            ),
+            0,
+            Arrays.asList(
+                    new ConflictToken(false),
+                    new ConflictToken(true),
+                    new ConflictToken(true)
+            ),
+            new ArrayList<>(ProgressTokens.TOKENS).subList(0,3)
+    );
 
-    private List<ConflictToken> conflictTokens;
-    private List<ProgressToken> visibleProgressTokens;
+    public final List<PlayerVisible> players;
+    public final int currentPlayerID;
 
+    public final List<ConflictToken> conflictTokens;
+    public final List<ProgressToken> visibleProgressTokens;
 
-    public static class Builder {
-        // params obligatoires
-        private final List<PlayerVisible> players;
-        private final List<ConflictToken> conflictTokens;
-        private final List<ProgressToken> visibleProgressTokens;
-        // facultatifs
-        private int currentPlayerID = 0;
-
-        public Builder(List<PlayerVisible> players, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens) {
-            this.players = players;
-            this.conflictTokens = conflictTokens;
-            this.visibleProgressTokens = visibleProgressTokens;
-        }
-        public Builder setCurrentPlayerID(int ID){
-            this.currentPlayerID = ID; return this;
-        }
-
-        public GameStateVisible build(){
-            return new GameStateVisible(this);
-        }
-    }
-
-    GameStateVisible(Builder builder){
+    GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens){
+        this.players = players;
+        this.currentPlayerID = currentPlayerID;
+        this.conflictTokens = conflictTokens;
+        this.visibleProgressTokens = visibleProgressTokens;
     }
 
 

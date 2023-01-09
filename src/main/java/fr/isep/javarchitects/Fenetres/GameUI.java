@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.Fenetres;
 
+import fr.isep.javarchitects.GameStateVisible;
 import fr.isep.javarchitects.Subscriber;
 import fr.isep.javarchitects.TestState;
 import fr.isep.javarchitects.components.ConflictTokensHBox;
@@ -26,16 +27,26 @@ public class GameUI extends Stage implements Subscriber {
     private static final int HEIGHT = 800;
     private static final int WIDTH = 1000;
 
+    private GameStateVisible gameStateVisible;
     private Pane rootPane;
     private Scene mainScene;
+    private ProgressTokenPane progressTokenView;
+    private ConflictTokensHBox conflictTokensHBox;
+
 
     @Override
-    public void update(TestState testState) {
-        Pane root = (Pane) this.getScene().getRoot();
-        root.getChildren().add(new Label(testState.labelString));
+    public void update(GameStateVisible gameStateVisible) {
+        this.gameStateVisible = gameStateVisible;
+        updateGame();
     }
 
-    public GameUI(){
+    private void updateGame() {
+        conflictTokensHBox.setConflictTokenList(gameStateVisible.conflictTokens);
+        progressTokenView.setVisibleTokens(gameStateVisible.visibleProgressTokens);
+    }
+
+    public GameUI(GameStateVisible gameStateVisible){
+        this.gameStateVisible = gameStateVisible;
         this.rootPane = new AnchorPane();
         this.mainScene = new Scene(rootPane, WIDTH, HEIGHT);
         this.setTitle("JavArchitects");
@@ -44,15 +55,11 @@ public class GameUI extends Stage implements Subscriber {
     }
 
     private void setupGame(){
-        Pane progressTokenView = new ProgressTokenPane(new ArrayList<>(ProgressTokens.TOKENS).subList(0,3));
+        progressTokenView = new ProgressTokenPane(gameStateVisible.visibleProgressTokens);
         AnchorPane.setRightAnchor(progressTokenView, 2.);
         rootPane.getChildren().add(progressTokenView);
 
-        ConflictTokensHBox conflictTokensHBox = new ConflictTokensHBox(Arrays.asList(
-                new ConflictToken(false),
-                new ConflictToken(true),
-                new ConflictToken(true)
-        ));
+        conflictTokensHBox = new ConflictTokensHBox(gameStateVisible.conflictTokens);
         AnchorPane.setLeftAnchor(conflictTokensHBox, 2.);
         rootPane.getChildren().add(conflictTokensHBox);
     }

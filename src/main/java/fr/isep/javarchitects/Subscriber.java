@@ -7,7 +7,7 @@ package fr.isep.javarchitects;
 public interface Subscriber {
     /**
      * Update subscribers in our case mainly our GUIs
-     * @param testState game state containing visible elements you want to display
+     * @param gameStateVisible game state containing visible elements you want to display
      */
-    void update(TestState testState);
+    void update(GameStateVisible gameStateVisible);
 }

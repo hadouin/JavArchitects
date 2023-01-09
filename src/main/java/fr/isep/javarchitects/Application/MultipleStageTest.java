@@ -2,6 +2,7 @@ package fr.isep.javarchitects.Application;
 
 import fr.isep.javarchitects.Fenetres.GameUI;
 import fr.isep.javarchitects.GameController;
+import fr.isep.javarchitects.GameStateVisible;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,10 +36,10 @@ public class MultipleStageTest extends Application {
         Scene scene = new Scene(root, 200, 100);
         Scene otherScene = new Scene(otherRoot, 200 , 100);
 
-        GameUI firstStage = new GameUI();
+        GameUI firstStage = new GameUI(GameStateVisible.BASE_STATE);
         gameController.subscribe(firstStage);
 
-        GameUI secondStage = new GameUI();
+        GameUI secondStage = new GameUI(GameStateVisible.BASE_STATE);
         gameController.subscribe(secondStage);
 
         firstStage.setTitle("First Stage");

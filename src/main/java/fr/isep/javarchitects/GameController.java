@@ -41,7 +41,7 @@ public class GameController {
      */
     public void notifySubscribers(){
         for (Subscriber subscriber: subscribers) {
-            subscriber.update(testState);
+            subscriber.update(gameStateVisible);
         }
     }
     /**
