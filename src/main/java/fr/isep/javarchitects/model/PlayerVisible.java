@@ -1,4 +1,4 @@
-package fr.isep.javarchitects;
+package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.model.Card;
 import fr.isep.javarchitects.model.ProgressToken;

@@ -1,26 +1,16 @@
-package fr.isep.javarchitects.Fenetres;
+package fr.isep.javarchitects.Views;
 
-import fr.isep.javarchitects.GameStateVisible;
+import fr.isep.javarchitects.model.GameStateVisible;
 import fr.isep.javarchitects.Subscriber;
-import fr.isep.javarchitects.TestState;
 import fr.isep.javarchitects.components.ChoiceDisplayHBox;
 import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.components.WonderDisplay;
-import fr.isep.javarchitects.model.ConflictToken;
-import fr.isep.javarchitects.model.ProgressToken;
-import fr.isep.javarchitects.model.ProgressTokens;
 import fr.isep.javarchitects.model.Wonder;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * GameUI is the main component of ui view for the game.

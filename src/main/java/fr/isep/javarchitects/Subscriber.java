@@ -1,5 +1,7 @@
 package fr.isep.javarchitects;
 
+import fr.isep.javarchitects.model.GameStateVisible;
+
 /**
  * Simple Interface to define the update method the different observers.
  * In our case GameUI implements it.

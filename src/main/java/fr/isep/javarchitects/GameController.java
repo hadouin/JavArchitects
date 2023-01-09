@@ -1,12 +1,13 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.model.Game;
+import fr.isep.javarchitects.model.GameStateVisible;
+import fr.isep.javarchitects.model.TestState;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

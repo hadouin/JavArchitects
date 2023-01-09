@@ -77,7 +77,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>fr.isep.javarchitects/fr.isep.javarchitects.Application.Main</mainClass>
+                            <mainClass>fr.isep.javarchitects/fr.isep.javarchitects.Main</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

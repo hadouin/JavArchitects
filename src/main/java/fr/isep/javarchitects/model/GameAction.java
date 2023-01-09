@@ -1,4 +1,6 @@
-package fr.isep.javarchitects;
+package fr.isep.javarchitects.model;
+
+import fr.isep.javarchitects.IVoidComplete;
 
 public class GameAction {
     public final String name;
