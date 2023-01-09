@@ -1,13 +1,12 @@
-package fr.isep.javarchitects.Application;
+package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.Views.GameUI;
-import fr.isep.javarchitects.GameController;
-import fr.isep.javarchitects.GameStateVisible;
 import fr.isep.javarchitects.components.SplashScreen;
 import fr.isep.javarchitects.model.Game;
+import fr.isep.javarchitects.model.GameStateVisible;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.stage.*;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.List;

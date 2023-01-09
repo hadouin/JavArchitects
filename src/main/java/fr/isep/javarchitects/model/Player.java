@@ -1,7 +1,5 @@
 package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.PlayerVisible;
-
 import java.util.List;
 
 public class Player {

@@ -2,7 +2,6 @@ package fr.isep.javarchitects.model;
 
 //import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
 import fr.isep.javarchitects.GameController;
-import fr.isep.javarchitects.GameStateVisible;
 
 import java.util.ArrayList;
 import java.util.Arrays;

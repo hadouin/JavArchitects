@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.Views;
 
-import fr.isep.javarchitects.GameStateVisible;
+import fr.isep.javarchitects.model.GameStateVisible;
 import fr.isep.javarchitects.Subscriber;
 import fr.isep.javarchitects.components.ChoiceDisplayHBox;
 import fr.isep.javarchitects.components.ConflictTokensHBox;

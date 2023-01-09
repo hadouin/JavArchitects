@@ -1,6 +1,4 @@
-package fr.isep.javarchitects;
-
-import fr.isep.javarchitects.model.*;
+package fr.isep.javarchitects.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
