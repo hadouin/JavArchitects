@@ -33,12 +33,18 @@ public class Game {
         for(int i = 0; i < this.nbPlayers; i++){
             players.add(new Player(playerNames.get(i), i, Wonder.Alexandrie));
         }
+        setWonder(players);
+        setDecks(players);
     }
 
     public void startGame(){
 
     };
 
+    /**
+     * Set current player ID to next player
+     * go back to first if last and add a round
+     */
     public void setNextPlayer() {
         currentPlayerID++;
         if (currentPlayerID >= this.nbPlayers) {
@@ -52,7 +58,7 @@ public class Game {
      * De manière random
      * @param listePlayers liste des joueurs à traiter
      */
-    public void setWonder(ArrayList<Player> listePlayers) {
+    public void setWonder(List<Player> listePlayers) {
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
         for (Wonder W : Wonder.values()) {
@@ -70,22 +76,23 @@ public class Game {
      * et le deck de son voisin de droite
      * @param listePlayers liste des joueurs ordonnée dans l'ordre
      */
-    public void setDecks(ArrayList<Player> listePlayers) {
-        ArrayList<Decks> decks = new ArrayList<>();
-        for (Decks D : Decks.values()) {
-            decks.add(D);
+    public void setDecks(List<Player> listePlayers) {
+
+        // set self deck in function of wonder
+        for (Player player : listePlayers) {
+            int wonderID = player.getWonder().getID();
+            Decks deck = Decks.values()[wonderID];
+            player.setSelfDeck(deck);
         }
 
-        for (Player J : listePlayers) {
-            J.setSelfDeck(decks.get(J.getWonder().getID()));
-        }
-        for (int i = listePlayers.size() - 1; i >= 0 ; i--) {
+        // set right deck to i+1 in the list
+        // if last get right deck of first player
+        for( int i = 0; i < listePlayers.size(); i++) {
             Player player = listePlayers.get(i);
-            if(i > 0) {
-                player.setRightDeck(listePlayers.get(i - 1).getSelfDeck());
-            }
-            else {
-                player.setRightDeck(listePlayers.get(listePlayers.size() - 1).getSelfDeck());
+            if (i != listePlayers.size() - 1){
+                player.setRightDeck(listePlayers.get(i + 1).getSelfDeck());
+            } else {
+                player.setRightDeck(listePlayers.get(0).getSelfDeck());
             }
         }
     }
