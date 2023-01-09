@@ -26,7 +26,7 @@ public class Game {
             new ConflictToken(false),
             new ConflictToken(true)
     );
-    private List<ProgressToken> progressTokenList = ProgressTokens.TOKENS.subList(5,9);
+    private List<ProgressToken> progressTokenList = ProgressTokens.TOKENS.subList(5,11);
 
 
     public Game(int nbPlayers, List<String> playerNames) {
@@ -96,7 +96,7 @@ public class Game {
                         .collect(Collectors.toList()),
                 0,
                 conflictTokens,
-                progressTokenList,
+                progressTokenList.subList(0,3),
                 Arrays.asList(
                         new GameAction("Action 1", () -> {}),
                         new GameAction("Back", () -> {})
