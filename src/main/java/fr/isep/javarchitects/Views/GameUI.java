@@ -8,6 +8,7 @@ import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.components.WonderDisplay;
 import fr.isep.javarchitects.model.Wonder;
+import fr.isep.javarchitects.utils.Icons;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -82,6 +83,10 @@ public class GameUI extends Stage implements Subscriber {
         catImageView.setPreserveRatio(true);
         AnchorPane.setLeftAnchor(catImageView, 200.);
         rootPane.getChildren().add(catImageView);
+
+        ImageView iconTestView = new ImageView(Icons.STONE.image);
+        AnchorPane.setTopAnchor(iconTestView, 100.);
+        rootPane.getChildren().add(iconTestView);
     }
 
 }
