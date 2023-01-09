@@ -111,7 +111,7 @@ public class Game {
      * @param playerList list to query
      * @return the first player that owns the cat. If none have the Cat returns null
      */
-    private Player getCatOwner(List<Player> playerList){
+    public Player getCatOwner(List<Player> playerList){
         return playerList.stream()
                 .filter(Player::getHasCat)
                 .findFirst()
@@ -121,6 +121,10 @@ public class Game {
     // -----------------------------------------------------------------------------------------------------------------
     public void setController(GameController gameController) {
         this.gameController = gameController;
+    }
+
+    public void setPlayers(List<Player> players){
+        this.players = players;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
