@@ -9,7 +9,7 @@ import java.util.List;
 public class ChoiceDisplayHBox extends HBox {
     private List<GameAction> gameActionList;
 
-    ChoiceDisplayHBox(List<GameAction> gameActionList){
+    public ChoiceDisplayHBox(List<GameAction> gameActionList){
         this.setSpacing(5);
         setGameActionList(gameActionList);
     }
@@ -20,6 +20,9 @@ public class ChoiceDisplayHBox extends HBox {
     }
 
     private void update() {
+        if (this.gameActionList == null){
+            return;
+        }
         this.getChildren().clear();
         for (GameAction gameAction : gameActionList) {
             Button button = new Button(gameAction.name);
