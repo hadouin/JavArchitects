@@ -3,12 +3,15 @@ package fr.isep.javarchitects.Application;
 import fr.isep.javarchitects.Fenetres.GameUI;
 import fr.isep.javarchitects.GameController;
 import fr.isep.javarchitects.GameStateVisible;
+import fr.isep.javarchitects.model.Game;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 /**
  * An app to test the creation of multiple stage and the global implementation of the observer patter
@@ -20,7 +23,7 @@ public class MultipleStageTest extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.gameController = new GameController();
+        this.gameController = new GameController(new Game(1, List.of("Hadouin")));
         Button button = new Button("Ok depart");
         button.setOnAction(e -> {
             gameController.triggerOkDepart(e);

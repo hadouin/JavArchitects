@@ -18,7 +18,7 @@ public class ConflictTokensHBox extends HBox {
     }
 
     private void update() {
-        this.getChildren().removeAll();
+        this.getChildren().clear();
         for (ConflictToken token : conflictTokenList) {
             String tokenImageString = token.getImage();
             Image image = new Image(getClass().getResourceAsStream(tokenImageString));

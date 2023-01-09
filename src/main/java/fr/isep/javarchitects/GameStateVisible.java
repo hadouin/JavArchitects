@@ -30,13 +30,22 @@ public class GameStateVisible {
 
     public final List<ConflictToken> conflictTokens;
     public final List<ProgressToken> visibleProgressTokens;
+    public final List<GameAction> gameActionList;
 
     GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens){
         this.players = players;
         this.currentPlayerID = currentPlayerID;
         this.conflictTokens = conflictTokens;
         this.visibleProgressTokens = visibleProgressTokens;
+        this.gameActionList = null;
     }
 
+    public GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens, List<GameAction> gameActionList){
+        this.players = players;
+        this.currentPlayerID = currentPlayerID;
+        this.conflictTokens = conflictTokens;
+        this.visibleProgressTokens = visibleProgressTokens;
+        this.gameActionList = gameActionList;
+    }
 
 }

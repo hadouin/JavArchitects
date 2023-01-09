@@ -32,21 +32,19 @@ public class Player {
         // Params obligatoires
         private final String name;
         private final int ID;
+        private final Wonder wonder;
 
         // Params facultatifs
-        private Wonder wonder = Wonder.Gizeh;
         private int victoryPoints = 0;
         private int warPoints = 0;
         private boolean ownsCat = false;
         private Decks selfDeck = Decks.D_Gizeh;
         private List<Card> ownedCards;
 
-        public Builder(String name, int id) {
+        public Builder(String name, int id, Wonder wonder) {
             this.name = name;
             ID = id;
-        }
-        public Builder setWonder(Wonder wonder){
-            this.wonder = wonder; return this;
+            this.wonder = wonder;
         }
         public Builder setVictoryPoints(int victoryPoints){
             this.victoryPoints = victoryPoints; return this;
@@ -73,8 +71,8 @@ public class Player {
         this.name = name;
         this.ID = ID;
         this.wonder = wonder;
+        this.selfDeck = Decks.values()[wonder.getID()];
     }
-
     public Player(String name, int ID) {
         this.name = name;
         this.ID = ID;

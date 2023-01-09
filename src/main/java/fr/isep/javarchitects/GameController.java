@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -51,6 +52,17 @@ public class GameController {
     public void triggerOkDepart(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         testState.labelString = stage.getTitle();
+        notifySubscribers();
+    }
+
+    public GameController(Game game){
+        this.game = game;
+        game.setController(this);
+    }
+
+    public void sendFirstTestState(){
+        this.gameStateVisible = game.getVisibleState();
+        System.out.println(gameStateVisible.toString());
         notifySubscribers();
     }
 

@@ -12,7 +12,7 @@ class GameControllerTest {
 
     @Test
     void getBuildableFragments() {
-        Player BabylonePlayer = new Player.Builder("Babylone", 1).setWonder(Wonder.Babylone).build();
+        Player BabylonePlayer = new Player.Builder("Babylone", 1, Wonder.Babylone).build();
 
         List<WonderFragment> expected = new ArrayList<>();
     }
