@@ -9,7 +9,7 @@ public class Player {
     private Wonder wonder;
     private int victoryPoints = 0;
     private int warPoints = 0;
-    private boolean ownsCat = false;
+    private boolean hasCat = false;
     private Decks selfDeck;
     private Decks rightDeck;
     private List<Card> ownedCards;
@@ -21,7 +21,7 @@ public class Player {
         this.wonder = builder.wonder;
         this.victoryPoints = builder.victoryPoints;
         this.warPoints = builder.warPoints;
-        this.ownsCat = builder.ownsCat;
+        this.hasCat = builder.ownsCat;
         this.selfDeck = builder.selfDeck;
         this.ownedCards = builder.ownedCards;
     }
@@ -77,7 +77,7 @@ public class Player {
     }
 
     public PlayerVisible getVisibleState(){
-        PlayerVisible playerVisible = new PlayerVisible(wonder, getTopDeck(), getOwnedCards(), getProgressTokens());
+        PlayerVisible playerVisible = new PlayerVisible(wonder, getTopDeck(), getOwnedCards(), getProgressTokens(), hasCat);
         return playerVisible;
     }
 
@@ -104,8 +104,8 @@ public class Player {
         return warPoints;
     }
 
-    public boolean getOwnsCat() {
-        return ownsCat;
+    public boolean getHasCat() {
+        return hasCat;
     }
 
     public Decks getSelfDeck() {
@@ -146,8 +146,8 @@ public class Player {
         this.warPoints = warPoints;
     }
 
-    public void setOwnsCat(boolean ownsCat) {
-        this.ownsCat = ownsCat;
+    public void setHasCat(boolean hasCat) {
+        this.hasCat = hasCat;
     }
 
     public void setSelfDeck(Decks selfDeck) {
