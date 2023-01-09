@@ -101,11 +101,11 @@ public class GamePlayFieldWindow {
     public void setPartie(int nbPlayers, ArrayList<String> playerNames) {
         game = new Game(nbPlayers, playerNames);
         VBox overallArea = new VBox();
-        GamePlayFieldHeaderArea headerArea = new GamePlayFieldHeaderArea(this.game, overallArea);
+        // GamePlayFieldHeaderArea headerArea = new GamePlayFieldHeaderArea(this.game, overallArea);
         //VBox wonderArea = new WonderArea(overallArea);
 
 
-        overallArea.getChildren().add(headerArea.getHeaderArea());
+        // overallArea.getChildren().add(headerArea.getHeaderArea());
         mainPane.getChildren().add(overallArea);
 
         for(int i = 0; i < nbPlayers; i++) {

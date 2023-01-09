@@ -6,27 +6,19 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * The controller will handle the business logic of the game.
+ * The controller will handle the communication between the Game|Model and the GameUI|View.
  * Here we will send notifications to subscribers(Game UIs) to update the game state
  */
 public class GameController {
 
-    ArrayList<Subscriber> subscribers = new ArrayList<>();
+    List<Subscriber> subscribers = new ArrayList<>();
 
-    private GameStateInternal gameStateInternal ;
+    private Game game;
     private GameStateVisible gameStateVisible;
     private TestState testState = new TestState();
-    private Game game;
-
-    public GameStateInternal getGameStateInternal(){return gameStateInternal;}
-
-    public GameController(Game game) {
-        this.game = game;
-        this.gameStateInternal = new GameStateInternal(game);
-        this.gameStateVisible = new GameStateVisible(game);
-    }
 
     /**
      * Adds a subscriber to the list
@@ -52,8 +44,6 @@ public class GameController {
             subscriber.update(testState);
         }
     }
-
-
     /**
      * test notification triggered by gameUI
      * @param event
@@ -64,7 +54,4 @@ public class GameController {
         notifySubscribers();
     }
 
-    public GameStateVisible getGameStateVisible() {
-        return gameStateVisible;
-    }
 }
