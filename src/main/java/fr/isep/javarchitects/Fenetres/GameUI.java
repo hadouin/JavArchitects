@@ -3,6 +3,7 @@ package fr.isep.javarchitects.Fenetres;
 import fr.isep.javarchitects.GameStateVisible;
 import fr.isep.javarchitects.Subscriber;
 import fr.isep.javarchitects.TestState;
+import fr.isep.javarchitects.components.ChoiceDisplayHBox;
 import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.components.WonderDisplay;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * GameUI is the main compent of ui view for the game.
+ * GameUI is the main component of ui view for the game.
  * It is a stage that will subscribe to the controller/publisher changes
  */
 public class GameUI extends Stage implements Subscriber {
@@ -34,6 +35,7 @@ public class GameUI extends Stage implements Subscriber {
     private Scene mainScene;
     private ProgressTokenPane progressTokenView;
     private ConflictTokensHBox conflictTokensHBox;
+    private ChoiceDisplayHBox choiceDisplayHBox;
     private ImageView centerDeck;
 
 
@@ -46,6 +48,7 @@ public class GameUI extends Stage implements Subscriber {
     private void updateGame() {
         conflictTokensHBox.setConflictTokenList(gameStateVisible.conflictTokens);
         progressTokenView.setVisibleTokens(gameStateVisible.visibleProgressTokens);
+        choiceDisplayHBox.setGameActionList(gameStateVisible.gameActionList);
     }
 
     public GameUI(GameStateVisible gameStateVisible){
@@ -70,6 +73,11 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(wonderDisplay, 200.);
         AnchorPane.setTopAnchor(wonderDisplay, 200.);
         rootPane.getChildren().add(wonderDisplay);
+
+        choiceDisplayHBox = new ChoiceDisplayHBox(null);
+        AnchorPane.setLeftAnchor(choiceDisplayHBox, 100.);
+        AnchorPane.setBottomAnchor(choiceDisplayHBox, 0.);
+        rootPane.getChildren().add(choiceDisplayHBox);
     }
 
 }
