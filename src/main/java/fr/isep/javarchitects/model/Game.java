@@ -13,6 +13,7 @@ public class Game {
     private ArrayList<Player> players;
     private GameController gameController;
     private int currentPlayerID = 0;
+    private int playerWithCat = -1; // -1 if no-one has the cat else index in players ArrayList
     private int nbRound = 1;
 
     public Game(int nbPlayers, ArrayList<String> playerNames, GamePlayFieldWindow gamePlayField) {
@@ -35,6 +36,10 @@ public class Game {
 
     public Player getCurrentPlayerID() {
         return players.get(currentPlayerID);
+    }
+
+    public int getPlayerWithCat(){
+        return playerWithCat;
     }
 
     public GameController getGameController() {

@@ -4,7 +4,11 @@ public class ConflictToken {
     private String imageRessource;
     private boolean isPeace;
 
-    ConflictToken(boolean isPeace){
+    public String getImageRessource() {
+        return imageRessource;
+    }
+
+    public ConflictToken(boolean isPeace){
         this.isPeace = isPeace;
         updateImage();
     }

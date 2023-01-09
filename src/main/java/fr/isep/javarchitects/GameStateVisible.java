@@ -11,11 +11,11 @@ import java.util.ArrayList;
  * Visible state of the game that will be passed to graphical interface
  */
 
-//julie : actuellement visiblke contient des choses je crois que l'integralité de players devrait être dans Internal
 
 public class GameStateVisible {
     private Game game;
     private int maxConflictTokens=0;
+    private ArrayList<ConflictToken> conflictTokens = new ArrayList<>();
 
     public int getMaxConflictTokens() {
         return maxConflictTokens;
@@ -24,6 +24,15 @@ public class GameStateVisible {
     public GameStateVisible(Game game){
         this.game = game;
         this.maxConflictTokens = calcMaxConflictTokens();
+        for (int i=0;i<maxConflictTokens;i++){
+            conflictTokens.add(new ConflictToken(true));
+        }
+    }
+
+    public String getConflictTokenImagePath(int tokenNumber){ // get path of the image (calculated on its status (peace/war)), tokenNumber is 0 for leftmost token
+        String retValue="";
+        retValue = this.conflictTokens.get(tokenNumber).getImageRessource();
+        return retValue;
     }
 
     private int calcMaxConflictTokens(){

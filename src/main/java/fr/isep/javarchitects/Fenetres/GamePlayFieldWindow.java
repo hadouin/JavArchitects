@@ -29,8 +29,8 @@ public class GamePlayFieldWindow {
     private GamePlayFieldWindow gamePlayField ;
     private FenetreDemarage fd = new FenetreDemarage(this);
     private Game game;
-    private static final int HEIGHT = 800;
-    private static final int WIDTH = 1000;
+    public static final int HEIGHT = 800;
+    public static final int WIDTH = 1000;
     private ArrayList<ImageView> ImagesDecks;
     private ArrayList<ImageView> imageProgressToken;
     private HBox jetonsGuerre;
@@ -101,7 +101,7 @@ public class GamePlayFieldWindow {
     public void setPartie(int nbPlayers, ArrayList<String> playerNames) {
         game = new Game(nbPlayers, playerNames, this);
         VBox overallArea = new VBox();
-        GamePlayFieldHeaderArea headerArea = new GamePlayFieldHeaderArea(this.game, overallArea);
+        GamePlayFieldHeaderArea headerArea = new GamePlayFieldHeaderArea(this.game, overallArea, WIDTH, HEIGHT);
         //VBox wonderArea = new WonderArea(overallArea);
 
 
