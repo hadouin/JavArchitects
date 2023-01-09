@@ -15,7 +15,7 @@ public class Game {
     private int currentPlayerID = 0;
     private int nbRound = 1;
 
-    public Game(int nbPlayers, ArrayList<String> playerNames, GamePlayFieldWindow gamePlayField) {
+    public Game(int nbPlayers, ArrayList<String> playerNames) {
         this.nbPlayers = nbPlayers;
         gameController = new GameController(this);
         this.players = new ArrayList<>();

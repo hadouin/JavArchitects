@@ -1,11 +1,6 @@
 package fr.isep.javarchitects;
 
-import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
-import fr.isep.javarchitects.model.Player;
-import fr.isep.javarchitects.model.Game;
-import fr.isep.javarchitects.model.Card;
-import fr.isep.javarchitects.model.Decks;
-import fr.isep.javarchitects.model.Wonder;
+import fr.isep.javarchitects.model.*;
 import org.junit.Test;
 
 import java.util.*;
@@ -52,17 +47,14 @@ public class Tests {
     @Test
     public void testPartie() {
 
-        FenetrePrincipale fp = new FenetrePrincipale();
         ArrayList<String> listeJoueurs = new ArrayList<>();
         listeJoueurs.add("Romeo");
         listeJoueurs.add("J2");
         listeJoueurs.add("J3");
         listeJoueurs.add("J4");
 
-        Game game = new Game(4, listeJoueurs, fp);
-        fp.setWonder(game.getJoueurs());
-        fp.setDecks(game.getJoueurs());
-        for (Player J : game.getJoueurs()) {
+        Game game = new Game(4, listeJoueurs);
+        for (Player J : game.getPlayers()) {
             //System.out.println(J.getWonder().displayName);
             System.out.println((J.getSelfDeck()));
             System.out.println("A droite " + (J.getRightDeck()));

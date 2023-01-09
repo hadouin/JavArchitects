@@ -99,7 +99,7 @@ public class GamePlayFieldWindow {
     }
 
     public void setPartie(int nbPlayers, ArrayList<String> playerNames) {
-        game = new Game(nbPlayers, playerNames, this);
+        game = new Game(nbPlayers, playerNames);
         VBox overallArea = new VBox();
         GamePlayFieldHeaderArea headerArea = new GamePlayFieldHeaderArea(this.game, overallArea);
         //VBox wonderArea = new WonderArea(overallArea);
