@@ -103,24 +103,19 @@ public class Game {
      * @return the number of conflict tokens for the game
      */
     private int calcMaxConflictTokens(int nbPlayers){
-        int ret=0;
-        switch(nbPlayers){
-            case 2:
-            case 3:
-                ret=3;
-                break;
-            case 4:
-                ret=4;
-                break;
-            case 5:
-                ret=5;
-                break;
-            case 6:
-            case 7:
-                ret=6;
-                break;
-        }
-        return ret;
+        int[] tokenForPlayerNb = {3,3,3,3,4,5,6,6};
+        return tokenForPlayerNb[nbPlayers];
+    }
+
+    /**
+     * @param playerList list to query
+     * @return the first player that owns the cat. If none have the Cat returns null
+     */
+    private Player getCatOwner(List<Player> playerList){
+        return playerList.stream()
+                .filter(Player::getHasCat)
+                .findFirst()
+                .orElse(null);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
