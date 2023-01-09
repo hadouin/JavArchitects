@@ -60,6 +60,10 @@ public class SplashScreen extends Stage {
         FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.2), root);
         fadeSplash.setFromValue(1.0);
         fadeSplash.setToValue(0.0);
+        fadeSplash.setOnFinished(e -> {
+            Stage stage = (Stage) this.getScene().getWindow();
+            stage.close();
+        });
 
         SequentialTransition sequentialTransition = new SequentialTransition(loadingTransition, fadeSplash);
         this.mainTransition = sequentialTransition;
