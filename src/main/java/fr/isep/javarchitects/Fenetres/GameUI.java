@@ -66,7 +66,8 @@ public class GameUI extends Stage implements Subscriber {
         rootPane.getChildren().add(conflictTokensHBox);
 
         WonderDisplay wonderDisplay = new WonderDisplay(Wonder.Alexandrie);
-        AnchorPane.setRightAnchor(wonderDisplay, 100.);
+        AnchorPane.setLeftAnchor(wonderDisplay, 200.);
+        AnchorPane.setTopAnchor(wonderDisplay, 200.);
         rootPane.getChildren().add(wonderDisplay);
     }
 
