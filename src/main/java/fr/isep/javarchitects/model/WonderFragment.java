@@ -27,8 +27,34 @@ public class WonderFragment {
         return isbuilt ? this.imagePathFront : this.ImagePathBack;
     }
 
+    public int getFloorNumber() {
+        return floorNumber;
+    }
+
+    public boolean isTriggerEffect() {
+        return triggerEffect;
+    }
+
+    public int getVP() {
+        return VP;
+    }
+
+    public int getResourceCount() {
+        return resourceCount;
+    }
+
+    public boolean isMatchingResources() {
+        return matchingResources;
+    }
+
+    public boolean isIsbuilt() {
+        return isbuilt;
+    }
+
     public void build(){
         this.isbuilt = true;
     }
+
+
 
 }

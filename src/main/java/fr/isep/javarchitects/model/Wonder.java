@@ -16,11 +16,11 @@ public enum Wonder {
 			)),
 	
 	Halicarnasse(1,"Halicarnasse", "Halicarnasse", //
-			"Prenez les 5 premi�res cartes de la pioche � votre gauche ou � votre droite, choisissez-en 1 et posez-la devant vous" //
-			+ "M�langez-les cartes restantes dans leur pioche",
+			"Prenez les 5 premières cartes de la pioche à votre gauche ou à votre droite, choisissez-en 1 et posez-la devant vous" //
+			+ "Mélangez-les cartes restantes dans leur pioche",
 			Arrays.asList(
 					new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-1.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-1.png", 0, false, 3, 2, false),
-					new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-2.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-2.png", 1, true, 3, 2, true),
+					new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-2.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-2bis.png", 1, true, 3, 2, true),
 					new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-3.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-3.png", 2, true, 5, 3, true),
 					new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-4.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-4.png", 2, false, 6, 3, false),
 					new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-5.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-5.png", 3, false, 7, 4, false)
@@ -52,8 +52,8 @@ public enum Wonder {
 					new WonderFragment("/images/wonders/babylon/piece-front-babylon-1.png", "/images/wonders/babylon/piece-back-babylon-1.png", 0, false, 3, 2, false),
 					new WonderFragment("/images/wonders/babylon/piece-front-babylon-2.png", "/images/wonders/babylon/piece-back-babylon-2.png", 1, true, 0, 2, true),
 					new WonderFragment("/images/wonders/babylon/piece-front-babylon-3.png", "/images/wonders/babylon/piece-back-babylon-3.png", 2, false, 5, 3, false),
-					new WonderFragment("/images/wonders/babylon/piece-front-babylon-4.png", "/images/wonders/babylon/piece-back-babylon-4.png", 3, false, 5, 3, true),
-					new WonderFragment("/images/wonders/babylon/piece-front-babylon-5.png", "/images/wonders/babylon/piece-back-babylon-5.png", 3, true, 7, 4, false)
+					new WonderFragment("/images/wonders/babylon/piece-front-babylon-4.png", "/images/wonders/babylon/piece-back-babylon-5.png", 3, false, 5, 3, true),
+					new WonderFragment("/images/wonders/babylon/piece-front-babylon-5.png", "/images/wonders/babylon/piece-back-babylon-4.png", 3, true, 7, 4, false)
 			)),
 	
 	Rhodes(5,"Rhodes", "Rhodes", //
