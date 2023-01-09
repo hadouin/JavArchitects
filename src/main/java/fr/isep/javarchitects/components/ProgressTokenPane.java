@@ -37,7 +37,7 @@ public class ProgressTokenPane extends VBox {
     }
 
     private void updateView(){
-        tokenHBox.getChildren().removeAll();
+        tokenHBox.getChildren().clear();
         tokenHBox.getChildren().add(imageIP);
         addTokensToView();
     }

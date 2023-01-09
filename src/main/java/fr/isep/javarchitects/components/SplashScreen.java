@@ -1,8 +1,7 @@
 package fr.isep.javarchitects.components;
 
+import fr.isep.javarchitects.IVoidComplete;
 import javafx.animation.*;
-import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,8 +16,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-import java.security.Key;
-
 public class SplashScreen extends Stage {
 
     private VBox root = new VBox();
@@ -27,12 +24,12 @@ public class SplashScreen extends Stage {
     private Label progressLabel = new Label();
 
     Transition mainTransition;
-    private InitCompletionHandler doAfter;
+    private IVoidComplete doAfter;
 
     private int width = 1600;
     private int height = 900;
 
-    public SplashScreen(InitCompletionHandler doAfter) {
+    public SplashScreen(IVoidComplete doAfter) {
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         this.setX(bounds.getMinX() + bounds.getWidth() / 2 - width / 2);
         this.setY(bounds.getMinY() + bounds.getHeight() / 2 - height / 2);
@@ -108,7 +105,4 @@ public class SplashScreen extends Stage {
         splashImage.setImage(new Image(imageUrl));
     }
 
-    public interface InitCompletionHandler {
-        void complete();
-    }
 }

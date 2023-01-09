@@ -2,30 +2,48 @@ package fr.isep.javarchitects.model;
 
 //import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
 import fr.isep.javarchitects.Fenetres.GamePlayFieldWindow;
+import fr.isep.javarchitects.GameAction;
 import fr.isep.javarchitects.GameController;
+import fr.isep.javarchitects.GameStateVisible;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Game {
     private GameController gameController;
 
     private int nbPlayers;
-    private ArrayList<Player> players;
+    private List<Player> players;
     private int currentPlayerID = 0;
     private int nbRound = 1;
 
-    public Game(int nbPlayers, ArrayList<String> playerNames) {
+    public List<ConflictToken> conflictTokens = Arrays.asList(
+            new ConflictToken(false),
+            new ConflictToken(false),
+            new ConflictToken(true)
+    );
+    private List<ProgressToken> progressTokenList = ProgressTokens.TOKENS.subList(5,9);
+
+
+    public Game(int nbPlayers, List<String> playerNames) {
         this.nbPlayers = nbPlayers;
-        gameController = new GameController();
         this.players = new ArrayList<>();
         for(int i = 0; i < this.nbPlayers; i++){
-            players.add(new Player(playerNames.get(i), i));
+            players.add(new Player(playerNames.get(i), i, Wonder.Alexandrie));
         }
     }
+
+    public void setController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
     public void startGame(){};
 
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
@@ -69,6 +87,21 @@ public class Game {
                 break;
         }
         return ret;
+    }
+
+    public GameStateVisible getVisibleState() {
+        return new GameStateVisible(
+                players.stream()
+                        .map(Player::getVisibleState)
+                        .collect(Collectors.toList()),
+                0,
+                conflictTokens,
+                progressTokenList,
+                Arrays.asList(
+                        new GameAction("Action 1", () -> {}),
+                        new GameAction("Back", () -> {})
+                )
+        );
     }
 }
 

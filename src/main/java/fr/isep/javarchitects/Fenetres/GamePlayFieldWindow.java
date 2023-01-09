@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.Fenetres;
 
+import fr.isep.javarchitects.GameController;
 import fr.isep.javarchitects.model.Player;
 import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.Decks;

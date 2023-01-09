@@ -34,6 +34,7 @@ public class GameUI extends Stage implements Subscriber {
     private Scene mainScene;
     private ProgressTokenPane progressTokenView;
     private ConflictTokensHBox conflictTokensHBox;
+    private ImageView centerDeck;
 
 
     @Override
