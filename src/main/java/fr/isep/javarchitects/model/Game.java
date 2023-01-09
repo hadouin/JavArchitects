@@ -1,14 +1,11 @@
 package fr.isep.javarchitects.model;
 
 //import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
-import fr.isep.javarchitects.Fenetres.GamePlayFieldWindow;
-import fr.isep.javarchitects.GameAction;
 import fr.isep.javarchitects.GameController;
 import fr.isep.javarchitects.GameStateVisible;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

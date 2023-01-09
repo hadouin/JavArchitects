@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.Fenetres;
+package fr.isep.javarchitects.Views;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -6,8 +6,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;

@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.GameAction;
+import fr.isep.javarchitects.model.GameAction;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 

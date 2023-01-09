@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.Application;
 
-import fr.isep.javarchitects.Fenetres.GameUI;
+import fr.isep.javarchitects.Views.GameUI;
 import fr.isep.javarchitects.GameController;
 import fr.isep.javarchitects.GameStateVisible;
 import fr.isep.javarchitects.components.SplashScreen;

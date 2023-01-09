@@ -1,28 +1,15 @@
 package fr.isep.javarchitects.Application;
 
-import fr.isep.javarchitects.Fenetres.GamePlayFieldWindow;
-import fr.isep.javarchitects.Fenetres.GameUI;
+import fr.isep.javarchitects.Views.GameUI;
 import fr.isep.javarchitects.GameController;
 import fr.isep.javarchitects.GameStateVisible;
 import fr.isep.javarchitects.components.SplashScreen;
 import fr.isep.javarchitects.model.Game;
-import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.collections.*;
-import javafx.concurrent.*;
-import javafx.geometry.*;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.*;
 import javafx.util.Duration;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
