@@ -46,4 +46,10 @@ public class GameStateVisible {
         this.gameActionList = gameActionList;
     }
 
+    public PlayerVisible getCatOwner(List<PlayerVisible> playerList) {
+        return playerList.stream()
+                .filter(PlayerVisible::getHasCat)
+                .findFirst()
+                .orElse(null);
+    }
 }

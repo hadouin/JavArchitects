@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.Views;
 
+import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.GameStateVisible;
 import fr.isep.javarchitects.Subscriber;
 import fr.isep.javarchitects.components.ChoiceDisplayHBox;
@@ -8,6 +9,7 @@ import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.components.WonderDisplay;
 import fr.isep.javarchitects.model.Wonder;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -26,7 +28,8 @@ public class GameUI extends Stage implements Subscriber {
     private ProgressTokenPane progressTokenView;
     private ConflictTokensHBox conflictTokensHBox;
     private ChoiceDisplayHBox choiceDisplayHBox;
-    private ImageView centerDeck;
+    private final Image CAT_IMAGE = new Image(getClass().getResourceAsStream("/images/tokens/token-cat.png"));
+    private ImageView catImageView;
 
 
     @Override
@@ -39,6 +42,11 @@ public class GameUI extends Stage implements Subscriber {
         conflictTokensHBox.setConflictTokenList(gameStateVisible.conflictTokens);
         progressTokenView.setVisibleTokens(gameStateVisible.visibleProgressTokens);
         choiceDisplayHBox.setGameActionList(gameStateVisible.gameActionList);
+        if (gameStateVisible.getCatOwner(gameStateVisible.players) != null){
+            catImageView.setImage(null);
+        } else {
+            catImageView.setImage(CAT_IMAGE);
+        }
     }
 
     public GameUI(GameStateVisible gameStateVisible){
@@ -68,6 +76,12 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(choiceDisplayHBox, 100.);
         AnchorPane.setBottomAnchor(choiceDisplayHBox, 0.);
         rootPane.getChildren().add(choiceDisplayHBox);
+
+        catImageView = new ImageView(CAT_IMAGE);
+        catImageView.setFitWidth(catImageView.getImage().getWidth()/3);
+        catImageView.setPreserveRatio(true);
+        AnchorPane.setLeftAnchor(catImageView, 200.);
+        rootPane.getChildren().add(catImageView);
     }
 
 }

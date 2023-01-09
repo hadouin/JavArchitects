@@ -16,4 +16,8 @@ public class PlayerVisible {
         this.progressTokens = progressTokens;
         this.hasCat = hasCat;
     }
+
+    public boolean getHasCat() {
+        return this.hasCat;
+    }
 }
