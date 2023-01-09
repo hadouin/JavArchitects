@@ -87,6 +87,10 @@ public class GameUI extends Stage implements Subscriber {
         ImageView iconTestView = new ImageView(Icons.STONE.image);
         AnchorPane.setTopAnchor(iconTestView, 100.);
         rootPane.getChildren().add(iconTestView);
+        WonderDisplay alexandrieDisplay = new WonderDisplay(Wonder.Gizeh);
+        AnchorPane.setLeftAnchor(alexandrieDisplay, 200.);
+        AnchorPane.setTopAnchor(alexandrieDisplay, 200.);
+        rootPane.getChildren().add(alexandrieDisplay);
     }
 
 }
