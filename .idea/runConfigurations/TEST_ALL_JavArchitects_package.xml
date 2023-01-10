@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TEST ALL JavArchitects package" type="JUnit" factoryName="JUnit">
+    <module name="JavArchitects" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="fr.isep.javarchitects.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="PACKAGE_NAME" value="fr.isep.javarchitects" />
+    <option name="MAIN_CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="package" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

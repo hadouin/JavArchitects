@@ -11,7 +11,7 @@ public class Tests {
     public void test() {
 
         Decks deck = Decks.D_milieu;
-        Decks deck2 = Decks.D_Halicarnasse;
+        Decks deck2 = Decks.D_Halicarnassus;
 
         System.out.println(deck.getListeCartes().size());
         System.out.println(deck2.getListeCartes().size());
@@ -33,7 +33,7 @@ public class Tests {
     @Test
     public void setDecksTest() {
         ArrayList<Player> listePlayers = new ArrayList<>();
-        listePlayers.add(new Player("Romeo", 0, Wonder.Gizeh));
+        listePlayers.add(new Player("Romeo", 0, WonderFactory.Gizeh.createWonder()));
         ArrayList<Decks> decks = new ArrayList<>();
         Random R = new Random();
         for (Decks D : Decks.values()) {

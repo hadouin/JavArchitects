@@ -2,6 +2,7 @@ package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.model.Player;
 import fr.isep.javarchitects.model.Wonder;
+import fr.isep.javarchitects.model.WonderFactory;
 import fr.isep.javarchitects.model.WonderFragment;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class GameControllerTest {
 
     @Test
     void getBuildableFragments() {
-        Player BabylonePlayer = new Player.Builder("Babylone", 1, Wonder.Babylone).build();
+        Player BabylonePlayer = new Player.Builder("Babylone", 1, WonderFactory.Babylonia.createWonder()).build();
 
         List<WonderFragment> expected = new ArrayList<>();
     }

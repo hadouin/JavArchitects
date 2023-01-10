@@ -28,7 +28,7 @@ public class Game {
         this.nbPlayers = nbPlayers;
         this.players = new ArrayList<>();
         for(int i = 0; i < this.nbPlayers; i++){
-            players.add(new Player(playerNames.get(i), i, Wonder.Alexandrie));
+            players.add(new Player(playerNames.get(i), i, WonderFactory.Alexandria.createWonder()));
         }
         setWonder(players);
         setDecks(players);
@@ -58,8 +58,8 @@ public class Game {
     public void setWonder(List<Player> listePlayers) {
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
-        for (Wonder W : Wonder.values()) {
-            listeWonder.add(W);
+        for (WonderFactory W : WonderFactory.values()) {
+            listeWonder.add(W.createWonder());
         }
 
         for (Player J : listePlayers) {

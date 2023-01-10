@@ -8,6 +8,7 @@ import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.components.WonderDisplay;
 import fr.isep.javarchitects.model.Wonder;
+import fr.isep.javarchitects.model.WonderFactory;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -68,7 +69,7 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(conflictTokensHBox, 2.);
         rootPane.getChildren().add(conflictTokensHBox);
 
-        WonderDisplay wonderDisplay = new WonderDisplay(Wonder.Alexandrie);
+        WonderDisplay wonderDisplay = new WonderDisplay(WonderFactory.Alexandria.createWonder());
         AnchorPane.setLeftAnchor(wonderDisplay, 200.);
         AnchorPane.setTopAnchor(wonderDisplay, 200.);
         rootPane.getChildren().add(wonderDisplay);
@@ -87,7 +88,7 @@ public class GameUI extends Stage implements Subscriber {
         ImageView iconTestView = new ImageView(Icons.STONE.image);
         AnchorPane.setTopAnchor(iconTestView, 100.);
         rootPane.getChildren().add(iconTestView);
-        WonderDisplay alexandrieDisplay = new WonderDisplay(Wonder.Gizeh);
+        WonderDisplay alexandrieDisplay = new WonderDisplay(WonderFactory.Gizeh.createWonder());
         AnchorPane.setLeftAnchor(alexandrieDisplay, 200.);
         AnchorPane.setTopAnchor(alexandrieDisplay, 200.);
         rootPane.getChildren().add(alexandrieDisplay);
