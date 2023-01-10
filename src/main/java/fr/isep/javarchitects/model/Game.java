@@ -1,7 +1,7 @@
 package fr.isep.javarchitects.model;
 
 //import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
-import fr.isep.javarchitects.GameController;
+import fr.isep.javarchitects.controllers.GameController;
 
 import java.util.*;
 import java.util.stream.Collectors;

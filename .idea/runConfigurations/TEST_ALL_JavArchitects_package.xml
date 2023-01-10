@@ -3,7 +3,7 @@
     <module name="JavArchitects" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="fr.isep.javarchitects.*" />
+        <option name="PATTERN" value="fr.isep.javarchitects.utils.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
