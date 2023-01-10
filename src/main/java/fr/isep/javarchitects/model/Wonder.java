@@ -122,4 +122,17 @@ public enum Wonder {
 		int size = this.wonderFragments.size();
 		return this.wonderFragments;
 	}
+
+	/**
+	 * @param floorNumber floor to check
+	 * @return if fragments of the previous floor are built
+	 */
+    public boolean isFloorOpen(int floorNumber) {
+		if (floorNumber == 0){
+			return true;
+		}
+		List<WonderFragment> previousFloorNotbuiltFragments = wonderFragments.stream()
+				.filter(fragment -> !fragment.getIsBuilt() && fragment.getFloorNumber() == floorNumber - 1).toList();
+		return previousFloorNotbuiltFragments.isEmpty();
+	}
 }

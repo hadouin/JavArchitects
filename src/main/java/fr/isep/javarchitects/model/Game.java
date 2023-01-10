@@ -121,7 +121,7 @@ public class Game {
      */
     List<WonderFragment> getBuildableFragments(Player player){
         List<WonderFragment> buildableFragments = player.getWonder().getWonderFragments().stream()
-                .filter(fragment -> !fragment.getIsBuilt() && hasMaterialToBuild(player, fragment))
+                .filter(fragment -> !fragment.getIsBuilt() && player.getWonder().isFloorOpen(fragment.getFloorNumber()) && hasMaterialToBuild(player, fragment))
                 .toList();
         return buildableFragments;
     }
@@ -167,7 +167,11 @@ public class Game {
                 }
             }
         } else {
-            return map.size() >= nMaterial;
+            int differentMaterials = map.size();
+            if (map.containsKey(CardType.CardMaterialGold)){
+                differentMaterials += map.get(CardType.CardMaterialGold) - 1;
+            }
+            return differentMaterials >= nMaterial;
         }
         return false;
     }

@@ -77,5 +77,43 @@ class GameTest {
             List<WonderFragment> result = game.getBuildableFragments(player);
             assertEquals(expected, result);
         }
+
+        @Test
+        void assert1Alexandria2Stone2Gold(){
+            Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, Wonder.Alexandrie)
+                    .setOwnedCards(Arrays.asList(
+                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
+                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
+                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck),
+                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
+                    )).build();
+            player.getWonder().getWonderFragments().get(0).build();
+            Game game = new Game(1,List.of("Hadouin"));
+            game.setPlayers(List.of(player));
+
+            List<WonderFragment> expected = player.getWonder().getWonderFragments().subList(1, 2);
+
+            List<WonderFragment> result = game.getBuildableFragments(player);
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void assert1Ephese2Stone2Gold(){
+            Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, Wonder.Ephese)
+                    .setOwnedCards(Arrays.asList(
+                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
+                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
+                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck),
+                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
+                    )).build();
+            player.getWonder().getWonderFragments().get(0).build();
+            Game game = new Game(1,List.of("Hadouin"));
+            game.setPlayers(List.of(player));
+
+            List<WonderFragment> expected = player.getWonder().getWonderFragments().subList(1, 4);
+
+            List<WonderFragment> result = game.getBuildableFragments(player);
+            assertEquals(expected, result);
+        }
     }
 }
