@@ -3,10 +3,7 @@ package fr.isep.javarchitects.model;
 //import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
 import fr.isep.javarchitects.GameController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -116,6 +113,60 @@ public class Game {
                 .filter(Player::getHasCat)
                 .findFirst()
                 .orElse(null);
+    }
+
+    /**
+     * @param player player to test
+     * @return returns the list of fragments the player can build
+     */
+    private List<WonderFragment> getBuildableFragments(Player player){
+        List<WonderFragment> buildableFragments = player.getWonder().getWonderFragments().stream()
+                .filter(fragment -> hasMaterialToBuild(player, fragment))
+                .toList();
+        return buildableFragments;
+    }
+
+    /**
+     * @param player player that wants to build
+     * @param fragment fragment to build
+     * @return true if fragment buildable by player
+     */
+    private boolean hasMaterialToBuild(Player player, WonderFragment fragment){
+        List<Card> ownedMaterialCards = player.getOwnedCards().stream()
+                .filter(card -> card.getFront().cardCategory == CardCategory.MaterialCard).toList();
+        return hasMaterialCombination(ownedMaterialCards, fragment.getResourceCount(), fragment.isMatchingResources());
+    }
+
+    /**
+     * @param materialCardList list of materialCards
+     * @return true if the combination is present in list
+     */
+    private boolean hasMaterialCombination(List<Card> materialCardList, int nMaterial, boolean matching){
+        // if the player has less card than the number needed return false
+        if (materialCardList.size() < nMaterial){
+            return false;
+        }
+        // Create a hashmap that contains unique cards and their number of occurrence
+        Map<Card, Integer> map = new HashMap<>();
+        for (Card card : materialCardList) {
+            if (map.containsKey(card)) {
+                map.put(card, map.get(card) + 1);
+            } else {
+                map.put(card, 1);
+            }
+        }
+        // if we need matching cards return if a card
+        if (matching){
+            for ( Map.Entry<Card, Integer> entry : map.entrySet()) {
+                int occurrence = entry.getValue();
+                if (occurrence >= nMaterial){
+                    return true;
+                }
+            }
+        } else {
+            return map.size() >= nMaterial;
+        }
+        return false;
     }
 
     // -----------------------------------------------------------------------------------------------------------------

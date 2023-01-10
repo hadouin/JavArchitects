@@ -82,7 +82,7 @@ public enum Wonder {
 	public final String frenchName;
 	public final String effectDescription;
 	public final int ID;
-	public final List<WonderFragment> wonderFragments;
+	private final List<WonderFragment> wonderFragments;
 	
 	// ------------------------------------------------------------------------
 	

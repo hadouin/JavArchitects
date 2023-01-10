@@ -158,7 +158,7 @@ public class Player {
         this.rightDeck = rightDeck;
     }
 
-    private List<Card> getOwnedCards() {
+    public List<Card> getOwnedCards() {
         return this.ownedCards;
     }
 
@@ -169,4 +169,5 @@ public class Player {
     private List<ProgressToken> getProgressTokens() {
         return this.progressTokens;
     }
+
 }
