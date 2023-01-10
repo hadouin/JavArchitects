@@ -170,4 +170,13 @@ public class Player {
         return this.progressTokens;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", ID=" + ID +
+                ", wonder=" + wonder +
+                ", victoryPoints=" + victoryPoints +
+                '}';
+    }
 }

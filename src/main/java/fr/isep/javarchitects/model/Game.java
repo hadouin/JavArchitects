@@ -169,7 +169,7 @@ public class Game {
         } else {
             int differentMaterials = map.size();
             if (map.containsKey(CardType.CardMaterialGold)){
-                differentMaterials += map.get(CardType.CardMaterialGold) - 1;
+                differentMaterials += (map.get(CardType.CardMaterialGold) - 1);
             }
             return differentMaterials >= nMaterial;
         }

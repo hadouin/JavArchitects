@@ -135,4 +135,12 @@ public enum Wonder {
 				.filter(fragment -> !fragment.getIsBuilt() && fragment.getFloorNumber() == floorNumber - 1).toList();
 		return previousFloorNotbuiltFragments.isEmpty();
 	}
+
+	@Override
+	public String toString() {
+		return "Wonder{" +
+				"displayName='" + displayName + '\'' +
+				", wonderFragments=" + wonderFragments +
+				'}';
+	}
 }
