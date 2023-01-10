@@ -159,6 +159,9 @@ public class Game {
         if (matching){
             for ( Map.Entry<CardType, Integer> entry : map.entrySet()) {
                 int occurrence = entry.getValue();
+                if (map.containsKey(CardType.CardMaterialGold) && entry.getKey() != CardType.CardMaterialGold){
+                    occurrence += map.get(CardType.CardMaterialGold);
+                }
                 if (occurrence >= nMaterial){
                     return true;
                 }
