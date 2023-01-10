@@ -47,7 +47,7 @@ public class WonderFragment {
         return matchingResources;
     }
 
-    public boolean isIsbuilt() {
+    public boolean getIsBuilt() {
         return isbuilt;
     }
 
@@ -55,6 +55,8 @@ public class WonderFragment {
         this.isbuilt = true;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "floor:"+floorNumber+"|resCount:"+resourceCount+"|matching:"+matchingResources+"|isBuilt:"+isbuilt;
+    }
 }

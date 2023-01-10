@@ -117,11 +117,11 @@ public class Game {
 
     /**
      * @param player player to test
-     * @return returns the list of fragments the player can build
+     * @return the list of fragments the player can build
      */
-    private List<WonderFragment> getBuildableFragments(Player player){
+    List<WonderFragment> getBuildableFragments(Player player){
         List<WonderFragment> buildableFragments = player.getWonder().getWonderFragments().stream()
-                .filter(fragment -> hasMaterialToBuild(player, fragment))
+                .filter(fragment -> !fragment.getIsBuilt() && hasMaterialToBuild(player, fragment))
                 .toList();
         return buildableFragments;
     }
@@ -147,17 +147,17 @@ public class Game {
             return false;
         }
         // Create a hashmap that contains unique cards and their number of occurrence
-        Map<Card, Integer> map = new HashMap<>();
+        Map<CardType, Integer> map = new HashMap<>();
         for (Card card : materialCardList) {
-            if (map.containsKey(card)) {
-                map.put(card, map.get(card) + 1);
+            if (map.containsKey(card.front)) {
+                map.put(card.front, map.get(card.front) + 1);
             } else {
-                map.put(card, 1);
+                map.put(card.front, 1);
             }
         }
         // if we need matching cards return if a card
         if (matching){
-            for ( Map.Entry<Card, Integer> entry : map.entrySet()) {
+            for ( Map.Entry<CardType, Integer> entry : map.entrySet()) {
                 int occurrence = entry.getValue();
                 if (occurrence >= nMaterial){
                     return true;
