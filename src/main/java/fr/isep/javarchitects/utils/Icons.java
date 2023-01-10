@@ -35,21 +35,8 @@ public enum Icons {
     public final Image image;
 
     Icons(int x, int y) {
-        this.image = convertToFxImage(this.ICON_SPRITE.getSpriteAutoSize(x,y, COLUMNS, ROWS));
+        this.image = Sprite.convertToFxImage(this.ICON_SPRITE.getSpriteAutoSize(x,y, COLUMNS, ROWS));
     }
 
-    private Image convertToFxImage(BufferedImage image) {
-        WritableImage wr = null;
-        if (image != null) {
-            wr = new WritableImage(image.getWidth(), image.getHeight());
-            PixelWriter pw = wr.getPixelWriter();
-            for (int x = 0; x < image.getWidth(); x++) {
-                for (int y = 0; y < image.getHeight(); y++) {
-                    pw.setArgb(x, y, image.getRGB(x, y));
-                }
-            }
-        }
 
-        return new ImageView(wr).getImage();
-    }
 }
