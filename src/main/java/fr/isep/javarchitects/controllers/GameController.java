@@ -1,8 +1,9 @@
-package fr.isep.javarchitects;
+package fr.isep.javarchitects.controllers;
 
 import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.GameStateVisible;
 import fr.isep.javarchitects.model.TestState;
+import fr.isep.javarchitects.utils.Subscriber;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;

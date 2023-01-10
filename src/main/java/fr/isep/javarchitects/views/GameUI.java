@@ -1,13 +1,11 @@
-package fr.isep.javarchitects.Views;
+package fr.isep.javarchitects.views;
 
-import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.GameStateVisible;
-import fr.isep.javarchitects.Subscriber;
+import fr.isep.javarchitects.utils.Subscriber;
 import fr.isep.javarchitects.components.ChoiceDisplayHBox;
 import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.components.WonderDisplay;
-import fr.isep.javarchitects.model.Wonder;
 import fr.isep.javarchitects.model.WonderFactory;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.scene.Scene;

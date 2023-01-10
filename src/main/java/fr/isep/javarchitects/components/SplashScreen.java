@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.IVoidComplete;
+import fr.isep.javarchitects.utils.IVoidComplete;
 import javafx.animation.*;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;

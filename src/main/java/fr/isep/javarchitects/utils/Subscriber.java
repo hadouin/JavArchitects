@@ -1,4 +1,4 @@
-package fr.isep.javarchitects;
+package fr.isep.javarchitects.utils;
 
 import fr.isep.javarchitects.model.GameStateVisible;
 
