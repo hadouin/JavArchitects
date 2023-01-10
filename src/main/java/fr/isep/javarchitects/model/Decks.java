@@ -41,151 +41,151 @@ public enum Decks {
             new Card(CardType.CardPolitic_cat, CardBack.Alexandrie),
             })),
 
-    D_Halicarnasse(Arrays.asList(new Card[]{
+    D_Halicarnassus(Arrays.asList(new Card[]{
 
-            new Card(CardType.CardMaterialWood, CardBack.Halicarnasse),
-            new Card(CardType.CardMaterialWood, CardBack.Halicarnasse),
-            new Card(CardType.CardMaterialPaper, CardBack.Halicarnasse),// 2-1
-            new Card(CardType.CardMaterialBrick, CardBack.Halicarnasse),
-            new Card(CardType.CardMaterialBrick, CardBack.Halicarnasse),//
-            new Card(CardType.CardMaterialStone, CardBack.Halicarnasse),
-            new Card(CardType.CardMaterialStone, CardBack.Halicarnasse),//
-            new Card(CardType.CardMaterialGlass, CardBack.Halicarnasse),
-            new Card(CardType.CardMaterialGlass, CardBack.Halicarnasse), //
-            new Card(CardType.CardMaterialGold, CardBack.Halicarnasse),
-            new Card(CardType.CardMaterialGold, CardBack.Halicarnasse),
-            new Card(CardType.CardMaterialGold, CardBack.Halicarnasse), // 2+1
+            new Card(CardType.CardMaterialWood, CardBack.Halicarnassus),
+            new Card(CardType.CardMaterialWood, CardBack.Halicarnassus),
+            new Card(CardType.CardMaterialPaper, CardBack.Halicarnassus),// 2-1
+            new Card(CardType.CardMaterialBrick, CardBack.Halicarnassus),
+            new Card(CardType.CardMaterialBrick, CardBack.Halicarnassus),//
+            new Card(CardType.CardMaterialStone, CardBack.Halicarnassus),
+            new Card(CardType.CardMaterialStone, CardBack.Halicarnassus),//
+            new Card(CardType.CardMaterialGlass, CardBack.Halicarnassus),
+            new Card(CardType.CardMaterialGlass, CardBack.Halicarnassus), //
+            new Card(CardType.CardMaterialGold, CardBack.Halicarnassus),
+            new Card(CardType.CardMaterialGold, CardBack.Halicarnassus),
+            new Card(CardType.CardMaterialGold, CardBack.Halicarnassus), // 2+1
 
             // science
 
-            new Card(CardType.CardScienceLaw, CardBack.Halicarnasse),
-            new Card(CardType.CardScienceLaw, CardBack.Halicarnasse),//
-            new Card(CardType.CardScienceMechanic, CardBack.Halicarnasse), //
-            new Card(CardType.CardScienceArchitect, CardBack.Halicarnasse), //
+            new Card(CardType.CardScienceLaw, CardBack.Halicarnassus),
+            new Card(CardType.CardScienceLaw, CardBack.Halicarnassus),//
+            new Card(CardType.CardScienceMechanic, CardBack.Halicarnassus), //
+            new Card(CardType.CardScienceArchitect, CardBack.Halicarnassus), //
 
             // war
 
-            new Card(CardType.CardWar_barbarian, CardBack.Halicarnasse), //
-            new Card(CardType.CardWar_barbarian, CardBack.Halicarnasse),
-            new Card(CardType.CardWar_centurion, CardBack.Halicarnasse),//
-            new Card(CardType.CardWar_centurion, CardBack.Halicarnasse),//
-            new Card(CardType.CardWar_archer, CardBack.Halicarnasse), //
+            new Card(CardType.CardWar_barbarian, CardBack.Halicarnassus), //
+            new Card(CardType.CardWar_barbarian, CardBack.Halicarnassus),
+            new Card(CardType.CardWar_centurion, CardBack.Halicarnassus),//
+            new Card(CardType.CardWar_centurion, CardBack.Halicarnassus),//
+            new Card(CardType.CardWar_archer, CardBack.Halicarnassus), //
 
             // politics
 
-            new Card(CardType.CardPolitic_emperor, CardBack.Halicarnasse),
-            new Card(CardType.CardPolitic_emperor, CardBack.Halicarnasse), //
-            new Card(CardType.CardPolitic_cat, CardBack.Halicarnasse),//
-            new Card(CardType.CardPolitic_cat, CardBack.Halicarnasse), //
+            new Card(CardType.CardPolitic_emperor, CardBack.Halicarnassus),
+            new Card(CardType.CardPolitic_emperor, CardBack.Halicarnassus), //
+            new Card(CardType.CardPolitic_cat, CardBack.Halicarnassus),//
+            new Card(CardType.CardPolitic_cat, CardBack.Halicarnassus), //
     })),
 
-    D_Ephese(Arrays.asList(new Card[] {
-            new Card(CardType.CardMaterialWood, CardBack.Ephese),
-            new Card(CardType.CardMaterialWood, CardBack.Ephese),//
-            new Card(CardType.CardMaterialPaper, CardBack.Ephese),
-            new Card(CardType.CardMaterialPaper, CardBack.Ephese),//
-            new Card(CardType.CardMaterialBrick, CardBack.Ephese),
-            new Card(CardType.CardMaterialBrick, CardBack.Ephese),//
-            new Card(CardType.CardMaterialStone, CardBack.Ephese),
-            new Card(CardType.CardMaterialStone, CardBack.Ephese),//
-            new Card(CardType.CardMaterialGlass, CardBack.Ephese),
-            new Card(CardType.CardMaterialGlass, CardBack.Ephese),//
-            new Card(CardType.CardMaterialGold, CardBack.Ephese),
-            new Card(CardType.CardMaterialGold, CardBack.Ephese),
-            new Card(CardType.CardMaterialGold, CardBack.Ephese),// 2+1
+    D_Ephesus(Arrays.asList(new Card[] {
+            new Card(CardType.CardMaterialWood, CardBack.Ephesus),
+            new Card(CardType.CardMaterialWood, CardBack.Ephesus),//
+            new Card(CardType.CardMaterialPaper, CardBack.Ephesus),
+            new Card(CardType.CardMaterialPaper, CardBack.Ephesus),//
+            new Card(CardType.CardMaterialBrick, CardBack.Ephesus),
+            new Card(CardType.CardMaterialBrick, CardBack.Ephesus),//
+            new Card(CardType.CardMaterialStone, CardBack.Ephesus),
+            new Card(CardType.CardMaterialStone, CardBack.Ephesus),//
+            new Card(CardType.CardMaterialGlass, CardBack.Ephesus),
+            new Card(CardType.CardMaterialGlass, CardBack.Ephesus),//
+            new Card(CardType.CardMaterialGold, CardBack.Ephesus),
+            new Card(CardType.CardMaterialGold, CardBack.Ephesus),
+            new Card(CardType.CardMaterialGold, CardBack.Ephesus),// 2+1
 
             // science
 
-            new Card(CardType.CardScienceLaw, CardBack.Ephese),
-            new Card(CardType.CardScienceLaw, CardBack.Ephese),//
-            new Card(CardType.CardScienceMechanic, CardBack.Ephese), //
-            new Card(CardType.CardScienceArchitect, CardBack.Ephese),
-            new Card(CardType.CardScienceArchitect, CardBack.Ephese),//
+            new Card(CardType.CardScienceLaw, CardBack.Ephesus),
+            new Card(CardType.CardScienceLaw, CardBack.Ephesus),//
+            new Card(CardType.CardScienceMechanic, CardBack.Ephesus), //
+            new Card(CardType.CardScienceArchitect, CardBack.Ephesus),
+            new Card(CardType.CardScienceArchitect, CardBack.Ephesus),//
 
             // war
 
-            new Card(CardType.CardWar_barbarian, CardBack.Ephese), //
-            new Card(CardType.CardWar_centurion, CardBack.Ephese),
-            new Card(CardType.CardWar_centurion, CardBack.Ephese),//
-            new Card(CardType.CardWar_archer, CardBack.Ephese), //
+            new Card(CardType.CardWar_barbarian, CardBack.Ephesus), //
+            new Card(CardType.CardWar_centurion, CardBack.Ephesus),
+            new Card(CardType.CardWar_centurion, CardBack.Ephesus),//
+            new Card(CardType.CardWar_archer, CardBack.Ephesus), //
 
             // politics
 
-            new Card(CardType.CardPolitic_emperor, CardBack.Ephese), //
-            new Card(CardType.CardPolitic_cat, CardBack.Ephese),
-            new Card(CardType.CardPolitic_cat, CardBack.Ephese),//
+            new Card(CardType.CardPolitic_emperor, CardBack.Ephesus), //
+            new Card(CardType.CardPolitic_cat, CardBack.Ephesus),
+            new Card(CardType.CardPolitic_cat, CardBack.Ephesus),//
     })),
 
-    D_Olympie(Arrays.asList(new Card[] {
-            new Card(CardType.CardMaterialWood, CardBack.Olympie), // 2-1
-            new Card(CardType.CardMaterialPaper, CardBack.Olympie),
-            new Card(CardType.CardMaterialPaper, CardBack.Olympie),//
-            new Card(CardType.CardMaterialBrick, CardBack.Olympie),
-            new Card(CardType.CardMaterialBrick, CardBack.Olympie),//
-            new Card(CardType.CardMaterialStone, CardBack.Olympie),
-            new Card(CardType.CardMaterialStone, CardBack.Olympie),//
-            new Card(CardType.CardMaterialGlass, CardBack.Olympie),
-            new Card(CardType.CardMaterialGlass, CardBack.Olympie),//
-            new Card(CardType.CardMaterialGold, CardBack.Olympie),
-            new Card(CardType.CardMaterialGold, CardBack.Olympie),
-            new Card(CardType.CardMaterialGold, CardBack.Olympie),
+    D_Olympia(Arrays.asList(new Card[] {
+            new Card(CardType.CardMaterialWood, CardBack.Olympia), // 2-1
+            new Card(CardType.CardMaterialPaper, CardBack.Olympia),
+            new Card(CardType.CardMaterialPaper, CardBack.Olympia),//
+            new Card(CardType.CardMaterialBrick, CardBack.Olympia),
+            new Card(CardType.CardMaterialBrick, CardBack.Olympia),//
+            new Card(CardType.CardMaterialStone, CardBack.Olympia),
+            new Card(CardType.CardMaterialStone, CardBack.Olympia),//
+            new Card(CardType.CardMaterialGlass, CardBack.Olympia),
+            new Card(CardType.CardMaterialGlass, CardBack.Olympia),//
+            new Card(CardType.CardMaterialGold, CardBack.Olympia),
+            new Card(CardType.CardMaterialGold, CardBack.Olympia),
+            new Card(CardType.CardMaterialGold, CardBack.Olympia),
 
             // science
 
-            new Card(CardType.CardScienceLaw, CardBack.Olympie),
-            new Card(CardType.CardScienceLaw, CardBack.Olympie),//
-            new Card(CardType.CardScienceMechanic, CardBack.Olympie), //
-            new Card(CardType.CardScienceArchitect, CardBack.Olympie), //
+            new Card(CardType.CardScienceLaw, CardBack.Olympia),
+            new Card(CardType.CardScienceLaw, CardBack.Olympia),//
+            new Card(CardType.CardScienceMechanic, CardBack.Olympia), //
+            new Card(CardType.CardScienceArchitect, CardBack.Olympia), //
 
             // war
 
-            new Card(CardType.CardWar_barbarian, CardBack.Olympie),
-            new Card(CardType.CardWar_barbarian, CardBack.Olympie),//
-            new Card(CardType.CardWar_centurion, CardBack.Olympie),
-            new Card(CardType.CardWar_centurion, CardBack.Olympie),//
-            new Card(CardType.CardWar_archer, CardBack.Olympie), //
+            new Card(CardType.CardWar_barbarian, CardBack.Olympia),
+            new Card(CardType.CardWar_barbarian, CardBack.Olympia),//
+            new Card(CardType.CardWar_centurion, CardBack.Olympia),
+            new Card(CardType.CardWar_centurion, CardBack.Olympia),//
+            new Card(CardType.CardWar_archer, CardBack.Olympia), //
             // politics
-            new Card(CardType.CardPolitic_emperor, CardBack.Olympie), //
-            new Card(CardType.CardPolitic_cat, CardBack.Olympie),
-            new Card(CardType.CardPolitic_cat, CardBack.Olympie),
-            new Card(CardType.CardPolitic_cat, CardBack.Olympie),
+            new Card(CardType.CardPolitic_emperor, CardBack.Olympia), //
+            new Card(CardType.CardPolitic_cat, CardBack.Olympia),
+            new Card(CardType.CardPolitic_cat, CardBack.Olympia),
+            new Card(CardType.CardPolitic_cat, CardBack.Olympia),
     })),
 
-    D_Babylone(Arrays.asList(new Card[] {
-            new Card(CardType.CardMaterialWood, CardBack.Babylone),
-            new Card(CardType.CardMaterialWood, CardBack.Babylone),//
-            new Card(CardType.CardMaterialPaper, CardBack.Babylone),
-            new Card(CardType.CardMaterialPaper, CardBack.Babylone),//
-            new Card(CardType.CardMaterialBrick, CardBack.Babylone), // 2-1
-            new Card(CardType.CardMaterialStone, CardBack.Babylone),
-            new Card(CardType.CardMaterialStone, CardBack.Babylone),//
-            new Card(CardType.CardMaterialGlass, CardBack.Babylone),
-            new Card(CardType.CardMaterialGlass, CardBack.Babylone),//
-            new Card(CardType.CardMaterialGold, CardBack.Babylone),
-            new Card(CardType.CardMaterialGold, CardBack.Babylone),
-            new Card(CardType.CardMaterialGold, CardBack.Babylone),
+    D_Babylonia(Arrays.asList(new Card[] {
+            new Card(CardType.CardMaterialWood, CardBack.Babylonia),
+            new Card(CardType.CardMaterialWood, CardBack.Babylonia),//
+            new Card(CardType.CardMaterialPaper, CardBack.Babylonia),
+            new Card(CardType.CardMaterialPaper, CardBack.Babylonia),//
+            new Card(CardType.CardMaterialBrick, CardBack.Babylonia), // 2-1
+            new Card(CardType.CardMaterialStone, CardBack.Babylonia),
+            new Card(CardType.CardMaterialStone, CardBack.Babylonia),//
+            new Card(CardType.CardMaterialGlass, CardBack.Babylonia),
+            new Card(CardType.CardMaterialGlass, CardBack.Babylonia),//
+            new Card(CardType.CardMaterialGold, CardBack.Babylonia),
+            new Card(CardType.CardMaterialGold, CardBack.Babylonia),
+            new Card(CardType.CardMaterialGold, CardBack.Babylonia),
 
             // science
 
-            new Card(CardType.CardScienceLaw, CardBack.Babylone), //
-            new Card(CardType.CardScienceMechanic, CardBack.Babylone),
-            new Card(CardType.CardScienceMechanic, CardBack.Babylone),//
-            new Card(CardType.CardScienceArchitect, CardBack.Babylone),
-            new Card(CardType.CardScienceArchitect, CardBack.Babylone),
+            new Card(CardType.CardScienceLaw, CardBack.Babylonia), //
+            new Card(CardType.CardScienceMechanic, CardBack.Babylonia),
+            new Card(CardType.CardScienceMechanic, CardBack.Babylonia),//
+            new Card(CardType.CardScienceArchitect, CardBack.Babylonia),
+            new Card(CardType.CardScienceArchitect, CardBack.Babylonia),
 
             // war
 
-            new Card(CardType.CardWar_barbarian, CardBack.Babylone), //
-            new Card(CardType.CardWar_centurion, CardBack.Babylone),
-            new Card(CardType.CardWar_centurion, CardBack.Babylone),//
-            new Card(CardType.CardWar_archer, CardBack.Babylone),
+            new Card(CardType.CardWar_barbarian, CardBack.Babylonia), //
+            new Card(CardType.CardWar_centurion, CardBack.Babylonia),
+            new Card(CardType.CardWar_centurion, CardBack.Babylonia),//
+            new Card(CardType.CardWar_archer, CardBack.Babylonia),
 
             // politics
 
-            new Card(CardType.CardPolitic_emperor, CardBack.Babylone),
-            new Card(CardType.CardPolitic_emperor, CardBack.Babylone), //
-            new Card(CardType.CardPolitic_cat, CardBack.Babylone), //
-            new Card(CardType.CardPolitic_cat, CardBack.Babylone),
+            new Card(CardType.CardPolitic_emperor, CardBack.Babylonia),
+            new Card(CardType.CardPolitic_emperor, CardBack.Babylonia), //
+            new Card(CardType.CardPolitic_cat, CardBack.Babylonia), //
+            new Card(CardType.CardPolitic_cat, CardBack.Babylonia),
     })),
 
     D_Rhodes(Arrays.asList(new Card[] {

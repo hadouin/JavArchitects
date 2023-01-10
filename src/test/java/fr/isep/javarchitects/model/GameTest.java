@@ -15,16 +15,16 @@ class GameTest {
     void getCatOwner() {
         Game game1 = new Game(2, List.of("Hadouin", "Romeo"));
         game1.setPlayers(Arrays.asList(
-                new Player.Builder("Hadouin", 0, Wonder.Alexandrie).setOwnsCat(true).build(),
-                new Player.Builder("Romeo", 1, Wonder.Alexandrie).build()
+                new Player.Builder("Hadouin", 0, WonderFactory.Alexandria.createWonder()).setOwnsCat(true).build(),
+                new Player.Builder("Romeo", 1, WonderFactory.Alexandria.createWonder()).build()
         ));
         String expected = "Hadouin";
         String result = game1.getCatOwner(game1.getPlayers()).getName();
         assertEquals(expected, result);
         Game game2 = new Game(2, List.of("Hadouin", "Romeo"));
         game2.setPlayers(Arrays.asList(
-                new Player.Builder("Hadouin", 0, Wonder.Alexandrie).build(),
-                new Player.Builder("Romeo", 1, Wonder.Alexandrie).build()
+                new Player.Builder("Hadouin", 0, WonderFactory.Alexandria.createWonder()).build(),
+                new Player.Builder("Romeo", 1, WonderFactory.Alexandria.createWonder()).build()
         ));
         Player expected2 = null;
         Player result2 = game2.getCatOwner(game2.getPlayers());
@@ -36,7 +36,7 @@ class GameTest {
 
         @Test
         void assert0Rhodes2stone() {
-            Player player = new Player.Builder("Hadouin", 0, Wonder.Rhodes)
+            Player player = new Player.Builder("Hadouin", 0, WonderFactory.Rhodes.createWonder())
                     .setOwnedCards(Arrays.asList(
                             new Card(CardType.CardMaterialStone, CardBack.Rhodes),
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck)
@@ -50,7 +50,7 @@ class GameTest {
 
         @Test
         void assert0Rhodes1stone1gold() {
-            Player player = new Player.Builder("Hadouin", 0, Wonder.Rhodes)
+            Player player = new Player.Builder("Hadouin", 0, WonderFactory.Rhodes.createWonder())
                     .setOwnedCards(Arrays.asList(
                             new Card(CardType.CardMaterialStone, CardBack.Rhodes),
                             new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
@@ -64,7 +64,7 @@ class GameTest {
 
         @Test
         void assert0Rhodes1stone1wood() {
-            Player player = new Player.Builder("Hadouin", 0, Wonder.Rhodes)
+            Player player = new Player.Builder("Hadouin", 0, WonderFactory.Rhodes.createWonder())
                     .setOwnedCards(Arrays.asList(
                             new Card(CardType.CardMaterialStone, CardBack.Rhodes),
                             new Card(CardType.CardMaterialWood, CardBack.CentralDeck)
@@ -80,7 +80,7 @@ class GameTest {
 
         @Test
         void assert1Alexandria2Stone2Gold(){
-            Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, Wonder.Alexandrie)
+            Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, WonderFactory.Alexandria.createWonder())
                     .setOwnedCards(Arrays.asList(
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
@@ -99,7 +99,7 @@ class GameTest {
 
         @Test
         void assert1Ephese2Stone2Gold(){
-            Player player = new Player.Builder("assert1Ephesus2Stone2Gold", 0, Wonder.Ephese)
+            Player player = new Player.Builder("assert1Ephesus2Stone2Gold", 0, WonderFactory.Ephesus.createWonder())
                     .setOwnedCards(Arrays.asList(
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
@@ -117,7 +117,7 @@ class GameTest {
         }
         @Test
         void assert4Ephese2Stone2Gold(){
-            Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, Wonder.Ephese)
+            Player player = new Player.Builder("assert4Ephese2Stone2Gold", 0, WonderFactory.Ephesus.createWonder())
                     .setOwnedCards(Arrays.asList(
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
@@ -139,7 +139,7 @@ class GameTest {
 
         @Test
         void assert4Ephese1Wood2Stone2Gold(){
-            Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, Wonder.Ephese)
+            Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, WonderFactory.Ephesus.createWonder())
                     .setOwnedCards(Arrays.asList(
                             new Card(CardType.CardMaterialWood, CardBack.CentralDeck),
                             new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
