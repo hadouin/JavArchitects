@@ -2,6 +2,7 @@ package fr.isep.javarchitects.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,7 +21,8 @@ public class GameStateVisible {
                     new ConflictToken(true),
                     new ConflictToken(true)
             ),
-            new ArrayList<>(ProgressTokens.TOKENS).subList(0,3)
+            new ArrayList<>(ProgressTokens.TOKENS).subList(0,3),
+            Decks.D_milieu
     );
 
     public final List<PlayerVisible> players;
@@ -29,20 +31,24 @@ public class GameStateVisible {
     public final List<ConflictToken> conflictTokens;
     public final List<ProgressToken> visibleProgressTokens;
     public final List<GameAction> gameActionList;
+    public final Decks mysteryDeck;
 
-    GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens){
+    GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens, Decks mysteryDeck){
         this.players = players;
         this.currentPlayerID = currentPlayerID;
         this.conflictTokens = conflictTokens;
         this.visibleProgressTokens = visibleProgressTokens;
+        this.mysteryDeck = mysteryDeck;
+        Collections.shuffle(this.mysteryDeck.listeCartes);
         this.gameActionList = null;
     }
 
-    public GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens, List<GameAction> gameActionList){
+    public GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens, Decks mysteryDeck, List<GameAction> gameActionList){
         this.players = players;
         this.currentPlayerID = currentPlayerID;
         this.conflictTokens = conflictTokens;
         this.visibleProgressTokens = visibleProgressTokens;
+        this.mysteryDeck = mysteryDeck;
         this.gameActionList = gameActionList;
     }
 
