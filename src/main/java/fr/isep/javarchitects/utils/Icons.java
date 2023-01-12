@@ -32,11 +32,16 @@ public enum Icons {
     public final Sprite ICON_SPRITE = new Sprite(getClass().getResourceAsStream("/images/icons.png"));
     private static final int COLUMNS = 10;
     private static final int ROWS = 2;
+    public int x;
+    public int y;
     public final Image image;
 
     Icons(int x, int y) {
         this.image = Sprite.convertToFxImage(this.ICON_SPRITE.getSpriteAutoSize(x,y, COLUMNS, ROWS));
+        this.x = x;
+        this.y = y;
     }
+
 
 
 }
