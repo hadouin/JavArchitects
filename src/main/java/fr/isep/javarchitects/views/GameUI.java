@@ -64,11 +64,6 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(conflictTokensHBox, 2.);
         rootPane.getChildren().add(conflictTokensHBox);
 
-        WonderDisplay wonderDisplay = new WonderDisplay(WonderFactory.Alexandria.createWonder());
-        AnchorPane.setLeftAnchor(wonderDisplay, 200.);
-        AnchorPane.setTopAnchor(wonderDisplay, 200.);
-        rootPane.getChildren().add(wonderDisplay);
-
         choiceDisplayHBox = new ChoiceDisplayHBox(null);
         AnchorPane.setLeftAnchor(choiceDisplayHBox, 100.);
         AnchorPane.setBottomAnchor(choiceDisplayHBox, 0.);
@@ -80,20 +75,11 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(catImageView, 500.);
         rootPane.getChildren().add(catImageView);
 
-        ImageView iconTestView = new ImageView(Icons.STONE.image);
-        AnchorPane.setTopAnchor(iconTestView, 100.);
-        rootPane.getChildren().add(iconTestView);
-
-        WonderDisplay alexandrieDisplay = new WonderDisplay(WonderFactory.Gizeh.createWonder());
-        AnchorPane.setLeftAnchor(alexandrieDisplay, 200.);
-        AnchorPane.setTopAnchor(alexandrieDisplay, 200.);
-        rootPane.getChildren().add(alexandrieDisplay);
-        { Image image = new Image(getClass().getResourceAsStream("/images/cards/card-progress-law.png"));
-        DeckDisplay deckDisplay = new DeckDisplay(image, 2);
-        deckDisplay.setPrefWidth(200);
-        deckDisplay.setPrefHeight(300);
-        rootPane.getChildren().add(deckDisplay);
-        }
+        PlayerView playerView = new PlayerView(gameStateVisible.players.get(0));
+        AnchorPane.setTopAnchor(playerView, 200.);
+        AnchorPane.setLeftAnchor(playerView, 0.);
+        AnchorPane.setRightAnchor(playerView, 0.);
+        rootPane.getChildren().add(playerView);
     }
 
 }
