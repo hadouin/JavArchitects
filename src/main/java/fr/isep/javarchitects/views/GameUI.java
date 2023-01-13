@@ -1,11 +1,8 @@
 package fr.isep.javarchitects.views;
 
+import fr.isep.javarchitects.components.*;
 import fr.isep.javarchitects.model.GameStateVisible;
 import fr.isep.javarchitects.utils.Subscriber;
-import fr.isep.javarchitects.components.ChoiceDisplayHBox;
-import fr.isep.javarchitects.components.ConflictTokensHBox;
-import fr.isep.javarchitects.components.ProgressTokenPane;
-import fr.isep.javarchitects.components.WonderDisplay;
 import fr.isep.javarchitects.model.WonderFactory;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.scene.Scene;
@@ -28,6 +25,7 @@ public class GameUI extends Stage implements Subscriber {
     private ProgressTokenPane progressTokenView;
     private ConflictTokensHBox conflictTokensHBox;
     private ChoiceDisplayHBox choiceDisplayHBox;
+    private MysteryDeckVBox mysteryDeckVBox;
     private final Image CAT_IMAGE = new Image(getClass().getResourceAsStream("/images/tokens/token-cat.png"));
     private ImageView catImageView;
 
@@ -67,6 +65,10 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(conflictTokensHBox, 2.);
         rootPane.getChildren().add(conflictTokensHBox);
 
+        mysteryDeckVBox = new MysteryDeckVBox(gameStateVisible.mysteryDeck);
+        AnchorPane.setLeftAnchor(mysteryDeckVBox, 300.);
+        rootPane.getChildren().add(mysteryDeckVBox);
+
         WonderDisplay wonderDisplay = new WonderDisplay(WonderFactory.Alexandria.createWonder());
         AnchorPane.setLeftAnchor(wonderDisplay, 200.);
         AnchorPane.setTopAnchor(wonderDisplay, 200.);
@@ -80,16 +82,23 @@ public class GameUI extends Stage implements Subscriber {
         catImageView = new ImageView(CAT_IMAGE);
         catImageView.setFitWidth(catImageView.getImage().getWidth()/3);
         catImageView.setPreserveRatio(true);
-        AnchorPane.setLeftAnchor(catImageView, 200.);
+        AnchorPane.setLeftAnchor(catImageView, 500.);
         rootPane.getChildren().add(catImageView);
 
         ImageView iconTestView = new ImageView(Icons.STONE.image);
         AnchorPane.setTopAnchor(iconTestView, 100.);
         rootPane.getChildren().add(iconTestView);
+
         WonderDisplay alexandrieDisplay = new WonderDisplay(WonderFactory.Gizeh.createWonder());
         AnchorPane.setLeftAnchor(alexandrieDisplay, 200.);
         AnchorPane.setTopAnchor(alexandrieDisplay, 200.);
         rootPane.getChildren().add(alexandrieDisplay);
+        { Image image = new Image(getClass().getResourceAsStream("/images/cards/card-progress-law.png"));
+        DeckDisplay deckDisplay = new DeckDisplay(image, 2);
+        deckDisplay.setPrefWidth(200);
+        deckDisplay.setPrefHeight(300);
+        rootPane.getChildren().add(deckDisplay);
+        }
     }
 
 }
