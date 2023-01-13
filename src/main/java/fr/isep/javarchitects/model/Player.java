@@ -77,7 +77,7 @@ public class Player {
     }
 
     public PlayerVisible getVisibleState(){
-        PlayerVisible playerVisible = new PlayerVisible(name, wonder, getTopDeck(), getOwnedCards(), getProgressTokens(), hasCat);
+        PlayerVisible playerVisible = new PlayerVisible(name, wonder, getTopDeck(), getOwnedCards(), getProgressTokens(), 0, 0, hasCat);
         return playerVisible;
     }
 
