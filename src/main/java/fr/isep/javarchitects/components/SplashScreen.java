@@ -26,7 +26,7 @@ public class SplashScreen extends Stage {
     Transition mainTransition;
     private IVoidComplete doAfter;
 
-    private int width = 1600;
+    private int width = 730;
     private int height = 900;
 
     public SplashScreen(IVoidComplete doAfter) {
@@ -101,7 +101,7 @@ public class SplashScreen extends Stage {
     }
 
     private void styleImage() {
-        String imageUrl = getClass().getResource("/images/others/7-wonders-second-edition-board-game-art.jpg").toString();
+        String imageUrl = getClass().getResource("/images/others/7WA.jpg").toString();
         splashImage.setImage(new Image(imageUrl));
     }
 
