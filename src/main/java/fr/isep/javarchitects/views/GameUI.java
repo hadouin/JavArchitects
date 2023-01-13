@@ -93,6 +93,12 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(alexandrieDisplay, 200.);
         AnchorPane.setTopAnchor(alexandrieDisplay, 200.);
         rootPane.getChildren().add(alexandrieDisplay);
+        { Image image = new Image(getClass().getResourceAsStream("/images/cards/card-progress-law.png"));
+        DeckDisplay deckDisplay = new DeckDisplay(image, 2);
+        deckDisplay.setPrefWidth(200);
+        deckDisplay.setPrefHeight(300);
+        rootPane.getChildren().add(deckDisplay);
+        }
     }
 
 }
