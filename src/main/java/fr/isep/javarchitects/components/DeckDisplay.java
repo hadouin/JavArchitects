@@ -32,6 +32,7 @@ public class DeckDisplay extends AnchorPane {
         this.cardImageView = new ImageView(image);
         cardImageView.setFitWidth(100);
         cardImageView.setPreserveRatio(true);
+        AnchorPane.setBottomAnchor(cardImageView, 0.);
 
         this.getChildren().addAll(cardImageView, numberCircle);
     }
