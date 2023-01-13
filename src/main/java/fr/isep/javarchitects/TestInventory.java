@@ -6,6 +6,7 @@ import fr.isep.javarchitects.model.*;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,16 +22,19 @@ public class TestInventory extends Application {
         VBox I = new Inventory();
         AP.getChildren().add(I);
         List<Card> cards = new ArrayList<>();
+        List<ProgressToken> progressTokens = new ArrayList<>();
         cards.add(new Card(CardType.CardScienceMechanic, CardBack.CentralDeck));
-
-        // cards.add(new Card(CardType.CardWar_barbarian, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardWar_centurion, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardWar_barbarian, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardScienceLaw, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardMaterialGold, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardMaterialGold, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardPolitic_cat, CardBack.CentralDeck));
-        PlayerVisible playerTest = new PlayerVisible("Romeo", cards);
+        cards.add(new Card(CardType.CardPolitic_emperor, CardBack.CentralDeck));
+
+        progressTokens.add(ProgressToken.Politic);
+        progressTokens.add(ProgressToken.Decoration);
+
+        PlayerVisible playerTest = new PlayerVisible("Romeo", cards, progressTokens);
         ((Inventory) I).updateInventory(playerTest);
 
         Scene scene = new Scene(AP, 700, 500);

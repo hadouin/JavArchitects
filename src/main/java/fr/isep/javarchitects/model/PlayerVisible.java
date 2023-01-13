@@ -86,7 +86,7 @@ public class PlayerVisible {
             this.gloryPoints = gloryPoints; return this;
         }
     }
-    
+
     public boolean getHasCat() {
         return this.hasCat;
     }

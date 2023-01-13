@@ -3,10 +3,12 @@ package fr.isep.javarchitects.components;
 import fr.isep.javarchitects.model.Card;
 import fr.isep.javarchitects.model.CardCategory;
 import fr.isep.javarchitects.model.PlayerVisible;
+import fr.isep.javarchitects.model.ProgressToken;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.skin.LabeledSkinBase;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -18,12 +20,13 @@ public class Inventory extends VBox {
     private Label playerName = new Label("Player's name");
     private HBox warTokens = new HBox();
     private HBox gloryWarPoints = new HBox();
+    private HBox progressTokens = new HBox();
     private ImageView cat = new ImageView();
+    private Label description = new Label("Description");
 
     public Inventory() {
 
         initInventory();
-        this.gotTheCatOrNot(false);
 /*
         ImageView IMA1 = new ImageView(Icons.STONE.image);
         ImageView IMA2 = new ImageView(Icons.ARCHITECT.image);
@@ -56,7 +59,7 @@ public class Inventory extends VBox {
 */
     }
     private void initInventory() {
-        this.setPrefSize(250, 100);
+        this.setPrefWidth(250);
         this.setStyle("-fx-padding: 0;" +
                 "-fx-background-color: lightgrey;" +
                 "-fx-background-radius: 5;" +
@@ -75,6 +78,8 @@ public class Inventory extends VBox {
         linesCatHBox.setAlignment(Pos.CENTER);
         this.getChildren().add(playerName);
         this.getChildren().add(linesCatHBox);
+        this.getChildren().add(progressTokens);
+        this.getChildren().add(description);
         this.setAlignment(Pos.CENTER);
     }
     private VBox setMaterialScienceVbox() {
@@ -246,12 +251,29 @@ public class Inventory extends VBox {
                 }
             }
             else if (card.getFront().cardCategory == CardCategory.PoliticCard) {
-                pointCounter pointCounter = new pointCounter(Icons.VP, player.gloryPoint + card.front.laurelCount);
-                gloryWarPoints.getChildren().add(pointCounter);
-                if(card.front.cat) {
+                pointCounter pointCounter = new pointCounter(Icons.VP, player.gloryPoint);
+                gloryWarPoints.getChildren().set(0, pointCounter);
+                if(player.hasCat) {
                     gotTheCatOrNot(true);
                 }
             }
+        }
+        pointCounter pointCounterW = new pointCounter(Icons.BATTLE_TOKEN, player.warPoints);
+        gloryWarPoints.getChildren().set(1, pointCounterW);
+
+        for (ProgressToken progressToken : player.progressTokens) {
+            ImageView imageToken = new ImageView(new Image(getClass().getResourceAsStream(progressToken.imageResource)));
+            imageToken.setOnMouseEntered(event -> {
+                description.setWrapText(true);
+                description.setMaxWidth(240);
+                description.setText(progressToken.effectDescription);
+            });
+            imageToken.setOnMouseExited(event -> {
+                description.setText("");
+            });
+            imageToken.setFitHeight(40);
+            imageToken.setPreserveRatio(true);
+            progressTokens.getChildren().add(imageToken);
         }
     }
 
