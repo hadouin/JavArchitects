@@ -23,10 +23,10 @@ public class PlayerVisible {
         this.hasCat = hasCat;
     }
 
-    public PlayerVisible(String name, List<Card> cards) {
+    public PlayerVisible(String name, List<Card> cards, List<ProgressToken> progressTokens) {
         this.name = name;
         this.cards = cards;
-        progressTokens = null;
+        this.progressTokens = progressTokens;
         hasCat = false;
         topDeck = null;
         wonder = null;
