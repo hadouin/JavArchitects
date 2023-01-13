@@ -2,20 +2,14 @@ package fr.isep.javarchitects.components;
 
 import fr.isep.javarchitects.model.Card;
 import fr.isep.javarchitects.model.CardCategory;
-import fr.isep.javarchitects.model.Material;
 import fr.isep.javarchitects.model.PlayerVisible;
 import fr.isep.javarchitects.utils.Icons;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-
-import java.security.cert.CertPathBuilder;
 
 public class Inventory extends VBox {
 
@@ -101,6 +95,25 @@ public class Inventory extends VBox {
                 "-fx-border-insets: 2;" +
                 "-fx-border-radius: 5;" +
                 "-fx-border-color: black;");
+        for (int i = 0; i < 5; i++) {
+            materialLine.getChildren().add(new ImageView());
+            ((ImageView) materialLine.getChildren().get(i)).setFitHeight(40);
+            ((ImageView) materialLine.getChildren().get(i)).setPreserveRatio(true);
+
+            scienceLine.getChildren().add(new ImageView());
+            ((ImageView) scienceLine.getChildren().get(i)).setFitHeight(40);
+            ((ImageView) scienceLine.getChildren().get(i)).setPreserveRatio(true);
+        }
+
+        for (int j = 0; j < 2; j++) {
+            warTokens.getChildren().add(new ImageView());
+            ((ImageView) warTokens.getChildren().get(j)).setFitHeight(40);
+            ((ImageView) warTokens.getChildren().get(j)).setPreserveRatio(true);
+
+            gloryWarPoints.getChildren().add(new Pane());
+            ((Pane) gloryWarPoints.getChildren().get(j)).setMaxHeight(40);
+            // ((Pane) gloryWarPoints.getChildren().get(j)).set(true);
+        }
 
         VBox materialScienceHbox = new VBox();
         materialScienceHbox.getChildren().add(materialLine);
@@ -145,32 +158,53 @@ public class Inventory extends VBox {
     }
 
     private void addMaterials(Icons icons) {
-        ImageView image = new ImageView(icons.image);
-        image.setFitHeight(40);
-        image.setPreserveRatio(true);
-        materialLine.getChildren().add(image);
+        Image image = icons.image;
+        int index = 0;
+        for (int i = materialLine.getChildren().size() -1; i >= 0; i--) {
+            if (((ImageView) materialLine.getChildren().get(i)).getImage() == null) {
+                index = i;
+            }
+        }
+
+        ((ImageView) materialLine.getChildren().get(index)).setImage(image);
 
     }
 
     private void addScience(Icons icons) {
-        ImageView image = new ImageView(icons.image);
-        image.setFitHeight(40);
-        image.setPreserveRatio(true);
-        scienceLine.getChildren().add(image);
+        Image image = icons.image;
+        int index = 0;
+        for (int i = scienceLine.getChildren().size() -1; i >= 0; i--) {
+            if (((ImageView) scienceLine.getChildren().get(i)).getImage() == null) {
+                index = i;
+            }
+        }
+
+        ((ImageView) scienceLine.getChildren().get(index)).setImage(image);
     }
 
     private void addPoints(Icons icons) {
-        ImageView image = new ImageView(icons.image);
-        image.setFitHeight(40);
-        image.setPreserveRatio(true);
-        gloryWarPoints.getChildren().add(image);
+        Image image = icons.image;
+        int index = 0;
+        for (int i = gloryWarPoints.getChildren().size() -1; i >= 0; i--) {
+            if (((ImageView) gloryWarPoints.getChildren().get(i)).getImage() == null) {
+                index = i;
+            }
+        }
+
+        ((ImageView) gloryWarPoints.getChildren().get(index)).setImage(image);
     }
 
-    private void addWarTokens(Icons icons) {
-        ImageView image = new ImageView(icons.image);
-        image.setFitHeight(40);
-        image.setPreserveRatio(true);
-        warTokens.getChildren().add(image);
+    private void addWarTokens(Icons icon) {
+        Image image = icon.image;
+        int index;
+        if (icon == Icons.SHIELD) {
+            index = 0;
+        }
+        else {
+            index = 1;
+        }
+
+        ((ImageView) warTokens.getChildren().get(index)).setImage(image);
     }
 
     public void addIcons(Icons icons) {
@@ -189,6 +223,7 @@ public class Inventory extends VBox {
     }
 
     public void updateInventory (PlayerVisible player) {
+        playerName.setText(player.name);
         for (Card card : player.cards) {
 
             if (card.getFront().cardCategory == CardCategory.MaterialCard) {
@@ -198,6 +233,24 @@ public class Inventory extends VBox {
             else if (card.getFront().cardCategory == CardCategory.ProgressCard) {
                 Icons icon = card.front.scienceCategory.icon;
                 addIcons(icon);
+            }
+            else if (card.getFront().cardCategory == CardCategory.WarCard) {
+                int cornCount = card.front.cornCount; // a utiliser pour changer le nombre de Corn sur la view.
+                if (cornCount == 0) {
+                    Icons icon = Icons.SHIELD;
+                    addIcons(icon);
+                }
+                else {
+                    Icons icon = Icons.SHIELD_HORN;
+                    addIcons(icon);
+                }
+            }
+            else if (card.getFront().cardCategory == CardCategory.PoliticCard) {
+                pointCounter pointCounter = new pointCounter(Icons.VP, player.gloryPoint + card.front.laurelCount);
+                gloryWarPoints.getChildren().add(pointCounter);
+                if(card.front.cat) {
+                    gotTheCatOrNot(true);
+                }
             }
         }
     }

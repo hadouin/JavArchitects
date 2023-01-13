@@ -11,6 +11,8 @@ public class PlayerVisible {
     public int rightDeckTotal;
     public final List<Card> cards;
     public final List<ProgressToken> progressTokens;
+    public final int warPoints;
+    public final int gloryPoint;
     public final boolean hasCat;
 
     public PlayerVisible(Builder builder){
@@ -23,6 +25,8 @@ public class PlayerVisible {
         this.cards = builder.cards;
         this.progressTokens = builder.progressTokens;
         this.hasCat = builder.hasCat;
+        this.gloryPoint = builder.gloryPoints;
+        this.warPoints = builder.warPoints;
     }
 
     static class Builder {
@@ -35,6 +39,8 @@ public class PlayerVisible {
         private List<Card> cards;
         private List<ProgressToken> progressTokens;
         private boolean hasCat;
+        private int gloryPoints;
+        private int warPoints;
 
         public Builder setName(String name) {
             this.name = name; return this;
@@ -70,6 +76,14 @@ public class PlayerVisible {
 
         public PlayerVisible build(){
             return new PlayerVisible(this);
+        }
+
+        public Builder setWarPoints(int warPoints) {
+            this.warPoints = warPoints; return this;
+        }
+
+        public Builder setGloryPoints(int gloryPoints) {
+            this.gloryPoints = gloryPoints; return this;
         }
     }
     
