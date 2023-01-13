@@ -25,7 +25,6 @@ public class GameUI extends Stage implements Subscriber {
     private ProgressTokenPane progressTokenView;
     private ConflictTokensHBox conflictTokensHBox;
     private ChoiceDisplayHBox choiceDisplayHBox;
-    private MysteryDeckVBox mysteryDeckVBox;
     private final Image CAT_IMAGE = new Image(getClass().getResourceAsStream("/images/tokens/token-cat.png"));
     private ImageView catImageView;
 
@@ -64,10 +63,6 @@ public class GameUI extends Stage implements Subscriber {
         conflictTokensHBox = new ConflictTokensHBox(gameStateVisible.conflictTokens);
         AnchorPane.setLeftAnchor(conflictTokensHBox, 2.);
         rootPane.getChildren().add(conflictTokensHBox);
-
-        mysteryDeckVBox = new MysteryDeckVBox(gameStateVisible.mysteryDeck);
-        AnchorPane.setLeftAnchor(mysteryDeckVBox, 300.);
-        rootPane.getChildren().add(mysteryDeckVBox);
 
         WonderDisplay wonderDisplay = new WonderDisplay(WonderFactory.Alexandria.createWonder());
         AnchorPane.setLeftAnchor(wonderDisplay, 200.);
