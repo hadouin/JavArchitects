@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 public class SplashScreen extends Stage {
 
     private VBox root = new VBox();
@@ -51,7 +53,11 @@ public class SplashScreen extends Stage {
                 )
         );
         loadingTransition.setOnFinished(e -> {
-            doAfter.complete();
+            try {
+                doAfter.complete();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.2), root);

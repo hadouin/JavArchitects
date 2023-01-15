@@ -4,6 +4,7 @@ import fr.isep.javarchitects.model.GameAction;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ChoiceDisplayHBox extends HBox {
@@ -27,7 +28,11 @@ public class ChoiceDisplayHBox extends HBox {
         for (GameAction gameAction : gameActionList) {
             Button button = new Button(gameAction.name);
             button.setOnAction(e -> {
-                gameAction.action.complete();
+                try {
+                    gameAction.action.complete();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             });
             this.getChildren().add(button);
         }

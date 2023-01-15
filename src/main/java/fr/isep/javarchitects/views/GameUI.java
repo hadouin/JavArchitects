@@ -45,14 +45,24 @@ public class GameUI extends Stage implements Subscriber {
         } else {
             catImageView.setImage(CAT_IMAGE);
         }
+
+    }
+
+    public String getWindowTitle(){
+        String ret = "JavArchitects ";
+        int nbPlayers = this.gameStateVisible.players.size();
+        ret+= nbPlayers+" joueurs";
+        return ret;
     }
 
     public GameUI(GameStateVisible gameStateVisible){
         this.gameStateVisible = gameStateVisible;
         this.rootPane = new AnchorPane();
         this.mainScene = new Scene(rootPane, WIDTH, HEIGHT);
-        this.setTitle("JavArchitects");
+        this.setTitle(getWindowTitle());
         this.setScene(mainScene);
+        Stage stage = (Stage) this.mainScene.getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icons/appIcon.png")));
         setupGame();
     }
 
