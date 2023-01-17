@@ -7,11 +7,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 public class PlayerView extends HBox {
     private DeckDisplay leftDeckDisplay;
     private DeckDisplay rightDeckDisplay;
     private WonderDisplay wonderDisplay;
+    private Inventory inventory;
 
     // private Inventory inventory;
     public PlayerView(PlayerVisible playerVisible){
@@ -20,6 +22,9 @@ public class PlayerView extends HBox {
         this.setAlignment(Pos.CENTER);
 
         this.wonderDisplay = new WonderDisplay(playerVisible.wonder);
+        this.inventory = new Inventory();
+        inventory.updateInventory(playerVisible);
+        VBox centerVBox = new VBox(wonderDisplay, inventory);
         {
             Image imageLeft = new Image(getClass().getResourceAsStream(playerVisible.leftTopDeck.getFront().getImageResource()));
             leftDeckDisplay = new DeckDisplay(imageLeft, playerVisible.leftDeckTotal);
@@ -28,7 +33,7 @@ public class PlayerView extends HBox {
             Image imageRight = new Image(getClass().getResourceAsStream(playerVisible.rightTopDeck.getFront().getImageResource()));
             rightDeckDisplay = new DeckDisplay(imageRight, playerVisible.rightDeckTotal);
         }
-        this.getChildren().addAll(leftDeckDisplay, wonderDisplay, rightDeckDisplay);
+        this.getChildren().addAll(leftDeckDisplay, centerVBox, rightDeckDisplay);
 
     }
 }
