@@ -3,6 +3,7 @@ package fr.isep.javarchitects.model;
 import java.util.List;
 
 public class PlayerVisible {
+    public final String name;
     public final Wonder wonder;
     public final Card leftTopDeck;
     public final Card rightTopDeck;
@@ -10,9 +11,12 @@ public class PlayerVisible {
     public int rightDeckTotal;
     public final List<Card> cards;
     public final List<ProgressToken> progressTokens;
+    public final int warPoints;
+    public final int gloryPoint;
     public final boolean hasCat;
 
     public PlayerVisible(Builder builder){
+        this.name = builder.name;
         this.wonder = builder.wonder;
         this.leftTopDeck = builder.leftTopDeck;
         this.rightTopDeck = builder.rightTopDeck;
@@ -21,9 +25,12 @@ public class PlayerVisible {
         this.cards = builder.cards;
         this.progressTokens = builder.progressTokens;
         this.hasCat = builder.hasCat;
+        this.gloryPoint = builder.gloryPoints;
+        this.warPoints = builder.warPoints;
     }
 
-    static class Builder {
+    public static class Builder {
+        private String name;
         private Wonder wonder;
         private Card leftTopDeck;
         private Card rightTopDeck;
@@ -32,47 +39,52 @@ public class PlayerVisible {
         private List<Card> cards;
         private List<ProgressToken> progressTokens;
         private boolean hasCat;
+        private int gloryPoints;
+        private int warPoints;
 
-
-        public void setWonder(Wonder wonder) {
-            this.wonder = wonder;
+        public Builder setName(String name) {
+            this.name = name; return this;
         }
 
-        public void setLeftDeck(Card topdeck, int total) {
+        public Builder setWonder(Wonder wonder) {
+            this.wonder = wonder; return this;
+        }
+
+        public Builder setLeftDeck(Card topdeck, int total) {
             this.leftTopDeck = topdeck;
             this.leftDeckTotal = total;
+            return this;
         }
 
-        public void setRightDeck(Card topdeck, int total) {
+        public Builder setRightDeck(Card topdeck, int total) {
             this.rightTopDeck = topdeck;
             this.rightDeckTotal = total;
+            return this;
         }
 
-        public void setCards(List<Card> cards) {
-            this.cards = cards;
+        public Builder setCards(List<Card> cards) {
+            this.cards = cards; return this;
         }
 
-        public void setProgressTokens(List<ProgressToken> progressTokens) {
-            this.progressTokens = progressTokens;
+        public Builder setProgressTokens(List<ProgressToken> progressTokens) {
+            this.progressTokens = progressTokens; return this;
         }
 
-        public void setHasCat(boolean hasCat) {
-            this.hasCat = hasCat;
+        public Builder setHasCat(boolean hasCat) {
+            this.hasCat = hasCat; return this;
         }
 
         public PlayerVisible build(){
             return new PlayerVisible(this);
         }
-    }
 
+        public Builder setWarPoints(int warPoints) {
+            this.warPoints = warPoints; return this;
+        }
 
-    public PlayerVisible(Wonder wonder, Card topDeck, Card rightTopDeck, List<Card> cards, List<ProgressToken> progressTokens, boolean hasCat) {
-        this.wonder = wonder;
-        this.leftTopDeck = topDeck;
-        this.rightTopDeck = rightTopDeck;
-        this.cards = cards;
-        this.progressTokens = progressTokens;
-        this.hasCat = hasCat;
+        public Builder setGloryPoints(int gloryPoints) {
+            this.gloryPoints = gloryPoints; return this;
+        }
     }
 
     public boolean getHasCat() {
