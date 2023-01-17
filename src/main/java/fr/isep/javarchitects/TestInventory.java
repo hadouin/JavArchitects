@@ -1,14 +1,10 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.components.Inventory;
-import fr.isep.javarchitects.components.pointCounter;
 import fr.isep.javarchitects.model.*;
-import fr.isep.javarchitects.utils.Icons;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -23,13 +19,13 @@ public class TestInventory extends Application {
         AP.getChildren().add(inventory);
         List<Card> cards = new ArrayList<>();
         List<ProgressToken> progressTokens = new ArrayList<>();
-        cards.add(new Card(CardType.CardScienceMechanic, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardWar_centurion, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardWar_barbarian, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardScienceLaw, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardMaterialGold, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardMaterialGold, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardPolitic_emperor, CardBack.CentralDeck));
+        cards.add(Card.CardScienceMechanic);
+        cards.add(Card.CardWar_centurion);
+        cards.add(Card.CardWar_barbarian);
+        cards.add(Card.CardScienceLaw);
+        cards.add(Card.CardMaterialGold);
+        cards.add(Card.CardMaterialGold);
+        cards.add(Card.CardPolitic_emperor);
 
         progressTokens.add(ProgressToken.Politic);
         progressTokens.add(ProgressToken.Decoration);

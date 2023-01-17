@@ -27,6 +27,7 @@ public class GameUI extends Stage implements Subscriber {
     private ChoiceDisplayHBox choiceDisplayHBox;
     private final Image CAT_IMAGE = new Image(getClass().getResourceAsStream("/images/tokens/token-cat.png"));
     private ImageView catImageView;
+    private PlayerView playerView;
 
 
     @Override
@@ -38,12 +39,16 @@ public class GameUI extends Stage implements Subscriber {
     private void updateGame() {
         conflictTokensHBox.setConflictTokenList(gameStateVisible.conflictTokens);
         progressTokenView.setVisibleTokens(gameStateVisible.visibleProgressTokens);
+
         choiceDisplayHBox.setGameActionList(gameStateVisible.gameActionList);
+
         if (gameStateVisible.getCatOwner(gameStateVisible.players) != null){
             catImageView.setImage(null);
         } else {
             catImageView.setImage(CAT_IMAGE);
         }
+
+        playerView.setPlayer(gameStateVisible.players.get(0));
 
     }
 
@@ -85,7 +90,7 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(catImageView, 500.);
         rootPane.getChildren().add(catImageView);
 
-        PlayerView playerView = new PlayerView(gameStateVisible.players.get(0));
+        playerView = new PlayerView(gameStateVisible.players.get(0));
         AnchorPane.setTopAnchor(playerView, 200.);
         AnchorPane.setLeftAnchor(playerView, 0.);
         AnchorPane.setRightAnchor(playerView, 0.);

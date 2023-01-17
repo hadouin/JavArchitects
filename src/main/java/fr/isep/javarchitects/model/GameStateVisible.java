@@ -1,5 +1,7 @@
 package fr.isep.javarchitects.model;
 
+import fr.isep.javarchitects.model.command.GameAction;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,16 +16,16 @@ public class GameStateVisible {
                     new PlayerVisible.Builder()
                             .setName("Player 1")
                             .setWonder(WonderFactory.Alexandria.createWonder())
-                            .setRightDeck(new Card(CardType.CardMaterialGold, CardBack.Alexandrie), 20)
-                            .setLeftDeck(new Card(CardType.CardMaterialStone, CardBack.Rhodes), 20)
+                            .setRightDeck(Card.CardMaterialGold, 20)
+                            .setLeftDeck(Card.CardMaterialStone, 20)
                             .setHasCat(true)
                             .build(),
 
                     new PlayerVisible.Builder()
                         .setName("Player 2")
                         .setWonder(WonderFactory.Rhodes.createWonder())
-                        .setRightDeck(new Card(CardType.CardMaterialStone, CardBack.Rhodes), 20)
-                        .setLeftDeck(new Card(CardType.CardMaterialGold, CardBack.Alexandrie), 20)
+                        .setRightDeck(Card.CardMaterialStone, 20)
+                        .setLeftDeck(Card.CardMaterialGold, 20)
                         .setHasCat(false)
                         .build()
             ),

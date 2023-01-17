@@ -2,13 +2,13 @@ package fr.isep.javarchitects.model;
 
 public enum CardBack {
 
-	CentralDeck(null), //
+	Extra(null), //
 	
 	Alexandrie(WonderFactory.Alexandria), //
 	Halicarnassus(WonderFactory.Halicarnassus),
 	Ephesus(WonderFactory.Ephesus), //
 	Olympia(WonderFactory.Olympia), //,
-	Babylonia(WonderFactory.Babylonia), //
+	Babylon(WonderFactory.Babylon), //
 	Rhodes(WonderFactory.Rhodes), //
 	Gizeh(WonderFactory.Gizeh); //
 	

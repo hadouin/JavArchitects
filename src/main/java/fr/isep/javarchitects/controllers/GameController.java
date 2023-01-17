@@ -3,13 +3,16 @@ package fr.isep.javarchitects.controllers;
 import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.GameStateVisible;
 import fr.isep.javarchitects.model.TestState;
+import fr.isep.javarchitects.model.command.GameAction;
 import fr.isep.javarchitects.utils.Subscriber;
 import fr.isep.javarchitects.views.GameUI;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -17,46 +20,8 @@ import java.util.List;
  * Here we will send notifications to subscribers(Game UIs) to update the game state
  */
 public class GameController {
-
-    List<Subscriber> subscribers = new ArrayList<>();
-
     private Game game;
     private GameStateVisible gameStateVisible = GameStateVisible.BASE_STATE;
-    private TestState testState = new TestState();
-
-    /**
-     * Adds a subscriber to the list
-     * @param subscriber
-     */
-    public void subscribe(Subscriber subscriber){
-        this.subscribers.add(subscriber);
-    }
-
-    /**
-     * Remove subscriber from the list
-     * @param subscriber
-     */
-    public void unsubscribe(Subscriber subscriber){
-        this.subscribers.remove(subscriber);
-    }
-
-    /**
-     * Loop through the subscriber list to update
-     */
-    public void notifySubscribers(){
-        for (Subscriber subscriber: subscribers) {
-            subscriber.update(gameStateVisible);
-        }
-    }
-    /**
-     * test notification triggered by gameUI
-     * @param event
-     */
-    public void triggerOkDepart(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        testState.labelString = stage.getTitle();
-        notifySubscribers();
-    }
 
     public GameController(Game game){
         this.game = game;
@@ -64,12 +29,35 @@ public class GameController {
         GameUI gameUI = new GameUI(this.gameStateVisible);
         subscribe(gameUI);
         gameUI.show();
+        game.startDrawPhase();
     }
 
-    public void sendFirstTestState(){
-        this.gameStateVisible = game.getVisibleState();
-        System.out.println(gameStateVisible.toString());
+    // Observers
+    List<Subscriber> subscribers = new ArrayList<>();
+    public void subscribe(Subscriber subscriber){
+        this.subscribers.add(subscriber);
+    }
+    public void unsubscribe(Subscriber subscriber){
+        this.subscribers.remove(subscriber);
+    }
+    public void notifySubscribers(){
+        for (Subscriber subscriber: subscribers) {
+            subscriber.update(gameStateVisible);
+        }
+    }
+
+    // Commands
+    private Deque<GameAction> actions = new ArrayDeque<>();
+    public void addAction(GameAction action){
+        actions.add(action);
+    }
+    public boolean doNextAction(){
+        actions.pop().execute();
+        return !actions.isEmpty();
+    }
+
+    public void setVisibleState(GameStateVisible gameStateVisible) {
+        this.gameStateVisible = gameStateVisible;
         notifySubscribers();
     }
-
 }

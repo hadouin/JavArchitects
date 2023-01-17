@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.model.GameAction;
+import fr.isep.javarchitects.model.command.GameAction;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
@@ -27,7 +27,7 @@ public class ChoiceDisplayHBox extends HBox {
         for (GameAction gameAction : gameActionList) {
             Button button = new Button(gameAction.name);
             button.setOnAction(e -> {
-                gameAction.action.complete();
+                gameAction.execute();
             });
             this.getChildren().add(button);
         }

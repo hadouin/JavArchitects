@@ -1,7 +1,8 @@
 package fr.isep.javarchitects.model;
 
-//import fr.isep.javarchitects.Fenetres.FenetrePrincipale;
 import fr.isep.javarchitects.controllers.GameController;
+import fr.isep.javarchitects.model.command.DrawCard;
+import fr.isep.javarchitects.model.command.GameAction;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,12 +10,12 @@ import java.util.stream.Collectors;
 
 public class Game {
     private GameController gameController;
-
     private int nbPlayers;
     private List<Player> players;
     private int currentPlayerID = 0;
     private int nbRound = 1;
-    private List<GameAction> activeActionsList;
+    private List<GameAction> activeActionsList = new ArrayList<>();
+    private Deck centerDeck;
 
     public List<ConflictToken> conflictTokens = Arrays.asList(
             new ConflictToken(false),
@@ -32,6 +33,25 @@ public class Game {
         }
         setWonder(players);
         setDecks(players);
+        this.centerDeck = DeckFactory.Extra.createDeck();
+    }
+
+    public void startDrawPhase() {
+        activeActionsList.clear();
+        DrawCard currentPlayerDrawLeft = new DrawCard(this, "Draw Left", getCurrentPlayer(), getCurrentPlayer().getSelfDeck().getCards());
+        DrawCard currentPlayerDrawCenter = new DrawCard(this,"Draw Center", getCurrentPlayer(), centerDeck.getCards());
+        DrawCard currentPlayerDrawRight = new DrawCard(this,"Draw Right", getCurrentPlayer(), getCurrentPlayer().getRightDeck().getCards());
+
+        activeActionsList.addAll(Arrays.asList(
+                currentPlayerDrawLeft,
+                currentPlayerDrawCenter,
+                currentPlayerDrawRight
+        ));
+        gameController.setVisibleState(getVisibleState());
+    }
+
+    private Player getCurrentPlayer() {
+        return players.get(currentPlayerID);
     }
 
     public void startGame(){
@@ -77,8 +97,7 @@ public class Game {
 
         // set self deck in function of wonder
         for (Player player : listePlayers) {
-            int wonderID = player.getWonder().getID();
-            Decks deck = Decks.values()[wonderID];
+            Deck deck = player.getWonder().createDeck();
             player.setSelfDeck(deck);
         }
 
@@ -133,7 +152,7 @@ public class Game {
      */
     private boolean hasMaterialToBuild(Player player, WonderFragment fragment){
         List<Card> ownedMaterialCards = player.getOwnedCards().stream()
-                .filter(card -> card.getFront().cardCategory == CardCategory.MaterialCard).toList();
+                .filter(card -> card.cardCategory == CardCategory.MaterialCard).toList();
         return hasMaterialCombination(ownedMaterialCards, fragment.getResourceCount(), fragment.isMatchingResources());
     }
 
@@ -147,20 +166,20 @@ public class Game {
             return false;
         }
         // Create a hashmap that contains unique cards and their number of occurrence
-        Map<CardType, Integer> map = new HashMap<>();
+        Map<Card, Integer> map = new HashMap<>();
         for (Card card : materialCardList) {
-            if (map.containsKey(card.front)) {
-                map.put(card.front, map.get(card.front) + 1);
+            if (map.containsKey(card)) {
+                map.put(card, map.get(card) + 1);
             } else {
-                map.put(card.front, 1);
+                map.put(card, 1);
             }
         }
         // if we need matching cards return if a card
         if (matching){
-            for ( Map.Entry<CardType, Integer> entry : map.entrySet()) {
+            for ( Map.Entry<Card, Integer> entry : map.entrySet()) {
                 int occurrence = entry.getValue();
-                if (map.containsKey(CardType.CardMaterialGold) && entry.getKey() != CardType.CardMaterialGold){
-                    occurrence += map.get(CardType.CardMaterialGold);
+                if (map.containsKey(Card.CardMaterialGold) && entry.getKey() != Card.CardMaterialGold){
+                    occurrence += map.get(Card.CardMaterialGold);
                 }
                 if (occurrence >= nMaterial){
                     return true;
@@ -168,8 +187,8 @@ public class Game {
             }
         } else {
             int differentMaterials = map.size();
-            if (map.containsKey(CardType.CardMaterialGold)){
-                differentMaterials += (map.get(CardType.CardMaterialGold) - 1);
+            if (map.containsKey(Card.CardMaterialGold)){
+                differentMaterials += (map.get(Card.CardMaterialGold) - 1);
             }
             return differentMaterials >= nMaterial;
         }
@@ -207,10 +226,7 @@ public class Game {
                 0,
                 conflictTokens,
                 progressTokenList.subList(0,3),
-                Arrays.asList(
-                        new GameAction("Action 1", () -> {}),
-                        new GameAction("Back", () -> {})
-                )
+                activeActionsList
         );
     }
 }

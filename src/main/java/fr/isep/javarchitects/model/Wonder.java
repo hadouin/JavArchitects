@@ -1,7 +1,6 @@
 package fr.isep.javarchitects.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Wonder {
@@ -10,6 +9,7 @@ public class Wonder {
 	public final String effectDescription;
 	public final int ID;
 	private List<WonderFragment> wonderFragments;
+	private DeckFactory deckFactory;
 
 	// ------------------------------------------------------------------------
 
@@ -17,11 +17,14 @@ public class Wonder {
 		   String displayName,
 		   String frenchName,
 		   String effectDescription,
-		   List<WonderFragment> wonderFragments) {
+		   DeckFactory deckFactory,
+		   List<WonderFragment> wonderFragments
+		   ) {
 		this.displayName = displayName;
 		this.frenchName = frenchName;
 		this.effectDescription = effectDescription;
 		this.ID = id;
+		this.deckFactory = deckFactory;
 		this.wonderFragments = new ArrayList<>(wonderFragments);
 	}
 
@@ -68,5 +71,9 @@ public class Wonder {
 				"displayName='" + displayName + '\'' +
 				", wonderFragments=" + wonderFragments +
 				'}';
+	}
+
+	public Deck createDeck() {
+		return deckFactory.createDeck();
 	}
 }

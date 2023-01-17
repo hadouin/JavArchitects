@@ -18,6 +18,7 @@ public class WonderDisplay extends VBox {
     }
 
     private void update() {
+        this.getChildren().clear();
         switch(wonder.getID()){
             case 0:
                 setAlexandrie();
@@ -155,5 +156,10 @@ public class WonderDisplay extends VBox {
             imageView.setPreserveRatio(true);
             this.getChildren().add(imageView);
         }
+    }
+
+    public void setWonder(Wonder wonder) {
+        this.wonder = wonder;
+        update();
     }
 }

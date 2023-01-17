@@ -232,14 +232,14 @@ public class Inventory extends VBox {
         if (player.cards != null) {
             for (Card card : player.cards) {
 
-                if (card.getFront().cardCategory == CardCategory.MaterialCard) {
-                    Icons icon = card.front.material.icon;
+                if (card.cardCategory == CardCategory.MaterialCard) {
+                    Icons icon = card.material.icon;
                     addIcons(icon);
-                } else if (card.getFront().cardCategory == CardCategory.ProgressCard) {
-                    Icons icon = card.front.scienceCategory.icon;
+                } else if (card.cardCategory == CardCategory.ProgressCard) {
+                    Icons icon = card.scienceCategory.icon;
                     addIcons(icon);
-                } else if (card.getFront().cardCategory == CardCategory.WarCard) {
-                    int cornCount = card.front.cornCount; // a utiliser pour changer le nombre de Corn sur la view.
+                } else if (card.cardCategory == CardCategory.WarCard) {
+                    int cornCount = card.cornCount; // a utiliser pour changer le nombre de Corn sur la view.
                     if (cornCount == 0) {
                         Icons icon = Icons.SHIELD;
                         addIcons(icon);
@@ -247,7 +247,7 @@ public class Inventory extends VBox {
                         Icons icon = Icons.SHIELD_HORN;
                         addIcons(icon);
                     }
-                } else if (card.getFront().cardCategory == CardCategory.PoliticCard) {
+                } else if (card.cardCategory == CardCategory.PoliticCard) {
                     pointCounter pointCounter = new pointCounter(Icons.VP, player.gloryPoint);
                     gloryWarPoints.getChildren().set(0, pointCounter);
                     if (player.hasCat) {
