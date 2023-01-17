@@ -1,5 +1,7 @@
 package fr.isep.javarchitects.model;
 
+import javafx.scene.image.Image;
+
 /**
  * type of cards
  */
@@ -126,5 +128,9 @@ public enum Card {
 
 	public String getImageResource() {
 		return imageResource;
+	}
+
+	public Image getJavaFXImage() {
+		return new Image(getClass().getResourceAsStream(imageResource));
 	}
 }

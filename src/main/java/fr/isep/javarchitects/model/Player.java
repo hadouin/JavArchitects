@@ -83,6 +83,7 @@ public class Player {
                 .setWonder(wonder)
                 .setRightDeck(getRightTopDeck(), rightDeck.getCards().size())
                 .setLeftDeck(getLeftTopDeck(), selfDeck.getCards().size())
+                .setCards(ownedCards)
                 .build();
     }
 
