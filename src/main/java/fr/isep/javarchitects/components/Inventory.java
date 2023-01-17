@@ -1,9 +1,6 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.model.Card;
-import fr.isep.javarchitects.model.CardCategory;
-import fr.isep.javarchitects.model.PlayerVisible;
-import fr.isep.javarchitects.model.ProgressToken;
+import fr.isep.javarchitects.model.*;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -12,6 +9,11 @@ import javafx.scene.control.skin.LabeledSkinBase;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+
+import java.net.CookieHandler;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Inventory extends VBox {
 
@@ -101,9 +103,9 @@ public class Inventory extends VBox {
                 "-fx-border-radius: 5;" +
                 "-fx-border-color: black;");
         for (int i = 0; i < 5; i++) {
-            materialLine.getChildren().add(new ImageView());
-            ((ImageView) materialLine.getChildren().get(i)).setFitHeight(40);
-            ((ImageView) materialLine.getChildren().get(i)).setPreserveRatio(true);
+            materialLine.getChildren().add(new Pane());
+            ((Pane) materialLine.getChildren().get(i)).setMaxHeight(40);
+            // ((Pane) materialLine.getChildren().get(i)).setPreserveRatio(true);
 
             scienceLine.getChildren().add(new ImageView());
             ((ImageView) scienceLine.getChildren().get(i)).setFitHeight(40);
@@ -162,29 +164,42 @@ public class Inventory extends VBox {
         cat.setImage(catDisplay);
     }
 
-    private void addMaterials(Icons icons) {
-        Image image = icons.image;
+    private void addMaterials(Icons icon) {
         int index = 0;
+        boolean gotOne = false;
         for (int i = materialLine.getChildren().size() -1; i >= 0; i--) {
-            if (((ImageView) materialLine.getChildren().get(i)).getImage() == null) {
+            if (!(materialLine.getChildren().get(i) instanceof IconsWithQuantity)) {
                 index = i;
             }
+            else {
+                if (((IconsWithQuantity) materialLine.getChildren().get(i)).icon == icon) {
+                    materialLine.getChildren().set(i, new IconsWithQuantity(icon, ((IconsWithQuantity) materialLine.getChildren().get(i)).numberCircle.getNumber() + 1));
+                    gotOne = true;
+                }
+            }
         }
-
-        ((ImageView) materialLine.getChildren().get(index)).setImage(image);
-
+        if(!gotOne) {
+            materialLine.getChildren().set(index, new IconsWithQuantity(icon, 1));
+        }
     }
 
-    private void addScience(Icons icons) {
-        Image image = icons.image;
+    private void addScience(Icons icon) {
         int index = 0;
+        boolean gotOne = false;
         for (int i = scienceLine.getChildren().size() -1; i >= 0; i--) {
-            if (((ImageView) scienceLine.getChildren().get(i)).getImage() == null) {
+            if (!(scienceLine.getChildren().get(i) instanceof IconsWithQuantity)) {
                 index = i;
             }
+            else {
+                if (((IconsWithQuantity) scienceLine.getChildren().get(i)).icon == icon) {
+                    scienceLine.getChildren().set(i, new IconsWithQuantity(icon, ((IconsWithQuantity) scienceLine.getChildren().get(i)).numberCircle.getNumber() + 1));
+                    gotOne = true;
+                }
+            }
         }
-
-        ((ImageView) scienceLine.getChildren().get(index)).setImage(image);
+        if(!gotOne) {
+            scienceLine.getChildren().set(index, new IconsWithQuantity(icon, 1));
+        }
     }
 
     private void addPoints(Icons icons) {

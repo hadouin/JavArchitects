@@ -1,5 +1,6 @@
 package fr.isep.javarchitects;
 
+import fr.isep.javarchitects.components.IconsWithQuantity;
 import fr.isep.javarchitects.components.Inventory;
 import fr.isep.javarchitects.components.pointCounter;
 import fr.isep.javarchitects.model.*;
@@ -24,9 +25,13 @@ public class TestInventory extends Application {
         List<Card> cards = new ArrayList<>();
         List<ProgressToken> progressTokens = new ArrayList<>();
         cards.add(new Card(CardType.CardScienceMechanic, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardWar_centurion, CardBack.CentralDeck));
-        cards.add(new Card(CardType.CardWar_barbarian, CardBack.CentralDeck));
+        cards.add(new Card(CardType.CardScienceMechanic, CardBack.CentralDeck));
+        // cards.add(new Card(CardType.CardWar_centurion, CardBack.CentralDeck));
+        // cards.add(new Card(CardType.CardWar_barbarian, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardScienceLaw, CardBack.CentralDeck));
+        cards.add(new Card(CardType.CardMaterialBrick, CardBack.CentralDeck));
+        cards.add(new Card(CardType.CardMaterialGold, CardBack.CentralDeck));
+        cards.add(new Card(CardType.CardMaterialBrick, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardMaterialGold, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardMaterialGold, CardBack.CentralDeck));
         cards.add(new Card(CardType.CardPolitic_emperor, CardBack.CentralDeck));
@@ -36,6 +41,7 @@ public class TestInventory extends Application {
 
         PlayerVisible playerTest = new PlayerVisible("Romeo", cards, progressTokens);
         ((Inventory) I).updateInventory(playerTest);
+
 
         Scene scene = new Scene(AP, 700, 500);
         Stage stage = new Stage();

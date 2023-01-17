@@ -23,10 +23,26 @@ public class NumberCircle extends StackPane {
 
         this.getChildren().addAll(circleBG,numberLabel);
     }
+    public NumberCircle(int number, int radius){
+        circleBG = new Circle(radius);
+        circleBG.setFill(Color.web("#FFFFFF"));
+        circleBG.setStrokeWidth(2);
+        circleBG.setStroke(Color.DARKBLUE);
+
+        this.number = number;
+
+        numberLabel = new Label(String.valueOf(number));
+
+        this.getChildren().addAll(circleBG,numberLabel);
+    }
 
     public void setNumber(int number) {
         this.number = number;
         updateView();
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     private void updateView() {
