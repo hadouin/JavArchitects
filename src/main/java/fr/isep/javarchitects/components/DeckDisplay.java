@@ -25,6 +25,8 @@ public class DeckDisplay extends AnchorPane {
     }
 
     private void setupView() {
+        this.setMaxHeight(150);
+
         this.numberCircle = new NumberCircle(nbCards);
         AnchorPane.setBottomAnchor(numberCircle, -10.);
         AnchorPane.setRightAnchor(numberCircle, -10.);
