@@ -19,8 +19,8 @@ public class TestInventory extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         AnchorPane AP = new AnchorPane();
-        VBox I = new Inventory();
-        AP.getChildren().add(I);
+        Inventory inventory = new Inventory();
+        AP.getChildren().add(inventory);
         List<Card> cards = new ArrayList<>();
         List<ProgressToken> progressTokens = new ArrayList<>();
         cards.add(new Card(CardType.CardScienceMechanic, CardBack.CentralDeck));
@@ -34,8 +34,12 @@ public class TestInventory extends Application {
         progressTokens.add(ProgressToken.Politic);
         progressTokens.add(ProgressToken.Decoration);
 
-        PlayerVisible playerTest = new PlayerVisible("Romeo", cards, progressTokens);
-        ((Inventory) I).updateInventory(playerTest);
+        PlayerVisible playerTest = new PlayerVisible.Builder()
+                .setName("Romeo")
+                .setCards(cards)
+                .setProgressTokens(progressTokens)
+                .build();
+        inventory.updateInventory(playerTest);
 
         Scene scene = new Scene(AP, 700, 500);
         Stage stage = new Stage();

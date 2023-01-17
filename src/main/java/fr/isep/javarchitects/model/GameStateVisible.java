@@ -11,8 +11,21 @@ public class GameStateVisible {
 
     public static final GameStateVisible BASE_STATE = new GameStateVisible(
             Arrays.asList(
-                    new PlayerVisible("", WonderFactory.Alexandria.createWonder(), new Card(CardType.CardMaterialGold, CardBack.Alexandrie), new Card(CardType.CardMaterialGlass, CardBack.Alexandrie), new ArrayList<>(), new ArrayList<>(), 0, 0, true),
-                    new PlayerVisible("", WonderFactory.Rhodes.createWonder(), new Card(CardType.CardMaterialStone, CardBack.Rhodes), new Card(CardType.CardMaterialWood, CardBack.Alexandrie), new ArrayList<>(), new ArrayList<>(), 0, 0, false)
+                    new PlayerVisible.Builder()
+                            .setName("Player 1")
+                            .setWonder(WonderFactory.Alexandria.createWonder())
+                            .setRightDeck(new Card(CardType.CardMaterialGold, CardBack.Alexandrie), 20)
+                            .setLeftDeck(new Card(CardType.CardMaterialStone, CardBack.Rhodes), 20)
+                            .setHasCat(true)
+                            .build(),
+
+                    new PlayerVisible.Builder()
+                        .setName("Player 2")
+                        .setWonder(WonderFactory.Rhodes.createWonder())
+                        .setRightDeck(new Card(CardType.CardMaterialStone, CardBack.Rhodes), 20)
+                        .setLeftDeck(new Card(CardType.CardMaterialGold, CardBack.Alexandrie), 20)
+                        .setHasCat(false)
+                        .build()
             ),
             0,
             Arrays.asList(

@@ -29,7 +29,7 @@ public class PlayerVisible {
         this.warPoints = builder.warPoints;
     }
 
-    static class Builder {
+    public static class Builder {
         private String name;
         private Wonder wonder;
         private Card leftTopDeck;
