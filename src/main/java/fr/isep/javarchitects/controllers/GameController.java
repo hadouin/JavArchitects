@@ -29,6 +29,7 @@ public class GameController {
         GameUI gameUI = new GameUI(this.gameStateVisible);
         subscribe(gameUI);
         gameUI.show();
+        game.startDrawPhase();
     }
 
     // Observers
@@ -55,4 +56,8 @@ public class GameController {
         return !actions.isEmpty();
     }
 
+    public void setVisibleState(GameStateVisible gameStateVisible) {
+        this.gameStateVisible = gameStateVisible;
+        notifySubscribers();
+    }
 }

@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -12,7 +13,7 @@ public class Player {
     private boolean hasCat = false;
     private Deck selfDeck;
     private Deck rightDeck;
-    private List<Card> ownedCards;
+    private List<Card> ownedCards = new ArrayList<>();
     private List<ProgressToken> progressTokens;
 
     Player(Builder builder){

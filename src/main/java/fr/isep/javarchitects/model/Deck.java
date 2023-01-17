@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Deck {
@@ -7,7 +8,7 @@ public class Deck {
     private final CardBack cardBack;
 
     public Deck(CardBack cardBack, Card... cards) {
-        this.cards = List.of(cards);
+        this.cards = new ArrayList<>(List.of(cards));
         this.cardBack = cardBack;
     }
 

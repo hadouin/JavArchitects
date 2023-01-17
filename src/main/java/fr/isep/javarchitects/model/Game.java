@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 
 public class Game {
     private GameController gameController;
-
     private int nbPlayers;
     private List<Player> players;
     private int currentPlayerID = 0;
     private int nbRound = 1;
-    private List<GameAction> activeActionsList;
+    private List<GameAction> activeActionsList = new ArrayList<>();
+    private Deck centerDeck;
 
     public List<ConflictToken> conflictTokens = Arrays.asList(
             new ConflictToken(false),
@@ -33,11 +33,21 @@ public class Game {
         }
         setWonder(players);
         setDecks(players);
-        startDrawPhase();
+        this.centerDeck = DeckFactory.Extra.createDeck();
     }
 
-    private void startDrawPhase() {
-        DrawCard currentPlayerDrawLeft = new DrawCard("Draw Left", getCurrentPlayer(), getCurrentPlayer().getSelfDeck().getCards());
+    public void startDrawPhase() {
+        activeActionsList.clear();
+        DrawCard currentPlayerDrawLeft = new DrawCard(this, "Draw Left", getCurrentPlayer(), getCurrentPlayer().getSelfDeck().getCards());
+        DrawCard currentPlayerDrawCenter = new DrawCard(this,"Draw Center", getCurrentPlayer(), centerDeck.getCards());
+        DrawCard currentPlayerDrawRight = new DrawCard(this,"Draw Right", getCurrentPlayer(), getCurrentPlayer().getRightDeck().getCards());
+
+        activeActionsList.addAll(Arrays.asList(
+                currentPlayerDrawLeft,
+                currentPlayerDrawCenter,
+                currentPlayerDrawRight
+        ));
+        gameController.setVisibleState(getVisibleState());
     }
 
     private Player getCurrentPlayer() {
