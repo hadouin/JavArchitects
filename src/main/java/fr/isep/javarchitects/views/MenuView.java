@@ -17,14 +17,18 @@ public class MenuView extends Stage {
         return menuControllerInstance;
     }
 
-    public MenuView(IVoidComplete doAfter) throws IOException {
+    public MenuView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MenuView.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         menuControllerInstance = loader.getController();
-        menuControllerInstance.setDoAfter(doAfter);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icons/selectPlayers.png")));
         stage.show();
     }
