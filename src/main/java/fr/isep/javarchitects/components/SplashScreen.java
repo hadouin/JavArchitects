@@ -1,20 +1,27 @@
 package fr.isep.javarchitects.components;
 
+import fr.isep.javarchitects.controllers.MenuController;
 import fr.isep.javarchitects.utils.IVoidComplete;
 import javafx.animation.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class SplashScreen extends Stage {
 
@@ -24,19 +31,17 @@ public class SplashScreen extends Stage {
     private Label progressLabel = new Label();
 
     Transition mainTransition;
-    private IVoidComplete doAfter;
 
     private int width = 730;
     private int height = 900;
 
-    public SplashScreen(IVoidComplete doAfter) {
+    public SplashScreen() {
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         this.setX(bounds.getMinX() + bounds.getWidth() / 2 - width / 2);
         this.setY(bounds.getMinY() + bounds.getHeight() / 2 - height / 2);
         this.setAlwaysOnTop(true);
         this.initStyle(StageStyle.TRANSPARENT);
         this.setScene(new Scene(root, Color.TRANSPARENT));
-        this.doAfter = doAfter;
         root.getChildren().addAll(splashImage, progressBar, progressLabel);
         styleControls();
 
@@ -51,7 +56,7 @@ public class SplashScreen extends Stage {
                 )
         );
         loadingTransition.setOnFinished(e -> {
-            doAfter.complete();
+            openMenu();
         });
 
         FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.2), root);
@@ -64,6 +69,19 @@ public class SplashScreen extends Stage {
 
         SequentialTransition sequentialTransition = new SequentialTransition(loadingTransition, fadeSplash);
         this.mainTransition = sequentialTransition;
+    }
+
+    private void openMenu(){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/views/MenuView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Choose Players");
+        stage.show();
     }
 
     public void startLoading(){
