@@ -1,6 +1,5 @@
 package fr.isep.javarchitects.model;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -38,8 +37,8 @@ class GameTest {
         void assert0Rhodes2stone() {
             Player player = new Player.Builder("Hadouin", 0, WonderFactory.Rhodes.createWonder())
                     .setOwnedCards(Arrays.asList(
-                            new Card(CardType.CardMaterialStone, CardBack.Rhodes),
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck)
+                            Card.CardMaterialStone,
+                            Card.CardMaterialStone
                     )).build();
             Game game = new Game(1, List.of("Hadouin"));
             game.setPlayers(List.of(player));
@@ -52,8 +51,8 @@ class GameTest {
         void assert0Rhodes1stone1gold() {
             Player player = new Player.Builder("Hadouin", 0, WonderFactory.Rhodes.createWonder())
                     .setOwnedCards(Arrays.asList(
-                            new Card(CardType.CardMaterialStone, CardBack.Rhodes),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
+                            Card.CardMaterialStone,
+                            Card.CardMaterialGold
                     )).build();
             Game game = new Game(1, List.of("Hadouin"));
             game.setPlayers(List.of(player));
@@ -66,8 +65,8 @@ class GameTest {
         void assert0Rhodes1stone1wood() {
             Player player = new Player.Builder("Hadouin", 0, WonderFactory.Rhodes.createWonder())
                     .setOwnedCards(Arrays.asList(
-                            new Card(CardType.CardMaterialStone, CardBack.Rhodes),
-                            new Card(CardType.CardMaterialWood, CardBack.CentralDeck)
+                            Card.CardMaterialStone,
+                            Card.CardMaterialWood
                     )).build();
             Game game = new Game(1, List.of("Hadouin"));
             game.setPlayers(List.of(player));
@@ -82,10 +81,10 @@ class GameTest {
         void assert1Alexandria2Stone2Gold(){
             Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, WonderFactory.Alexandria.createWonder())
                     .setOwnedCards(Arrays.asList(
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
+                            Card.CardMaterialStone,
+                            Card.CardMaterialStone,
+                            Card.CardMaterialGold,
+                            Card.CardMaterialGold
                     )).build();
             player.getWonder().getWonderFragments().get(0).build();
             Game game = new Game(1,List.of("Hadouin"));
@@ -101,10 +100,10 @@ class GameTest {
         void assert1Ephese2Stone2Gold(){
             Player player = new Player.Builder("assert1Ephesus2Stone2Gold", 0, WonderFactory.Ephesus.createWonder())
                     .setOwnedCards(Arrays.asList(
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
+                            Card.CardMaterialStone,
+                            Card.CardMaterialStone,
+                            Card.CardMaterialGold,
+                            Card.CardMaterialGold
                     )).build();
             player.getWonder().getWonderFragments().get(0).build();
             Game game = new Game(1,List.of("Hadouin"));
@@ -119,10 +118,10 @@ class GameTest {
         void assert4Ephese2Stone2Gold(){
             Player player = new Player.Builder("assert4Ephese2Stone2Gold", 0, WonderFactory.Ephesus.createWonder())
                     .setOwnedCards(Arrays.asList(
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
+                            Card.CardMaterialStone,
+                            Card.CardMaterialStone,
+                            Card.CardMaterialGold,
+                            Card.CardMaterialGold
                     )).build();
             player.getWonder().getWonderFragments().get(0).build();
             player.getWonder().getWonderFragments().get(1).build();
@@ -141,11 +140,11 @@ class GameTest {
         void assert4Ephese1Wood2Stone2Gold(){
             Player player = new Player.Builder("1Alexandria2Stone2Gold", 0, WonderFactory.Ephesus.createWonder())
                     .setOwnedCards(Arrays.asList(
-                            new Card(CardType.CardMaterialWood, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialStone, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck),
-                            new Card(CardType.CardMaterialGold, CardBack.CentralDeck)
+                            Card.CardMaterialWood,
+                            Card.CardMaterialStone,
+                            Card.CardMaterialStone,
+                            Card.CardMaterialGold,
+                            Card.CardMaterialGold
                     )).build();
             player.getWonder().getWonderFragments().get(0).build();
             player.getWonder().getWonderFragments().get(1).build();

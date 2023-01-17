@@ -10,8 +10,8 @@ public class Player {
     private int victoryPoints = 0;
     private int warPoints = 0;
     private boolean hasCat = false;
-    private Decks selfDeck;
-    private Decks rightDeck;
+    private Deck selfDeck;
+    private Deck rightDeck;
     private List<Card> ownedCards;
     private List<ProgressToken> progressTokens;
 
@@ -36,7 +36,7 @@ public class Player {
         private int victoryPoints = 0;
         private int warPoints = 0;
         private boolean ownsCat = false;
-        private Decks selfDeck = Decks.D_Gizeh;
+        private Deck selfDeck = DeckFactory.Gizeh.createDeck();
         private List<Card> ownedCards;
 
         public Builder(String name, int id, Wonder wonder) {
@@ -53,7 +53,7 @@ public class Player {
         public Builder setOwnsCat(boolean ownsCat) {
             this.ownsCat = ownsCat; return this;
         }
-        public Builder setSelfDeck(Decks selfDeck) {
+        public Builder setSelfDeck(Deck selfDeck) {
             this.selfDeck = selfDeck; return this;
         }
         public Builder setOwnedCards(List<Card> ownedCards){
@@ -69,7 +69,7 @@ public class Player {
         this.name = name;
         this.ID = ID;
         this.wonder = wonder;
-        this.selfDeck = Decks.values()[wonder.getID()];
+        this.selfDeck = wonder.createDeck();
     }
     public Player(String name, int ID) {
         this.name = name;
@@ -80,8 +80,8 @@ public class Player {
         return new PlayerVisible.Builder()
                 .setName(name)
                 .setWonder(wonder)
-                .setRightDeck(getRightTopDeck(), rightDeck.getListeCartes().size())
-                .setLeftDeck(getLeftTopDeck(), selfDeck.getListeCartes().size())
+                .setRightDeck(getRightTopDeck(), rightDeck.getCards().size())
+                .setLeftDeck(getLeftTopDeck(), selfDeck.getCards().size())
                 .build();
     }
 
@@ -112,11 +112,11 @@ public class Player {
         return hasCat;
     }
 
-    public Decks getSelfDeck() {
+    public Deck getSelfDeck() {
         return selfDeck;
     }
 
-    public Decks getRightDeck() {
+    public Deck getRightDeck() {
         return rightDeck;
     }
 
@@ -154,11 +154,11 @@ public class Player {
         this.hasCat = hasCat;
     }
 
-    public void setSelfDeck(Decks selfDeck) {
+    public void setSelfDeck(Deck selfDeck) {
         selfDeck = selfDeck;
     }
 
-    public void setRightDeck(Decks rightDeck) {
+    public void setRightDeck(Deck rightDeck) {
         this.rightDeck = rightDeck;
     }
 
@@ -167,11 +167,11 @@ public class Player {
     }
 
     private Card getLeftTopDeck(){
-        return this.selfDeck.getListeCartes().get(0);
+        return this.selfDeck.getCards().get(0);
     }
 
     private Card getRightTopDeck(){
-        return this.rightDeck.getListeCartes().get(0);
+        return this.rightDeck.getCards().get(0);
     }
 
     private List<ProgressToken> getProgressTokens() {

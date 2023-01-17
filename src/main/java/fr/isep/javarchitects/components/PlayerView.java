@@ -26,11 +26,11 @@ public class PlayerView extends HBox {
         inventory.updateInventory(playerVisible);
         VBox centerVBox = new VBox(wonderDisplay, inventory);
         {
-            Image imageLeft = new Image(getClass().getResourceAsStream(playerVisible.leftTopDeck.getFront().getImageResource()));
+            Image imageLeft = new Image(getClass().getResourceAsStream(playerVisible.leftTopDeck.getImageResource()));
             leftDeckDisplay = new DeckDisplay(imageLeft, playerVisible.leftDeckTotal);
         }
         {
-            Image imageRight = new Image(getClass().getResourceAsStream(playerVisible.rightTopDeck.getFront().getImageResource()));
+            Image imageRight = new Image(getClass().getResourceAsStream(playerVisible.rightTopDeck.getImageResource()));
             rightDeckDisplay = new DeckDisplay(imageRight, playerVisible.rightDeckTotal);
         }
         this.getChildren().addAll(leftDeckDisplay, centerVBox, rightDeckDisplay);

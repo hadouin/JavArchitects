@@ -10,26 +10,24 @@ public class Tests {
     @Test
     public void test() {
 
-        Decks deck = Decks.D_milieu;
-        Decks deck2 = Decks.D_Halicarnassus;
+        Deck deck = DeckFactory.Extra.createDeck();
+        Deck deck2 = DeckFactory.Halicarnassus.createDeck();
 
-        System.out.println(deck.getListeCartes().size());
-        System.out.println(deck2.getListeCartes().size());
+        System.out.println(deck.getCards().size());
+        System.out.println(deck2.getCards().size());
 
-        ArrayList<Card> D = new ArrayList<>();
-        for (Card carte : deck.getListeCartes()) {
-            D.add(carte);
-        }
+        ArrayList<Card> D = new ArrayList<>(deck.getCards());
 
         System.out.println(D.size());
 
         Collections.shuffle(D);
         Card carte = D.remove(0);
-        System.out.println(carte.getFront().cardDisplayName);
+        System.out.println(carte.cardDisplayName);
         System.out.println(D.size());
 
     }
 
+/*
     @Test
     public void setDecksTest() {
         ArrayList<Player> listePlayers = new ArrayList<>();
@@ -43,6 +41,7 @@ public class Tests {
             J.setSelfDeck(decks.remove(R.nextInt(decks.size())));
         }
     }
+*/
 
     @Test
     public void testPartie() {

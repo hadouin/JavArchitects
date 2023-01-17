@@ -38,7 +38,9 @@ public class GameUI extends Stage implements Subscriber {
     private void updateGame() {
         conflictTokensHBox.setConflictTokenList(gameStateVisible.conflictTokens);
         progressTokenView.setVisibleTokens(gameStateVisible.visibleProgressTokens);
+
         choiceDisplayHBox.setGameActionList(gameStateVisible.gameActionList);
+
         if (gameStateVisible.getCatOwner(gameStateVisible.players) != null){
             catImageView.setImage(null);
         } else {
