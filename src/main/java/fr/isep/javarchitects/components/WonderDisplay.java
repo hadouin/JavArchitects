@@ -24,7 +24,7 @@ public class WonderDisplay extends StackPane {
                 wonder.getWonderFragments()) {
             ImageView image = new ImageView(fragment.getImage());
             image.setPreserveRatio(true);
-            image.setFitWidth(100);
+            image.setFitWidth(150);
             this.getChildren().add(image);
         }
     }
