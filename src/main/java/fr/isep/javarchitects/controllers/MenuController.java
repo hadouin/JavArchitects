@@ -8,10 +8,12 @@ import fr.isep.javarchitects.views.MenuView;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ public class MenuController {
 
     ArrayList<String> playerNames = new ArrayList<String>();
 
+    @FXML
     public void playButtonClick(ActionEvent e) {
         for (int i = 0; i < 7; i++) {
             TextField textFieldPlayerN = (TextField) (((Button) (e.getTarget())).getScene().getRoot().lookup("#P" + (i + 1)));
@@ -34,13 +37,14 @@ public class MenuController {
         }
         else {
             openGameView();
+            Stage stage = (Stage) ((Button) e.getSource()).getScene().getWindow();
+            stage.close();
         }
     }
 
     private void openGameView() {
         Game game = new Game(playerNames.size(), playerNames);
         GameController gameController = new GameController(game);
-
     }
 
     public void cancelButtonClick(ActionEvent e)
