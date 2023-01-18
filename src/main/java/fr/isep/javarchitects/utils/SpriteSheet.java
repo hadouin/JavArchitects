@@ -23,7 +23,7 @@ public class SpriteSheet {
 
     public Image getImageFromOrdinal(int ordinal) {
         int x = ordinal % columns;
-        int y = ordinal / rows;
+        int y = ordinal / columns;
         return Sprite.convertToFxImage(sprite.getSpriteAutoSize(x,y, columns, rows));
     };
 
