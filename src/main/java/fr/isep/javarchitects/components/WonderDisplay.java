@@ -22,7 +22,10 @@ public class WonderDisplay extends StackPane {
         this.getChildren().clear();
         for (WonderFragment fragment :
                 wonder.getWonderFragments()) {
-            this.getChildren().add( new ImageView(fragment.getImage()));
+            ImageView image = new ImageView(fragment.getImage());
+            image.setPreserveRatio(true);
+            image.setFitWidth(100);
+            this.getChildren().add(image);
         }
     }
 

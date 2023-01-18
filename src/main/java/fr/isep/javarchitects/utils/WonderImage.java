@@ -15,7 +15,7 @@ public enum WonderImage {
     private final SpriteSheet spriteSheet;
 
     WonderImage(String spritePath) {
-        spriteSheet = new SpriteSheet(getClass().getResourceAsStream(spritePath), 6,2);
+        spriteSheet = new SpriteSheet(getClass().getResourceAsStream(spritePath), 6,3);
     }
 
     public Image getImage(WonderImageType wonderImageType){
