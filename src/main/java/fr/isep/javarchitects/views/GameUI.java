@@ -6,6 +6,7 @@ import fr.isep.javarchitects.model.PlayerVisible;
 import fr.isep.javarchitects.utils.Subscriber;
 import fr.isep.javarchitects.model.WonderFactory;
 import fr.isep.javarchitects.utils.Icons;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -104,6 +105,7 @@ public class GameUI extends Stage implements Subscriber {
         rootPane.getChildren().add(catImageView);
 
         playersVBOX = new VBox();
+        playersVBOX.setAlignment(Pos.TOP_CENTER);
         AnchorPane.setTopAnchor(playersVBOX, 0.);
         AnchorPane.setBottomAnchor(playersVBOX, 0.);
         AnchorPane.setLeftAnchor(playersVBOX, 0.);
