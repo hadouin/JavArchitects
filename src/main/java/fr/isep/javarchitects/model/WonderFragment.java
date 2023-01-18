@@ -1,10 +1,12 @@
 package fr.isep.javarchitects.model;
 
+import javafx.scene.image.Image;
+
 public class WonderFragment {
 
     //attributes
-    private final String imagePathFront;
-    private final String ImagePathBack;
+    private final Image imageFront;
+    private final Image imageBack;
     private final int floorNumber;
     private final boolean triggerEffect;
     private final int VP;
@@ -13,9 +15,9 @@ public class WonderFragment {
     private boolean isbuilt = false;
 
     //constructor
-    public WonderFragment(String imagePathFront, String imagePathBack, int floorNumber, boolean triggerEffect, int vp, int resourceCount, boolean matchingResources) {
-        this.imagePathFront = imagePathFront;
-        this.ImagePathBack = imagePathBack;
+    public WonderFragment(Image imageFront, Image imageBack, int floorNumber, boolean triggerEffect, int vp, int resourceCount, boolean matchingResources) {
+        this.imageFront = imageFront;
+        this.imageBack = imageBack;
         this.floorNumber = floorNumber;
         this.triggerEffect = triggerEffect;
         this.VP = vp;
@@ -23,8 +25,8 @@ public class WonderFragment {
         this.matchingResources = matchingResources;
     }
 
-    public String getImagePath(){
-        return isbuilt ? this.imagePathFront : this.ImagePathBack;
+    public Image getImage(){
+        return isbuilt ? this.imageFront : this.imageBack;
     }
 
     public int getFloorNumber() {
