@@ -2,14 +2,19 @@ package fr.isep.javarchitects.views;
 
 import fr.isep.javarchitects.components.*;
 import fr.isep.javarchitects.model.GameStateVisible;
+import fr.isep.javarchitects.model.PlayerVisible;
 import fr.isep.javarchitects.utils.Subscriber;
 import fr.isep.javarchitects.model.WonderFactory;
 import fr.isep.javarchitects.utils.Icons;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.util.Iterator;
 
 /**
  * GameUI is the main component of ui view for the game.
@@ -27,7 +32,7 @@ public class GameUI extends Stage implements Subscriber {
     private ChoiceDisplayHBox choiceDisplayHBox;
     private final Image CAT_IMAGE = new Image(getClass().getResourceAsStream("/images/tokens/token-cat.png"));
     private ImageView catImageView;
-    private PlayerView playerView;
+    private VBox playersVBOX;
 
 
     @Override
@@ -48,8 +53,17 @@ public class GameUI extends Stage implements Subscriber {
             catImageView.setImage(CAT_IMAGE);
         }
 
-        playerView.setPlayer(gameStateVisible.players.get(0));
-
+        // update players
+        Iterator<PlayerVisible> iterator = gameStateVisible.players.iterator();
+        for (Node node : playersVBOX.getChildren()) {
+            if (node instanceof PlayerView playerView) {
+                if (iterator.hasNext()) {
+                    playerView.setPlayer(iterator.next());
+                } else {
+                    break;
+                }
+            }
+        }
     }
 
     public String getWindowTitle(){
@@ -90,11 +104,17 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(catImageView, 500.);
         rootPane.getChildren().add(catImageView);
 
-        playerView = new PlayerView(gameStateVisible.players.get(0));
-        AnchorPane.setTopAnchor(playerView, 200.);
-        AnchorPane.setLeftAnchor(playerView, 0.);
-        AnchorPane.setRightAnchor(playerView, 0.);
-        rootPane.getChildren().add(playerView);
+        playersVBOX = new VBox();
+        playersVBOX.setAlignment(Pos.TOP_CENTER);
+        AnchorPane.setTopAnchor(playersVBOX, 0.);
+        AnchorPane.setBottomAnchor(playersVBOX, 0.);
+        AnchorPane.setLeftAnchor(playersVBOX, 0.);
+        AnchorPane.setRightAnchor(playersVBOX, 0.);
+        for (PlayerVisible player :
+                gameStateVisible.players) {
+            playersVBOX.getChildren().add(new PlayerView(player));
+        }
+        rootPane.getChildren().add(playersVBOX);
     }
 
 }
