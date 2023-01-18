@@ -1,7 +1,9 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.components.Inventory;
-import fr.isep.javarchitects.model.*;
+import fr.isep.javarchitects.core.Card;
+import fr.isep.javarchitects.core.PlayerVisible;
+import fr.isep.javarchitects.core.ProgressToken;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;

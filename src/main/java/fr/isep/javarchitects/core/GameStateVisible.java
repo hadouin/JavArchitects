@@ -1,6 +1,6 @@
-package fr.isep.javarchitects.model;
+package fr.isep.javarchitects.core;
 
-import fr.isep.javarchitects.model.command.GameAction;
+import fr.isep.javarchitects.core.command.GameAction;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,10 +1,15 @@
-package fr.isep.javarchitects.model;
+package fr.isep.javarchitects.core;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 
 public class PlayerVisible {
     public final String name;
-    public final Wonder wonder;
+    public final ObjectProperty<Wonder> wonder = new SimpleObjectProperty<>(null);
     public final Card leftTopDeck;
     public final Card rightTopDeck;
     public int leftDeckTotal;
@@ -17,7 +22,7 @@ public class PlayerVisible {
 
     public PlayerVisible(Builder builder){
         this.name = builder.name;
-        this.wonder = builder.wonder;
+        this.wonder.set(builder.wonder);
         this.leftTopDeck = builder.leftTopDeck;
         this.rightTopDeck = builder.rightTopDeck;
         this.leftDeckTotal = builder.leftDeckTotal;

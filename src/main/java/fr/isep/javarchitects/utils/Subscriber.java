@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.utils;
 
-import fr.isep.javarchitects.model.GameStateVisible;
+import fr.isep.javarchitects.core.GameStateVisible;
 
 /**
  * Simple Interface to define the update method the different observers.

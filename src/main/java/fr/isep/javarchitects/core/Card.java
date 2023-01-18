@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.model;
+package fr.isep.javarchitects.core;
 
 import javafx.scene.image.Image;
 

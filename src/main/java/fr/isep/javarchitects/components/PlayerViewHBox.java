@@ -1,15 +1,12 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.model.PlayerVisible;
+import fr.isep.javarchitects.core.PlayerVisible;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class PlayerView extends HBox {
+public class PlayerViewHBox extends HBox {
     private DeckDisplay leftDeckDisplay;
     private DeckDisplay rightDeckDisplay;
     private WonderDisplay wonderDisplay;
@@ -17,16 +14,16 @@ public class PlayerView extends HBox {
     private PlayerVisible playerVisible;
 
     // private Inventory inventory;
-    public PlayerView(PlayerVisible playerVisible){
+    public PlayerViewHBox(PlayerVisible playerVisible){
         this.playerVisible = playerVisible;
         this.setPadding(new Insets(20.));
         this.setSpacing(50.);
         this.setAlignment(Pos.CENTER);
 
-        this.wonderDisplay = new WonderDisplay(playerVisible.wonder);
+        this.wonderDisplay = new WonderDisplay(playerVisible.wonder.get());
         this.inventory = new Inventory();
         inventory.updateInventory(playerVisible);
-        wonderDisplay.setWonder(playerVisible.wonder);
+        wonderDisplay.setWonder(playerVisible.wonder.get());
         VBox centerVBox = new VBox(wonderDisplay, inventory);
 
         leftDeckDisplay = new DeckDisplay(playerVisible.leftTopDeck.getJavaFXImage(), playerVisible.leftDeckTotal);

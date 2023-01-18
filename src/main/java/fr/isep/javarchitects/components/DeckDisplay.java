@@ -1,15 +1,8 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.model.Card;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 
 public class DeckDisplay extends AnchorPane {
     private ImageView cardImageView;

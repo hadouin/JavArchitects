@@ -1,6 +1,6 @@
-package fr.isep.javarchitects.model.command;
+package fr.isep.javarchitects.core.command;
 
-import fr.isep.javarchitects.model.Game;
+import fr.isep.javarchitects.core.Game;
 
 public abstract class GameAction {
     public final String name;

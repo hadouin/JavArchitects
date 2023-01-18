@@ -1,11 +1,10 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.model.ConflictToken;
+import fr.isep.javarchitects.core.ConflictToken;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConflictTokensHBox extends HBox {

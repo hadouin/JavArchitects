@@ -1,6 +1,6 @@
 package fr.isep.javarchitects;
 
-import fr.isep.javarchitects.model.*;
+import fr.isep.javarchitects.core.*;
 import org.junit.Test;
 
 import java.util.*;

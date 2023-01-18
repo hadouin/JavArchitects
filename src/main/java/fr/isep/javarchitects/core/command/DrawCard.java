@@ -1,8 +1,8 @@
-package fr.isep.javarchitects.model.command;
+package fr.isep.javarchitects.core.command;
 
-import fr.isep.javarchitects.model.Card;
-import fr.isep.javarchitects.model.Game;
-import fr.isep.javarchitects.model.Player;
+import fr.isep.javarchitects.core.Card;
+import fr.isep.javarchitects.core.Game;
+import fr.isep.javarchitects.core.Player;
 
 import java.util.List;
 

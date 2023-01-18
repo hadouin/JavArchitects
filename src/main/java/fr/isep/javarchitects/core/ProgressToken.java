@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.model;
+package fr.isep.javarchitects.core;
 
 public enum ProgressToken {
 

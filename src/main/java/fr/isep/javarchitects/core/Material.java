@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.model;
+package fr.isep.javarchitects.core;
 
 import fr.isep.javarchitects.utils.Icons;
 

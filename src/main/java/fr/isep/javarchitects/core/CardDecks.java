@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.model;
+package fr.isep.javarchitects.core;
 
 import java.util.Arrays;
 import java.util.List;

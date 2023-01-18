@@ -1,14 +1,12 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.model.Card;
-import fr.isep.javarchitects.model.CardCategory;
-import fr.isep.javarchitects.model.PlayerVisible;
-import fr.isep.javarchitects.model.ProgressToken;
+import fr.isep.javarchitects.core.Card;
+import fr.isep.javarchitects.core.CardCategory;
+import fr.isep.javarchitects.core.PlayerVisible;
+import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.skin.LabeledSkinBase;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
