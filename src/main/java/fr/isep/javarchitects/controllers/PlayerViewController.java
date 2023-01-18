@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.controllers;
 
+import fr.isep.javarchitects.controls.WonderDisplayControl;
 import fr.isep.javarchitects.model.GameModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonBar;
@@ -24,7 +25,14 @@ public class PlayerViewController {
     @FXML
     VBox logVBox;
 
+    WonderDisplayControl wonderDisplayControl = new WonderDisplayControl();
+
     GameModel model; // DataModel
+
+    @FXML
+    public void initialize(){
+        this.mainPane.getChildren().add(wonderDisplayControl);
+    }
 
     public void initModel(GameModel model){
         // ensure model is set once
@@ -33,12 +41,17 @@ public class PlayerViewController {
         }
         this.model = model;
 
-        informationLabel.setText(model.getCurrentPlayer().getName());
-
         model.currentPlayerProperty().addListener((obs, oldPlayer, newPlayer) -> {
             if (oldPlayer != null){
-                informationLabel.textProperty().bindBidirectional(oldPlayer.nameProperty());
+                informationLabel.textProperty().unbindBidirectional(oldPlayer.nameProperty());
+            }
+            if (newPlayer == null) {
+                informationLabel.setText("");
+            } else {
+                informationLabel.textProperty().bindBidirectional(newPlayer.nameProperty());
+                wonderDisplayControl.wonderObjectPropertyProperty().bindBidirectional(newPlayer.wonderProperty());
             }
         });
+
     }
 }

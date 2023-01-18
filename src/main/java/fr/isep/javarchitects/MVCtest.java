@@ -1,6 +1,7 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.controllers.PlayerViewController;
+import fr.isep.javarchitects.core.WonderFactory;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import javafx.application.Application;
@@ -27,12 +28,14 @@ public class MVCtest extends Application {
         GameModel model = new GameModel();
         PlayerModel hadouin = new PlayerModel();
         hadouin.setName("Hadouin");
+        hadouin.setWonder(WonderFactory.Alexandria.createWonder());
+        playerViewController.initModel(model);
         model.setPlayers(hadouin);
         model.setCurrentPlayer(hadouin);
-        playerViewController.initModel(model);
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        hadouin.setName("Hadouin LEROY");
     }
 }
