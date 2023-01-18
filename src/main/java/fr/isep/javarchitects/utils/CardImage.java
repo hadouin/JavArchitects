@@ -27,17 +27,10 @@ public enum CardImage {
     MATH,
     MECH,
     LAW;
-
-    public final Sprite CARD_SPRITE = new Sprite(getClass().getResourceAsStream("/images/cards.png"));
-    private static final int COLUMNS = 8;
-    private static final int ROWS = 3;
-    public int x;
-    public int y;
+    public final SpriteSheet CARD_SHEET = new SpriteSheet(getClass().getResourceAsStream("/images/cards.png"), 8,3);
     public final Image image;
 
     CardImage() {
-        int x = ordinal() % COLUMNS;
-        int y = ordinal() / COLUMNS;
-        this.image = Sprite.convertToFxImage(CARD_SPRITE.getSpriteAutoSize(x,y, COLUMNS, ROWS));
+        this.image = CARD_SHEET.getImageFromOrdinal(this.ordinal());
     }
 }

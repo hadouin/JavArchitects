@@ -1,5 +1,8 @@
 package fr.isep.javarchitects.model;
 
+import fr.isep.javarchitects.utils.WonderImage;
+import fr.isep.javarchitects.utils.WonderImageType;
+
 import java.util.List;
 
 public enum WonderFactory {
@@ -10,11 +13,11 @@ public enum WonderFactory {
                         "Prenez la premi�re carte d'une pioche au choix, n'importe o� sur la table, et posez-la devant vous",
                         DeckFactory.Alexandria,
                         List.of(
-                                new WonderFragment("/images/wonders/alexandrie/piece-front-alexandrie-1.png", "/images/wonders/alexandrie/piece-back-alexandrie-1.png", 0, false, 4, 2, false),
-                                new WonderFragment("/images/wonders/alexandrie/piece-front-alexandrie-2.png", "/images/wonders/alexandrie/piece-back-alexandrie-2.png", 1, true, 3, 2, true),
-                                new WonderFragment("/images/wonders/alexandrie/piece-front-alexandrie-3.png", "/images/wonders/alexandrie/piece-back-alexandrie-3.png", 2, false, 6, 3, false),
-                                new WonderFragment("/images/wonders/alexandrie/piece-front-alexandrie-4.png", "/images/wonders/alexandrie/piece-back-alexandrie-4.png", 3, true, 5, 3, true),
-                                new WonderFragment("/images/wonders/alexandrie/piece-front-alexandrie-5.png", "/images/wonders/alexandrie/piece-back-alexandrie-5.png", 4, false, 7, 4, false)
+                                new WonderFragment(WonderImage.Alexandria.getImage(WonderImageType.FRONT_1), WonderImage.Alexandria.getImage(WonderImageType.BACK_1), 0, false, 4, 2, false),
+                                new WonderFragment(WonderImage.Alexandria.getImage(WonderImageType.FRONT_2), WonderImage.Alexandria.getImage(WonderImageType.BACK_2), 1, true, 3, 2, true),
+                                new WonderFragment(WonderImage.Alexandria.getImage(WonderImageType.FRONT_3), WonderImage.Alexandria.getImage(WonderImageType.BACK_3), 2, false, 6, 3, false),
+                                new WonderFragment(WonderImage.Alexandria.getImage(WonderImageType.FRONT_4), WonderImage.Alexandria.getImage(WonderImageType.BACK_4), 3, true, 5, 3, true),
+                                new WonderFragment(WonderImage.Alexandria.getImage(WonderImageType.FRONT_5), WonderImage.Alexandria.getImage(WonderImageType.BACK_5), 4, false, 7, 4, false)
                         ));
             }
     },
@@ -26,11 +29,11 @@ public enum WonderFactory {
                             + "Mélangez-les cartes restantes dans leur pioche",
                     DeckFactory.Halicarnassus,
                     List.of(
-                            new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-1.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-1.png", 0, false, 3, 2, false),
-                            new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-2.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-2bis.png", 1, true, 3, 2, true),
-                            new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-3.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-3.png", 2, true, 5, 3, true),
-                            new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-4.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-4.png", 2, false, 6, 3, false),
-                            new WonderFragment("/images/wonders/halicarnasse/piece-front-halicarnasse-5.png", "/images/wonders/halicarnasse/piece-back-halicarnasse-5.png", 3, false, 7, 4, false)
+                            new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_1), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_1), 0, false, 3, 2, false),
+                            new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_2), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_2), 1, true, 3, 2, true),
+                            new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_3), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_3), 2, true, 5, 3, true),
+                            new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_4), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_4), 2, false, 6, 3, false),
+                            new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_5), WonderImage.Alexandria.getImage(WonderImageType.BACK_5), 3, false, 7, 4, false)
                     ));
         }
     },
@@ -41,11 +44,11 @@ public enum WonderFactory {
                     "Prenez la premi�re carte de la pioche centrale et posez-la devant vous",
                     DeckFactory.Ephesus,
                     List.of(
-                            new WonderFragment("/images/wonders/ephese/piece-front-ephese-1.png", "/images/wonders/ephese/piece-back-ephese-1.png", 0, false, 3, 2, false),
-                            new WonderFragment("/images/wonders/ephese/piece-front-ephese-2.png", "/images/wonders/ephese/piece-back-ephese-2.png", 1, true, 3, 2, true),
-                            new WonderFragment("/images/wonders/ephese/piece-front-ephese-3.png", "/images/wonders/ephese/piece-back-ephese-3.png", 1, true, 5, 3, true),
-                            new WonderFragment("/images/wonders/ephese/piece-front-ephese-4.png", "/images/wonders/ephese/piece-back-ephese-4.png", 1, true, 4, 3, false),
-                            new WonderFragment("/images/wonders/ephese/piece-front-ephese-5.png", "/images/wonders/ephese/piece-back-ephese-5.png", 2, false, 7, 4, false)
+                            new WonderFragment(WonderImage.Ephesus.getImage(WonderImageType.FRONT_1), WonderImage.Ephesus.getImage(WonderImageType.BACK_1), 0, false, 3, 2, false),
+                            new WonderFragment(WonderImage.Ephesus.getImage(WonderImageType.FRONT_2), WonderImage.Ephesus.getImage(WonderImageType.BACK_2), 1, true, 3, 2, true),
+                            new WonderFragment(WonderImage.Ephesus.getImage(WonderImageType.FRONT_3), WonderImage.Ephesus.getImage(WonderImageType.BACK_3), 1, true, 5, 3, true),
+                            new WonderFragment(WonderImage.Ephesus.getImage(WonderImageType.FRONT_4), WonderImage.Ephesus.getImage(WonderImageType.BACK_4), 1, true, 4, 3, false),
+                            new WonderFragment(WonderImage.Ephesus.getImage(WonderImageType.FRONT_5), WonderImage.Ephesus.getImage(WonderImageType.BACK_5), 2, false, 7, 4, false)
                     ));
         }},
     Olympia{
@@ -55,11 +58,11 @@ public enum WonderFactory {
                     "Prenez la premi�re carte de la pioche � votre cauche et de celle � votre droite, et posez-les devant vous",
                     DeckFactory.Olympia,
                     List.of(
-                            new WonderFragment("/images/wonders/olympie/piece-front-olympie-1.png", "/images/wonders/olympie/piece-back-olympie-1.png", 0, false, 3, 2, false),
-                            new WonderFragment("/images/wonders/olympie/piece-front-olympie-2.png", "/images/wonders/olympie/piece-back-olympie-2.png", 2, true, 2, 2, true),
-                            new WonderFragment("/images/wonders/olympie/piece-front-olympie-3.png", "/images/wonders/olympie/piece-back-olympie-3.png", 1, false, 5, 3, false),
-                            new WonderFragment("/images/wonders/olympie/piece-front-olympie-4.png", "/images/wonders/olympie/piece-back-olympie-4.png", 2, true, 5, 3, true),
-                            new WonderFragment("/images/wonders/olympie/piece-front-olympie-5.png", "/images/wonders/olympie/piece-back-olympie-5.png", 3, false, 7, 4, false)
+                            new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_1), WonderImage.Olympia.getImage(WonderImageType.BACK_1), 0, false, 3, 2, false),
+                            new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_2), WonderImage.Olympia.getImage(WonderImageType.BACK_2), 2, true, 2, 2, true),
+                            new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_3), WonderImage.Olympia.getImage(WonderImageType.BACK_3), 1, false, 5, 3, false),
+                            new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_4), WonderImage.Olympia.getImage(WonderImageType.BACK_4), 2, true, 5, 3, true),
+                            new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_5), WonderImage.Olympia.getImage(WonderImageType.BACK_5), 3, false, 7, 4, false)
                     ));
         }},
     Babylon {
@@ -69,11 +72,11 @@ public enum WonderFactory {
                     "Choisissez 1 jeton Progr�s parmi les 4 disponibles, et posez-le devant vous",
                     DeckFactory.Babylon,
                     List.of(
-                            new WonderFragment("/images/wonders/babylon/piece-front-babylon-1.png", "/images/wonders/babylon/piece-back-babylon-1.png", 0, false, 3, 2, false),
-                            new WonderFragment("/images/wonders/babylon/piece-front-babylon-2.png", "/images/wonders/babylon/piece-back-babylon-2.png", 1, true, 0, 2, true),
-                            new WonderFragment("/images/wonders/babylon/piece-front-babylon-3.png", "/images/wonders/babylon/piece-back-babylon-3.png", 2, false, 5, 3, false),
-                            new WonderFragment("/images/wonders/babylon/piece-front-babylon-4.png", "/images/wonders/babylon/piece-back-babylon-5.png", 3, false, 5, 3, true),
-                            new WonderFragment("/images/wonders/babylon/piece-front-babylon-5.png", "/images/wonders/babylon/piece-back-babylon-4.png", 3, true, 7, 4, false)
+                            new WonderFragment(WonderImage.Babylon.getImage(WonderImageType.FRONT_1), WonderImage.Babylon.getImage(WonderImageType.BACK_1), 0, false, 3, 2, false),
+                            new WonderFragment(WonderImage.Babylon.getImage(WonderImageType.FRONT_2), WonderImage.Babylon.getImage(WonderImageType.BACK_2), 1, true, 0, 2, true),
+                            new WonderFragment(WonderImage.Babylon.getImage(WonderImageType.FRONT_3), WonderImage.Babylon.getImage(WonderImageType.BACK_3), 2, false, 5, 3, false),
+                            new WonderFragment(WonderImage.Babylon.getImage(WonderImageType.FRONT_4), WonderImage.Babylon.getImage(WonderImageType.BACK_4), 3, false, 5, 3, true),
+                            new WonderFragment(WonderImage.Babylon.getImage(WonderImageType.FRONT_5), WonderImage.Babylon.getImage(WonderImageType.BACK_5), 3, true, 7, 4, false)
                     ));
         }},
     Rhodes{
@@ -83,11 +86,11 @@ public enum WonderFactory {
                     "Ajoutez 1 Bouclier � votre total de Boucliers",
                     DeckFactory.Rhodes,
                     List.of(
-                            new WonderFragment("/images/wonders/rhodes/piece-front-rhodes-1.png", "/images/wonders/rhodes/piece-back-rhodes-1.png", 0, false, 4, 2, false),
-                            new WonderFragment("/images/wonders/rhodes/piece-front-rhodes-2.png", "/images/wonders/rhodes/piece-back-rhodes-2.png", 0, true, 4, 2, true),
-                            new WonderFragment("/images/wonders/rhodes/piece-front-rhodes-3.png", "/images/wonders/rhodes/piece-back-rhodes-3.png", 1, false, 5, 3, false),
-                            new WonderFragment("/images/wonders/rhodes/piece-front-rhodes-4.png", "/images/wonders/rhodes/piece-back-rhodes-4.png", 2, true, 6, 3, true),
-                            new WonderFragment("/images/wonders/rhodes/piece-front-rhodes-5.png", "/images/wonders/rhodes/piece-back-rhodes-5.png", 3, false, 7, 4, false)
+                            new WonderFragment(WonderImage.Rhodes.getImage(WonderImageType.FRONT_1), WonderImage.Rhodes.getImage(WonderImageType.BACK_1), 0, false, 4, 2, false),
+                            new WonderFragment(WonderImage.Rhodes.getImage(WonderImageType.FRONT_2), WonderImage.Rhodes.getImage(WonderImageType.BACK_2), 0, true, 4, 2, true),
+                            new WonderFragment(WonderImage.Rhodes.getImage(WonderImageType.FRONT_3), WonderImage.Rhodes.getImage(WonderImageType.BACK_3), 1, false, 5, 3, false),
+                            new WonderFragment(WonderImage.Rhodes.getImage(WonderImageType.FRONT_4), WonderImage.Rhodes.getImage(WonderImageType.BACK_4), 2, true, 6, 3, true),
+                            new WonderFragment(WonderImage.Rhodes.getImage(WonderImageType.FRONT_5), WonderImage.Rhodes.getImage(WonderImageType.BACK_5), 3, false, 7, 4, false)
                     ));
         }
     },
@@ -98,11 +101,11 @@ public enum WonderFactory {
                     "Cette merveille n'a pas d'effet particulier, mais rapporte plus de points de victoire que les autres Merveilles",
                     DeckFactory.Gizeh,
                     List.of(
-                            new WonderFragment("/images/wonders/giseh/piece-front-giseh-1.png", "/images/wonders/giseh/piece-back-giseh-1.png", 0, false, 4, 2, false),
-                            new WonderFragment("/images/wonders/giseh/piece-front-giseh-2.png", "/images/wonders/giseh/piece-back-giseh-2.png", 1, false, 5, 2, true),
-                            new WonderFragment("/images/wonders/giseh/piece-front-giseh-3.png", "/images/wonders/giseh/piece-back-giseh-3.png", 2, false, 6, 3, false),
-                            new WonderFragment("/images/wonders/giseh/piece-front-giseh-4.png", "/images/wonders/giseh/piece-back-giseh-4.png", 3, false, 7, 3, true),
-                            new WonderFragment("/images/wonders/giseh/piece-front-giseh-5.png", "/images/wonders/giseh/piece-back-giseh-5.png", 4, false, 8, 4, true)
+                            new WonderFragment(WonderImage.Gizeh.getImage(WonderImageType.FRONT_1), WonderImage.Gizeh.getImage(WonderImageType.BACK_1), 0, false, 4, 2, false),
+                            new WonderFragment(WonderImage.Gizeh.getImage(WonderImageType.FRONT_2), WonderImage.Gizeh.getImage(WonderImageType.BACK_2), 1, false, 5, 2, true),
+                            new WonderFragment(WonderImage.Gizeh.getImage(WonderImageType.FRONT_3), WonderImage.Gizeh.getImage(WonderImageType.BACK_3), 2, false, 6, 3, false),
+                            new WonderFragment(WonderImage.Gizeh.getImage(WonderImageType.FRONT_4), WonderImage.Gizeh.getImage(WonderImageType.BACK_4), 3, false, 7, 3, true),
+                            new WonderFragment(WonderImage.Gizeh.getImage(WonderImageType.FRONT_5), WonderImage.Gizeh.getImage(WonderImageType.BACK_5), 4, false, 8, 4, true)
                     ));
         }
     };
