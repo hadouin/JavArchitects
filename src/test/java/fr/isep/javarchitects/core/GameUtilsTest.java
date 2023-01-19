@@ -63,6 +63,7 @@ class GameUtilsTest {
         playerModel.addCard(Card.CardMaterialBrick);
         playerModel.setWonder(WonderFactory.Alexandria.createWonder());
         game.addPlayer(playerModel);
+        game.setCurrentPlayer(playerModel);
         WonderFragment frag = playerModel.getWonder().getWonderFragments().get(0);
         // Act
         List<BuildWonderFragUsingCards> result = GameUtils.getBuildingCombinations(playerModel, game);

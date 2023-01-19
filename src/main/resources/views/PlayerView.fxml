@@ -40,6 +40,10 @@
       <Label fx:id="informationLabel" text="Informations" BorderPane.alignment="CENTER" />
    </top>
    <right>
-      <ListView fx:id="logListView" prefHeight="470.0" prefWidth="150.0" />
+      <ListView fx:id="logListView" prefHeight="460.0" prefWidth="180.0" BorderPane.alignment="TOP_LEFT">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </ListView>
    </right>
 </BorderPane>
