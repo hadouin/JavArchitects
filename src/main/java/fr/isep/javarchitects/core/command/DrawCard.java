@@ -22,6 +22,7 @@ public class DrawCard extends GameAction{
         Card card = target.remove(0);
         source.addCard(card);
         System.out.println(source.getName() + " drew " + card.cardDisplayName);
+        game.buildWonder();
         game.nextPlayer();
     }
 }

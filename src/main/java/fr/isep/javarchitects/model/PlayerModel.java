@@ -1,9 +1,9 @@
 package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.core.Card;
-import fr.isep.javarchitects.core.Deck;
-import fr.isep.javarchitects.core.DeckFactory;
 import fr.isep.javarchitects.core.Wonder;
+import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
+import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -70,5 +70,13 @@ public class PlayerModel {
     }
     public void addCard(Card card) {
         ownedCardList.add(card);
+    }
+
+    public ImmutableCardByTypeCounts getAvailableCardCounters() {
+        return new ImmutableCardByTypeCounts(ownedCardList);
+    }
+
+    public ImmutableMaterialCardByTypeCounts getAvailableMaterialCardCounts() {
+        return new ImmutableMaterialCardByTypeCounts(getAvailableCardCounters());
     }
 }

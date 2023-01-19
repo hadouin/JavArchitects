@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.core;
 
+import com.google.common.collect.ImmutableList;
 import fr.isep.javarchitects.utils.Icons;
 
 public enum Material {
@@ -13,5 +14,9 @@ public enum Material {
 	public Icons icon;
 	Material(Icons icon) {
 		this.icon = icon;
+	}
+
+	public static ImmutableList<Material> allExceptGolds() {
+		return ImmutableList.of(Wood, Paper, Brick, Stone, Glass);
 	}
 }

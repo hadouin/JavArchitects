@@ -3,6 +3,7 @@ module fr.isep.javarchitects {
     requires javafx.fxml;
     requires junit;
     requires java.desktop;
+    requires com.google.common;
 
 
     opens fr.isep.javarchitects to javafx.fxml;

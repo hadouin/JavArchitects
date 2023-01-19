@@ -1,11 +1,15 @@
 package fr.isep.javarchitects.core;
 
+import com.google.common.collect.ImmutableList;
 import fr.isep.javarchitects.model.DeckModel;
 import fr.isep.javarchitects.model.PlayerModel;
+import fr.isep.javarchitects.utils.BuildWonderFragUsingCards;
+import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 
 import java.util.*;
 
 public class GameUtils {
+    private static final ImmutableList<Material> materialExceptGolds = Material.allExceptGolds();
 
     public static void setRandomWonder(ArrayList<PlayerModel> listePlayers) {
         Random R = new Random();
@@ -56,15 +60,15 @@ public class GameUtils {
                 .orElse(null);
     }
 
-    public static List<WonderFragment> getBuildableFragments(Player player){
+    public static List<WonderFragment> getBuildableFragments(PlayerModel player){
         List<WonderFragment> buildableFragments = player.getWonder().getWonderFragments().stream()
                 .filter(fragment -> !fragment.getIsBuilt() && player.getWonder().isFloorOpen(fragment.getFloorNumber()) && hasMaterialToBuild(player, fragment))
                 .toList();
         return buildableFragments;
     }
 
-    private static boolean hasMaterialToBuild(Player player, WonderFragment fragment){
-        List<Card> ownedMaterialCards = player.getOwnedCards().stream()
+    private static boolean hasMaterialToBuild(PlayerModel player, WonderFragment fragment){
+        List<Card> ownedMaterialCards = player.getOwnedCardList().stream()
                 .filter(card -> card.cardCategory == CardCategory.MaterialCard).toList();
         return hasMaterialCombination(ownedMaterialCards, fragment.getResourceCount(), fragment.isMatchingResources());
     }
@@ -108,4 +112,93 @@ public class GameUtils {
         int[] tokenForPlayerNb = {3,3,3,3,4,5,6,6};
         return tokenForPlayerNb[nbPlayers];
     }
+
+    public static List<BuildWonderFragUsingCards> listMoveBuildWonderFragment(
+            PlayerModel p, WonderFragment frag) {
+        ArrayList res = new ArrayList<BuildWonderFragUsingCards>();
+        boolean fragNeedSameMaterial = frag.isMatchingResources();
+        int requiredCount = frag.getResourceCount();
+
+        // available material card counts
+        ImmutableMaterialCardByTypeCounts availableMaterialCardCounts = p.getAvailableMaterialCardCounts();
+
+        if (availableMaterialCardCounts.getTotalCount() < requiredCount) {
+            return res;
+        }
+
+        if (fragNeedSameMaterial) {
+            listMoveBuildWonderFragment_similarMaterial(frag, res, requiredCount, availableMaterialCardCounts);
+        } else {
+            ImmutableMaterialCardByTypeCounts.Builder currUsedCounts = ImmutableMaterialCardByTypeCounts.builder();
+            recursiveListMoveBuildWonderFragment_differentMaterials(res, frag, 0, // currMaterialIndex
+                    currUsedCounts, requiredCount, availableMaterialCardCounts);
+        }
+        return res;
+    }
+
+    private static void listMoveBuildWonderFragment_similarMaterial(WonderFragment frag,
+                                                                    final List<BuildWonderFragUsingCards> res,
+                                                                    final int requiredCount,
+                                                                    final ImmutableMaterialCardByTypeCounts availableMaterialCardCounts) {
+        int goldCount = availableMaterialCardCounts.goldCount;
+        for(Material material: materialExceptGolds) {
+            int count = availableMaterialCardCounts.get(material);
+            if (count > 0) {
+                if (count >= requiredCount) {
+                    // enough similar cards to build fragment
+                    ImmutableMaterialCardByTypeCounts usedCards = ImmutableMaterialCardByTypeCounts.builder().with(material, requiredCount).build();
+                    res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+                } else if (count + goldCount >= requiredCount) {
+                    // complete with some joker Gold(s)
+                    ImmutableMaterialCardByTypeCounts usedCards = ImmutableMaterialCardByTypeCounts.builder()
+                            .with(material, count)
+                            .with(Material.Gold, requiredCount-count)
+                            .build();
+                    res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+                }
+            }
+        }
+        // special case for gold only ..
+        if (goldCount >= requiredCount) {
+            ImmutableMaterialCardByTypeCounts usedCards = ImmutableMaterialCardByTypeCounts.builder().with(Material.Gold, requiredCount).build();
+            res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+        }
+    }
+
+    private static void recursiveListMoveBuildWonderFragment_differentMaterials(
+            List<BuildWonderFragUsingCards> res, //
+            WonderFragment frag,
+            int currMaterialIndex, //
+            ImmutableMaterialCardByTypeCounts.Builder currUsedCounts,
+            int remainingRequiredTypeCount, //
+            ImmutableMaterialCardByTypeCounts materialCardCounts) {
+        Material material = materialExceptGolds.get(currMaterialIndex);
+        int count = materialCardCounts.get(material);
+        if (count > 0) {
+            // selecting 1 card of this material
+            ImmutableMaterialCardByTypeCounts.Builder nextUsedCounts = currUsedCounts.cloneBuilderWithSelect(material);
+            int nextRemainingRequiredTypes = remainingRequiredTypeCount--;
+            if (nextRemainingRequiredTypes == 0) {
+                // no need to recurse
+                ImmutableMaterialCardByTypeCounts usedCards = nextUsedCounts.build();
+                res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+            } else {
+                int nextIndex = currMaterialIndex + 1;
+                if (nextIndex <= materialExceptGolds.size()) {
+                    // recurse
+                    recursiveListMoveBuildWonderFragment_differentMaterials(res, frag,
+                            nextIndex, nextUsedCounts, nextRemainingRequiredTypes, materialCardCounts);
+                }
+
+            }
+        }
+        // recurse when not selecting this material
+        int nextIndex = currMaterialIndex + 1;
+        if (nextIndex <= materialExceptGolds.size()) {
+            // recurse
+            recursiveListMoveBuildWonderFragment_differentMaterials(res, frag,
+                    nextIndex, currUsedCounts, remainingRequiredTypeCount, materialCardCounts);
+        }
+    }
+
 }

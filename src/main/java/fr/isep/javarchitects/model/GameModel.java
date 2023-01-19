@@ -2,6 +2,7 @@ package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.core.GameUtils;
 import fr.isep.javarchitects.core.Player;
+import fr.isep.javarchitects.core.WonderFragment;
 import fr.isep.javarchitects.core.command.DrawCard;
 import fr.isep.javarchitects.core.command.GameAction;
 import javafx.beans.property.ObjectProperty;
@@ -83,5 +84,10 @@ public class GameModel {
         }
         setCurrentPlayer(playerList.get(currentPlayerIndex));
         setDrawActions();
+    }
+
+    public void buildWonder() {
+        List<WonderFragment> buildableFragments =  GameUtils.getBuildableFragments(getCurrentPlayer());
+
     }
 }

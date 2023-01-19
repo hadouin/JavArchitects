@@ -1,6 +1,7 @@
 package fr.isep.javarchitects.controllers;
 
 import fr.isep.javarchitects.controls.DeckControl;
+import fr.isep.javarchitects.controls.InventoryControl;
 import fr.isep.javarchitects.controls.WonderDisplayControl;
 import fr.isep.javarchitects.core.command.GameAction;
 import fr.isep.javarchitects.model.GameModel;
@@ -40,16 +41,6 @@ public class PlayerViewController {
 
     GameModel model; // DataModel
 
-    @FXML
-    public void initialize() throws IOException {
-        VBox wonderVBox = new VBox();
-        wonderVBox.getChildren().add(wonderDisplayControl);
-        FXMLLoader inventoryLoader = new FXMLLoader(getClass().getResource("/views/InventoryControl.fxml"));
-        Parent parent = inventoryLoader.load();
-        wonderVBox.getChildren().add(parent);
-        this.generalHBox.getChildren().addAll(leftDeckDisplay, wonderVBox, rightDeckDisplay);
-    }
-
     public void initModel(GameModel model){
         // ensure model is set once
         if (this.model != null ){
@@ -80,6 +71,20 @@ public class PlayerViewController {
             throw new IllegalStateException("Model can only be initialized once");
         }
         this.player = playerModel;
+
+        VBox wonderVBox = new VBox();
+        wonderVBox.getChildren().add(wonderDisplayControl);
+        FXMLLoader inventoryLoader = new FXMLLoader(getClass().getResource("/views/InventoryControl.fxml"));
+        Parent parent = null;
+        try {
+            parent = inventoryLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        InventoryControl inventoryControl = inventoryLoader.getController();
+        inventoryControl.initModel(player);
+        wonderVBox.getChildren().add(parent);
+        this.generalHBox.getChildren().addAll(leftDeckDisplay, wonderVBox, rightDeckDisplay);
 
         informationLabel.textProperty().bindBidirectional(player.nameProperty());
         wonderDisplayControl.wonderObjectPropertyProperty().bindBidirectional(player.wonderProperty());
