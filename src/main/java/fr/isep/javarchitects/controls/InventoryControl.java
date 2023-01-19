@@ -2,9 +2,9 @@ package fr.isep.javarchitects.controls;
 
 import fr.isep.javarchitects.core.Card;
 import fr.isep.javarchitects.model.PlayerModel;
+import fr.isep.javarchitects.utils.CardByTypeCounters;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -32,33 +32,36 @@ public class InventoryControl {
         model.getOwnedCardList().addListener(new ListChangeListener<Card>() {
             @Override
             public void onChanged(Change<? extends Card> change) {
-                change.next();
-                for (Card card : change.getAddedSubList()) {
-                    switch (card.cardCategory) {
-                        case MaterialCard -> {
-                            ImageView imageView = new ImageView(card.getMaterial().icon.image);
-                            imageView.setPreserveRatio(true);
-                            imageView.setFitWidth(40);
-                            materialHBox.getChildren().add(imageView);
-                        }
-                        case ProgressCard -> {
-                            ImageView imageView = new ImageView(card.getScienceCategory().icon.image);
-                            imageView.setPreserveRatio(true);
-                            imageView.setFitWidth(40);
-                            scienceHBox.getChildren().add(imageView);
-                        }
-                    }
-                }
+                populateFields();
             }
         });
 
-        for (Card card : model.getOwnedCardList()) {
-            switch (card.cardCategory) {
-                case MaterialCard -> materialHBox.getChildren().add(new ImageView(card.getMaterial().icon.image));
-                case ProgressCard -> scienceHBox.getChildren().add(new ImageView(card.getScienceCategory().icon.image));
+        populateFields();
+    }
+
+    private void populateFields() {
+        materialHBox.getChildren().clear();
+        scienceHBox.getChildren().clear();
+        CardByTypeCounters cardByTypeCounters = new CardByTypeCounters(model.getOwnedCardList());
+        for (Card card : Card.values()){
+            if (cardByTypeCounters.get(card) == 0){
+                continue;
+            }
+            switch (card.cardCategory){
+                case MaterialCard -> {
+                    DeckControl iconDisplay = new DeckControl();
+                    iconDisplay.setImageObject(card.material.icon.image);
+                    iconDisplay.setNbCards(cardByTypeCounters.get(card));
+                    materialHBox.getChildren().add(iconDisplay);
+                }
+                case ProgressCard -> {
+                    DeckControl iconDisplay = new DeckControl();
+                    iconDisplay.setImageObject(card.scienceCategory.icon.image);
+                    iconDisplay.setNbCards(cardByTypeCounters.get(card));
+                    scienceHBox.getChildren().add(iconDisplay);
+                }
             }
         }
-
     }
 
 }
