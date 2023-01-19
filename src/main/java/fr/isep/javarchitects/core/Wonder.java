@@ -1,8 +1,11 @@
 package fr.isep.javarchitects.core;
 
 import fr.isep.javarchitects.model.DeckModel;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.util.Callback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Wonder {
@@ -10,8 +13,13 @@ public class Wonder {
 	public final String frenchName;
 	public final String effectDescription;
 	public final int ID;
-	private List<WonderFragment> wonderFragments;
-	private DeckFactory deckFactory;
+	private final ObservableList<WonderFragment> wonderFragments = FXCollections.observableArrayList(new Callback<WonderFragment, Observable[]>() {
+		@Override
+		public Observable[] call(WonderFragment wonderFragment) {
+			return new Observable[] {wonderFragment.builtProperty()};
+		}
+	});
+	private final DeckFactory deckFactory;
 
 	// ------------------------------------------------------------------------
 
@@ -27,7 +35,7 @@ public class Wonder {
 		this.effectDescription = effectDescription;
 		this.ID = id;
 		this.deckFactory = deckFactory;
-		this.wonderFragments = new ArrayList<>(wonderFragments);
+		this.wonderFragments.setAll(wonderFragments);
 	}
 
 	// ---------------------------------------------------------------------------
@@ -63,7 +71,7 @@ public class Wonder {
 			return true;
 		}
 		List<WonderFragment> previousFloorNotbuiltFragments = wonderFragments.stream()
-				.filter(fragment -> !fragment.getIsBuilt() && fragment.getFloorNumber() == floorNumber - 1).toList();
+				.filter(fragment -> !fragment.isBuilt() && fragment.getFloorNumber() == floorNumber - 1).toList();
 		return previousFloorNotbuiltFragments.isEmpty();
 	}
 
@@ -77,5 +85,9 @@ public class Wonder {
 
 	public DeckModel createDeck() {
 		return deckFactory.createDeck();
+	}
+
+	public ObservableList<WonderFragment> getWonderFragmentList(){
+		return wonderFragments;
 	}
 }

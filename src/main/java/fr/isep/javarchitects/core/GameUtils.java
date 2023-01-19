@@ -63,7 +63,7 @@ public class GameUtils {
 
     public static List<WonderFragment> getBuildableFragments(PlayerModel player){
         List<WonderFragment> buildableFragments = player.getWonder().getWonderFragments().stream()
-                .filter(fragment -> !fragment.getIsBuilt() && player.getWonder().isFloorOpen(fragment.getFloorNumber()) && hasMaterialToBuild(player, fragment))
+                .filter(fragment -> !fragment.isBuilt() && player.getWonder().isFloorOpen(fragment.getFloorNumber()) && hasMaterialToBuild(player, fragment))
                 .toList();
         return buildableFragments;
     }
@@ -116,7 +116,7 @@ public class GameUtils {
 
     public static List<BuildWonderFragUsingCards> getBuildingCombinations(PlayerModel player, GameModel game){
         List<WonderFragment> buildableFragments = player.getWonder().getWonderFragments().stream()
-                .filter(fragment -> !fragment.getIsBuilt() && player.getWonder().isFloorOpen(fragment.getFloorNumber()))
+                .filter(fragment -> !fragment.isBuilt() && player.getWonder().isFloorOpen(fragment.getFloorNumber()))
                 .toList();
         List<BuildWonderFragUsingCards> res = new ArrayList<>();
         for (WonderFragment fragment: buildableFragments) {

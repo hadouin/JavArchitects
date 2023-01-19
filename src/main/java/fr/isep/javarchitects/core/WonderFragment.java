@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.core;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.image.Image;
 
 public class WonderFragment {
@@ -12,7 +13,7 @@ public class WonderFragment {
     private final int VP;
     private final int resourceCount;
     private final boolean matchingResources;
-    private boolean isbuilt = false;
+    private final SimpleBooleanProperty built = new SimpleBooleanProperty(false);
 
     //constructor
     public WonderFragment(Image imageFront, Image imageBack, int floorNumber, boolean triggerEffect, int vp, int resourceCount, boolean matchingResources) {
@@ -26,7 +27,7 @@ public class WonderFragment {
     }
 
     public Image getImage(){
-        return isbuilt ? this.imageFront : this.imageBack;
+        return built.get() ? this.imageFront : this.imageBack;
     }
 
     public int getFloorNumber() {
@@ -49,16 +50,20 @@ public class WonderFragment {
         return matchingResources;
     }
 
-    public boolean getIsBuilt() {
-        return isbuilt;
+    public boolean isBuilt() {
+        return built.get();
     }
 
     public void build(){
-        this.isbuilt = true;
+        this.built.set(true);
     }
 
     @Override
     public String toString() {
-        return "floor:"+floorNumber+"|resCount:"+resourceCount+"|matching:"+matchingResources+"|isBuilt:"+isbuilt;
+        return "floor:"+floorNumber+"|resCount:"+resourceCount+"|matching:"+matchingResources+"|isBuilt:"+ built;
+    }
+
+    public SimpleBooleanProperty builtProperty() {
+        return built;
     }
 }
