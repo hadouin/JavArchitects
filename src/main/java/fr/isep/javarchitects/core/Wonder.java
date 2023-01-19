@@ -1,5 +1,7 @@
 package fr.isep.javarchitects.core;
 
+import fr.isep.javarchitects.model.DeckModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +75,7 @@ public class Wonder {
 				'}';
 	}
 
-	public Deck createDeck() {
+	public DeckModel createDeck() {
 		return deckFactory.createDeck();
 	}
 }

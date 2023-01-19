@@ -3,6 +3,7 @@ package fr.isep.javarchitects.core;
 import fr.isep.javarchitects.controllers.GameController;
 import fr.isep.javarchitects.core.command.DrawCard;
 import fr.isep.javarchitects.core.command.GameAction;
+import fr.isep.javarchitects.model.DeckModel;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public class Game {
     private int currentPlayerID = 0;
     private int nbRound = 1;
     private List<GameAction> activeActionsList = new ArrayList<>();
-    private Deck centerDeck;
+    private DeckModel centerDeck;
 
     public List<ConflictToken> conflictTokens = Arrays.asList(
             new ConflictToken(false),

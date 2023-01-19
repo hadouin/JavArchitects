@@ -1,5 +1,7 @@
 package fr.isep.javarchitects.core;
 
+import fr.isep.javarchitects.model.DeckModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +23,8 @@ public enum DeckFactory {
         this.cardBack = cardBack;
     }
 
-    public Deck createDeck() {
-        return new Deck(cardBack, getCardsFromCardQuantities(deckCardQuantities));
+    public DeckModel createDeck() {
+        return new DeckModel(cardBack, getCardsFromCardQuantities(deckCardQuantities));
     };
 
     public static Card[] getCardsFromCardQuantities(List<CardDecks.CardQuantityType> deckCardQuantities){

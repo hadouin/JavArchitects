@@ -1,6 +1,7 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.controllers.PlayerViewController;
+import fr.isep.javarchitects.core.DeckFactory;
 import fr.isep.javarchitects.core.WonderFactory;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
@@ -27,9 +28,11 @@ public class MVCtest extends Application {
 
         GameModel model = new GameModel();
         PlayerModel hadouin = new PlayerModel();
+        playerViewController.initModel(model);
         hadouin.setName("Hadouin");
         hadouin.setWonder(WonderFactory.Alexandria.createWonder());
-        playerViewController.initModel(model);
+        hadouin.setSelfDeck(DeckFactory.Alexandria.createDeck());
+        hadouin.setRightDeck(DeckFactory.Babylon.createDeck());
         model.setPlayers(hadouin);
         model.setCurrentPlayer(hadouin);
 

@@ -1,5 +1,7 @@
 package fr.isep.javarchitects.core;
 
+import fr.isep.javarchitects.model.DeckModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +13,8 @@ public class Player {
     private int victoryPoints = 0;
     private int warPoints = 0;
     private boolean hasCat = false;
-    private Deck selfDeck;
-    private Deck rightDeck;
+    private DeckModel selfDeck;
+    private DeckModel rightDeck;
     private List<Card> ownedCards = new ArrayList<>();
     private List<ProgressToken> progressTokens;
 
@@ -37,7 +39,7 @@ public class Player {
         private int victoryPoints = 0;
         private int warPoints = 0;
         private boolean ownsCat = false;
-        private Deck selfDeck = DeckFactory.Gizeh.createDeck();
+        private DeckModel selfDeck = DeckFactory.Gizeh.createDeck();
         private List<Card> ownedCards;
 
         public Builder(String name, int id, Wonder wonder) {
@@ -54,7 +56,7 @@ public class Player {
         public Builder setOwnsCat(boolean ownsCat) {
             this.ownsCat = ownsCat; return this;
         }
-        public Builder setSelfDeck(Deck selfDeck) {
+        public Builder setSelfDeck(DeckModel selfDeck) {
             this.selfDeck = selfDeck; return this;
         }
         public Builder setOwnedCards(List<Card> ownedCards){
@@ -114,11 +116,11 @@ public class Player {
         return hasCat;
     }
 
-    public Deck getSelfDeck() {
+    public DeckModel getSelfDeck() {
         return selfDeck;
     }
 
-    public Deck getRightDeck() {
+    public DeckModel getRightDeck() {
         return rightDeck;
     }
 
@@ -156,11 +158,11 @@ public class Player {
         this.hasCat = hasCat;
     }
 
-    public void setSelfDeck(Deck selfDeck) {
+    public void setSelfDeck(DeckModel selfDeck) {
         selfDeck = selfDeck;
     }
 
-    public void setRightDeck(Deck rightDeck) {
+    public void setRightDeck(DeckModel rightDeck) {
         this.rightDeck = rightDeck;
     }
 

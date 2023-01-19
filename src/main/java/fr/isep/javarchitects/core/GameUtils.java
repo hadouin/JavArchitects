@@ -1,5 +1,7 @@
 package fr.isep.javarchitects.core;
 
+import fr.isep.javarchitects.model.DeckModel;
+
 import java.util.*;
 
 public class GameUtils {
@@ -26,7 +28,7 @@ public class GameUtils {
 
         // set self deck in function of wonder
         for (Player player : listePlayers) {
-            Deck deck = player.getWonder().createDeck();
+            DeckModel deck = player.getWonder().createDeck();
             player.setSelfDeck(deck);
         }
 
