@@ -21,6 +21,7 @@ public class MVCtest extends Application {
     public void start(Stage stage) throws Exception {
 
         TabPane root = new TabPane();
+        root.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         GameModel model = new GameModel();
 
         model.getPlayerList().addListener(new ListChangeListener<PlayerModel>() {
