@@ -17,4 +17,7 @@ module fr.isep.javarchitects {
     opens fr.isep.javarchitects.controllers to javafx.fxml;
     exports fr.isep.javarchitects.core;
     opens fr.isep.javarchitects.core to javafx.fxml;
+    exports fr.isep.javarchitects.controls;
+    opens fr.isep.javarchitects.controls to javafx.fxml;
+
 }

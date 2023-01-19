@@ -7,10 +7,14 @@ import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class PlayerViewController {
     @FXML
@@ -37,8 +41,13 @@ public class PlayerViewController {
     GameModel model; // DataModel
 
     @FXML
-    public void initialize(){
-        this.generalHBox.getChildren().addAll(leftDeckDisplay, wonderDisplayControl, rightDeckDisplay);
+    public void initialize() throws IOException {
+        VBox wonderVBox = new VBox();
+        wonderVBox.getChildren().add(wonderDisplayControl);
+        FXMLLoader inventoryLoader = new FXMLLoader(getClass().getResource("/views/InventoryControl.fxml"));
+        Parent parent = inventoryLoader.load();
+        wonderVBox.getChildren().add(parent);
+        this.generalHBox.getChildren().addAll(leftDeckDisplay, wonderVBox, rightDeckDisplay);
     }
 
     public void initModel(GameModel model){
