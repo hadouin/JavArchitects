@@ -5,7 +5,7 @@ import fr.isep.javarchitects.model.GameModel;
 public abstract class GameAction {
     public final String name;
     public final GameModel game;
-    GameAction(String name, GameModel game){
+    protected GameAction(String name, GameModel game){
         this.name = name;
         this.game = game;
     }

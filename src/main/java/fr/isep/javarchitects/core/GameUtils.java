@@ -2,8 +2,9 @@ package fr.isep.javarchitects.core;
 
 import com.google.common.collect.ImmutableList;
 import fr.isep.javarchitects.model.DeckModel;
+import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
-import fr.isep.javarchitects.utils.BuildWonderFragUsingCards;
+import fr.isep.javarchitects.core.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 
 import java.util.*;
@@ -113,8 +114,19 @@ public class GameUtils {
         return tokenForPlayerNb[nbPlayers];
     }
 
+    public static List<BuildWonderFragUsingCards> getBuildingCombinations(PlayerModel player, GameModel game){
+        List<WonderFragment> buildableFragments = player.getWonder().getWonderFragments().stream()
+                .filter(fragment -> !fragment.getIsBuilt() && player.getWonder().isFloorOpen(fragment.getFloorNumber()))
+                .toList();
+        List<BuildWonderFragUsingCards> res = new ArrayList<>();
+        for (WonderFragment fragment: buildableFragments) {
+            res.addAll(listMoveBuildWonderFragment(player, fragment, game));
+        }
+        return res;
+    }
+
     public static List<BuildWonderFragUsingCards> listMoveBuildWonderFragment(
-            PlayerModel p, WonderFragment frag) {
+            PlayerModel p, WonderFragment frag, GameModel game) {
         ArrayList res = new ArrayList<BuildWonderFragUsingCards>();
         boolean fragNeedSameMaterial = frag.isMatchingResources();
         int requiredCount = frag.getResourceCount();
@@ -127,11 +139,11 @@ public class GameUtils {
         }
 
         if (fragNeedSameMaterial) {
-            listMoveBuildWonderFragment_similarMaterial(frag, res, requiredCount, availableMaterialCardCounts);
+            listMoveBuildWonderFragment_similarMaterial(frag, res, requiredCount, availableMaterialCardCounts, game);
         } else {
             ImmutableMaterialCardByTypeCounts.Builder currUsedCounts = ImmutableMaterialCardByTypeCounts.builder();
             recursiveListMoveBuildWonderFragment_differentMaterials(res, frag, 0, // currMaterialIndex
-                    currUsedCounts, requiredCount, availableMaterialCardCounts);
+                    currUsedCounts, requiredCount, availableMaterialCardCounts, game);
         }
         return res;
     }
@@ -139,7 +151,7 @@ public class GameUtils {
     private static void listMoveBuildWonderFragment_similarMaterial(WonderFragment frag,
                                                                     final List<BuildWonderFragUsingCards> res,
                                                                     final int requiredCount,
-                                                                    final ImmutableMaterialCardByTypeCounts availableMaterialCardCounts) {
+                                                                    final ImmutableMaterialCardByTypeCounts availableMaterialCardCounts, GameModel game) {
         int goldCount = availableMaterialCardCounts.goldCount;
         for(Material material: materialExceptGolds) {
             int count = availableMaterialCardCounts.get(material);
@@ -147,21 +159,21 @@ public class GameUtils {
                 if (count >= requiredCount) {
                     // enough similar cards to build fragment
                     ImmutableMaterialCardByTypeCounts usedCards = ImmutableMaterialCardByTypeCounts.builder().with(material, requiredCount).build();
-                    res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+                    res.add(new BuildWonderFragUsingCards(game, frag, (List<Card>) usedCards));
                 } else if (count + goldCount >= requiredCount) {
                     // complete with some joker Gold(s)
                     ImmutableMaterialCardByTypeCounts usedCards = ImmutableMaterialCardByTypeCounts.builder()
                             .with(material, count)
                             .with(Material.Gold, requiredCount-count)
                             .build();
-                    res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+                    res.add(new BuildWonderFragUsingCards(game ,frag, (List<Card>) usedCards));
                 }
             }
         }
         // special case for gold only ..
         if (goldCount >= requiredCount) {
             ImmutableMaterialCardByTypeCounts usedCards = ImmutableMaterialCardByTypeCounts.builder().with(Material.Gold, requiredCount).build();
-            res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+            res.add(new BuildWonderFragUsingCards(game, frag, (List<Card>) usedCards));
         }
     }
 
@@ -171,7 +183,8 @@ public class GameUtils {
             int currMaterialIndex, //
             ImmutableMaterialCardByTypeCounts.Builder currUsedCounts,
             int remainingRequiredTypeCount, //
-            ImmutableMaterialCardByTypeCounts materialCardCounts) {
+            ImmutableMaterialCardByTypeCounts materialCardCounts, GameModel game) {
+
         Material material = materialExceptGolds.get(currMaterialIndex);
         int count = materialCardCounts.get(material);
         if (count > 0) {
@@ -181,13 +194,13 @@ public class GameUtils {
             if (nextRemainingRequiredTypes == 0) {
                 // no need to recurse
                 ImmutableMaterialCardByTypeCounts usedCards = nextUsedCounts.build();
-                res.add(new BuildWonderFragUsingCards(frag, (List<Card>) usedCards));
+                res.add(new BuildWonderFragUsingCards(game, frag, (List<Card>) usedCards));
             } else {
                 int nextIndex = currMaterialIndex + 1;
                 if (nextIndex <= materialExceptGolds.size()) {
                     // recurse
                     recursiveListMoveBuildWonderFragment_differentMaterials(res, frag,
-                            nextIndex, nextUsedCounts, nextRemainingRequiredTypes, materialCardCounts);
+                            nextIndex, nextUsedCounts, nextRemainingRequiredTypes, materialCardCounts, game);
                 }
 
             }
@@ -197,7 +210,7 @@ public class GameUtils {
         if (nextIndex <= materialExceptGolds.size()) {
             // recurse
             recursiveListMoveBuildWonderFragment_differentMaterials(res, frag,
-                    nextIndex, currUsedCounts, remainingRequiredTypeCount, materialCardCounts);
+                    nextIndex, currUsedCounts, remainingRequiredTypeCount, materialCardCounts, game);
         }
     }
 

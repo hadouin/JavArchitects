@@ -1,10 +1,9 @@
 package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.core.GameUtils;
-import fr.isep.javarchitects.core.Player;
-import fr.isep.javarchitects.core.WonderFragment;
 import fr.isep.javarchitects.core.command.DrawCard;
 import fr.isep.javarchitects.core.command.GameAction;
+import fr.isep.javarchitects.core.command.BuildWonderFragUsingCards;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -87,7 +86,12 @@ public class GameModel {
     }
 
     public void buildWonder() {
-        List<WonderFragment> buildableFragments =  GameUtils.getBuildableFragments(getCurrentPlayer());
-
+        List<BuildWonderFragUsingCards> buildActions = GameUtils.getBuildingCombinations(getCurrentPlayer(), this);
+        if (buildActions.size() > 0){
+            gameActionList.setAll(buildActions);
+        } else {
+            nextPlayer();
+            setDrawActions();
+        }
     }
 }
