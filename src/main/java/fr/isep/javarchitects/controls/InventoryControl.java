@@ -52,12 +52,14 @@ public class InventoryControl {
                     DeckControl iconDisplay = new DeckControl();
                     iconDisplay.setImageObject(card.material.icon.image);
                     iconDisplay.setNbCards(cardByTypeCounters.get(card));
+                    iconDisplay.setFitWidth(40);
                     materialHBox.getChildren().add(iconDisplay);
                 }
                 case ProgressCard -> {
                     DeckControl iconDisplay = new DeckControl();
                     iconDisplay.setImageObject(card.scienceCategory.icon.image);
                     iconDisplay.setNbCards(cardByTypeCounters.get(card));
+                    iconDisplay.setFitWidth(40);
                     scienceHBox.getChildren().add(iconDisplay);
                 }
             }

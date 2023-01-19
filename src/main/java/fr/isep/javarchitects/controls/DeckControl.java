@@ -16,8 +16,6 @@ public class DeckControl extends AnchorPane {
     private ObjectProperty<Image> imageObject = new SimpleObjectProperty<>();
 
     public DeckControl(){
-        this.setMaxHeight(150);
-
         this.numberCircle = new NumberCircle(nbCards.get());
         AnchorPane.setBottomAnchor(numberCircle, -10.);
         AnchorPane.setRightAnchor(numberCircle, -10.);
@@ -30,6 +28,11 @@ public class DeckControl extends AnchorPane {
         this.getChildren().addAll(cardImageView, numberCircle);
 
         nbCards.addListener((observableValue, oldNumber, newNumber) -> {
+            if (newNumber.intValue() <= 1){
+                this.getChildren().remove(numberCircle);
+            } else if (oldNumber.intValue() <= 1){
+                this.getChildren().set(1, numberCircle);
+            }
             numberCircle.setNumber(newNumber.intValue());
         });
         imageObject.addListener((observableValue, oldImage, newImage) -> {
@@ -37,6 +40,9 @@ public class DeckControl extends AnchorPane {
         });
     }
 
+    public void setFitWidth(double size){
+        cardImageView.setFitWidth(size);
+    }
 
     public Image getImageObject() {
         return imageObject.get();

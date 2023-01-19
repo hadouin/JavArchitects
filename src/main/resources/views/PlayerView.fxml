@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.isep.javarchitects.controllers.PlayerViewController">
    <bottom>
-      <HBox fx:id="buttonHBox" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="buttonHBox" alignment="CENTER" minHeight="50.0" prefHeight="50.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
           <Button mnemonicParsing="false" text="Button" />
             <Button mnemonicParsing="false" text="Button" />
