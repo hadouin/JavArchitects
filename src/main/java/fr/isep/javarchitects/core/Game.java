@@ -1,8 +1,7 @@
 package fr.isep.javarchitects.core;
 
 import fr.isep.javarchitects.controllers.GameController;
-import fr.isep.javarchitects.core.command.DrawCard;
-import fr.isep.javarchitects.core.command.GameAction;
+import fr.isep.javarchitects.model.command.GameAction;
 import fr.isep.javarchitects.model.DeckModel;
 
 import java.util.*;

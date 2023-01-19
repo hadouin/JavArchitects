@@ -1,6 +1,7 @@
-package fr.isep.javarchitects.core.command;
+package fr.isep.javarchitects.model.command;
 
 import fr.isep.javarchitects.core.Card;
+import fr.isep.javarchitects.core.CardCategory;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 
@@ -21,6 +22,12 @@ public class DrawCard extends GameAction{
         Card card = target.remove(0);
         source.addCard(card);
         System.out.println(source.getName() + " drew " + card.cardDisplayName);
-        game.buildWonder();
+
+        if (card.cardCategory == CardCategory.MaterialCard) {
+            game.buildWonder();
+            return;
+        }
+        game.nextPlayer();
+        game.setDrawActions();
     }
 }

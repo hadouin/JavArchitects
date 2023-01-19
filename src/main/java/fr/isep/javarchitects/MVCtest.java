@@ -1,9 +1,6 @@
 package fr.isep.javarchitects;
 
 import fr.isep.javarchitects.controllers.PlayerViewController;
-import fr.isep.javarchitects.core.DeckFactory;
-import fr.isep.javarchitects.core.WonderFactory;
-import fr.isep.javarchitects.core.command.DrawCard;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import javafx.application.Application;

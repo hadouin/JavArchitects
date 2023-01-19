@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.core;
 
-import fr.isep.javarchitects.core.command.BuildWonderFragUsingCards;
+import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;

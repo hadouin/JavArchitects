@@ -3,7 +3,7 @@ package fr.isep.javarchitects.controllers;
 import fr.isep.javarchitects.controls.DeckControl;
 import fr.isep.javarchitects.controls.InventoryControl;
 import fr.isep.javarchitects.controls.WonderDisplayControl;
-import fr.isep.javarchitects.core.command.GameAction;
+import fr.isep.javarchitects.model.command.GameAction;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import javafx.collections.ListChangeListener;

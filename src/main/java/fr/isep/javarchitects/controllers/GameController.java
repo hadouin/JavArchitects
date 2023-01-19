@@ -2,7 +2,7 @@ package fr.isep.javarchitects.controllers;
 
 import fr.isep.javarchitects.core.Game;
 import fr.isep.javarchitects.core.GameStateVisible;
-import fr.isep.javarchitects.core.command.GameAction;
+import fr.isep.javarchitects.model.command.GameAction;
 import fr.isep.javarchitects.utils.Subscriber;
 import fr.isep.javarchitects.views.GameUI;
 

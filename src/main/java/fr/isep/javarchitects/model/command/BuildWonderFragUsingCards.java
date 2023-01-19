@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.core.command;
+package fr.isep.javarchitects.model.command;
 
 import fr.isep.javarchitects.core.WonderFragment;
 import fr.isep.javarchitects.model.GameModel;
@@ -16,6 +16,9 @@ public class BuildWonderFragUsingCards extends GameAction {
 
     @Override
     public void execute() {
-
+        game.getCurrentPlayer().removeMaterialCardByTypeCounts(cardsUsed);
+        wonderFragment.build();
+        game.nextPlayer();
+        game.setDrawActions();
     }
 }

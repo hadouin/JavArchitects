@@ -1,9 +1,9 @@
 package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.core.GameUtils;
-import fr.isep.javarchitects.core.command.DrawCard;
-import fr.isep.javarchitects.core.command.GameAction;
-import fr.isep.javarchitects.core.command.BuildWonderFragUsingCards;
+import fr.isep.javarchitects.model.command.DrawCard;
+import fr.isep.javarchitects.model.command.GameAction;
+import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;

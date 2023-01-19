@@ -1,6 +1,7 @@
 package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.core.Card;
+import fr.isep.javarchitects.core.Material;
 import fr.isep.javarchitects.core.Wonder;
 import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
@@ -78,5 +79,18 @@ public class PlayerModel {
 
     public ImmutableMaterialCardByTypeCounts getAvailableMaterialCardCounts() {
         return new ImmutableMaterialCardByTypeCounts(getAvailableCardCounters());
+    }
+
+    public void removeMaterialCardByTypeCounts(ImmutableMaterialCardByTypeCounts cardsUsed) {
+        for (Material material: Material.values()){
+            for (int i = 0; i < cardsUsed.get(material); i++) {
+                for (Card card : ownedCardList) {
+                    if (card.material == material){
+                        ownedCardList.remove(card);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
