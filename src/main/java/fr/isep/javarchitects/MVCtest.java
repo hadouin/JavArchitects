@@ -43,11 +43,13 @@ public class MVCtest extends Application {
 
                     PlayerViewController playerViewController = playerViewLoader.getController();
                     playerViewController.initModel(model);
+                    playerViewController.initPlayer(player);
                 }
             }
         });
 
         model.initializePlayers("Hadouin", "Julie");
+
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

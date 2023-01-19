@@ -11,10 +11,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class PlayerModel {
-    private final SimpleStringProperty name = new SimpleStringProperty(null);
-    private final ObjectProperty<Wonder> wonder = new SimpleObjectProperty<>(null);
-    private final ObjectProperty<DeckModel> selfDeck = new SimpleObjectProperty<>(null);
-    private final ObjectProperty<DeckModel> rightDeck = new SimpleObjectProperty<>(null);
+    private final SimpleStringProperty name = new SimpleStringProperty();
+    private final ObjectProperty<Wonder> wonder = new SimpleObjectProperty<>();
+    private final ObjectProperty<DeckModel> selfDeck = new SimpleObjectProperty<>();
+    private final ObjectProperty<DeckModel> rightDeck = new SimpleObjectProperty<>();
     private final ObservableList<Card> ownedCardList = FXCollections.observableArrayList();
 
 

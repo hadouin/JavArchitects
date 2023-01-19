@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,14 +20,17 @@ public class GameModel {
     private ObservableList<GameAction> gameActionList = FXCollections.observableArrayList();
     
     public void initializePlayers(String... names){
+        ArrayList<PlayerModel> initPlayerList = new ArrayList<>();
         for (int i = 0; i < names.length && i < 7; i++) {
             PlayerModel player = new PlayerModel();
             player.setName(names[i]);
-            addPlayer(player);
+            initPlayerList.add(player);
         }
-        GameUtils.setRandomWonder(playerList);
-        GameUtils.setDecks(playerList);
+        GameUtils.setRandomWonder(initPlayerList);
+        GameUtils.setDecks(initPlayerList);
+        playerList.setAll(initPlayerList);
         currentPlayer.set(playerList.get(currentPlayerIndex));
+        setDrawActions();
     }
 
     public void setDrawActions() {
@@ -70,5 +74,14 @@ public class GameModel {
 
     public void setGameActionList(GameAction... gameActions) {
         this.gameActionList.setAll(gameActions);
+    }
+
+    public void nextPlayer() {
+        currentPlayerIndex++;
+        if (currentPlayerIndex > playerList.size() - 1){
+            currentPlayerIndex = 0;
+        }
+        setCurrentPlayer(playerList.get(currentPlayerIndex));
+        setDrawActions();
     }
 }

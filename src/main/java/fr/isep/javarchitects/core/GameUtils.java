@@ -2,13 +2,12 @@ package fr.isep.javarchitects.core;
 
 import fr.isep.javarchitects.model.DeckModel;
 import fr.isep.javarchitects.model.PlayerModel;
-import javafx.collections.ObservableList;
 
 import java.util.*;
 
 public class GameUtils {
 
-    public static void setRandomWonder(ObservableList<PlayerModel> listePlayers) {
+    public static void setRandomWonder(ArrayList<PlayerModel> listePlayers) {
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
         for (WonderFactory W : WonderFactory.values()) {
@@ -26,7 +25,7 @@ public class GameUtils {
      * et le deck de son voisin de droite
      * @param listePlayers liste des joueurs ordonnée dans l'ordre
      */
-    public static void setDecks(ObservableList<PlayerModel> listePlayers) {
+    public static void setDecks(ArrayList<PlayerModel> listePlayers) {
 
         // set self deck in function of wonder
         for (PlayerModel player : listePlayers) {

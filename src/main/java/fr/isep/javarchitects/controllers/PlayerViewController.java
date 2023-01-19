@@ -4,10 +4,10 @@ import fr.isep.javarchitects.controls.DeckControl;
 import fr.isep.javarchitects.controls.WonderDisplayControl;
 import fr.isep.javarchitects.core.command.GameAction;
 import fr.isep.javarchitects.model.GameModel;
+import fr.isep.javarchitects.model.PlayerModel;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -32,6 +32,7 @@ public class PlayerViewController {
     DeckControl rightDeckDisplay = new DeckControl();
     WonderDisplayControl wonderDisplayControl = new WonderDisplayControl();
 
+    private PlayerModel player;
 
     GameModel model; // DataModel
 
@@ -47,25 +48,13 @@ public class PlayerViewController {
         }
         this.model = model;
 
-        model.currentPlayerProperty().addListener((obs, oldPlayer, newPlayer) -> {
-            if (oldPlayer != null){
-                informationLabel.textProperty().unbindBidirectional(oldPlayer.nameProperty());
-            }
-            if (newPlayer == null) {
-                informationLabel.setText("");
-            } else {
-                informationLabel.textProperty().bindBidirectional(newPlayer.nameProperty());
-                wonderDisplayControl.wonderObjectPropertyProperty().bindBidirectional(newPlayer.wonderProperty());
-                leftDeckDisplay.imageObjectProperty().bindBidirectional(newPlayer.selfDeckProperty().get().topDeckImageProperty());
-                leftDeckDisplay.nbCardsProperty().bindBidirectional(newPlayer.selfDeckProperty().get().nbCardsProperty());
-                rightDeckDisplay.imageObjectProperty().bindBidirectional(newPlayer.rightDeckProperty().get().topDeckImageProperty());
-                rightDeckDisplay.nbCardsProperty().bindBidirectional(newPlayer.rightDeckProperty().get().nbCardsProperty());
-            }
-        });
         model.getGameActionList().addListener(new ListChangeListener<GameAction>() {
             @Override
             public void onChanged(Change<? extends GameAction> change) {
                 buttonHBox.getChildren().clear();
+                if (model.currentPlayerProperty().get() != player){
+                    return;
+                }
                 for (GameAction gameAction: change.getList()) {
                     Button button = new Button(gameAction.name);
                     button.setOnAction(actionEvent -> {
@@ -75,5 +64,27 @@ public class PlayerViewController {
                 }
             }
         });
+    }
+
+    public void initPlayer(PlayerModel playerModel){
+        if (this.player != null ){
+            throw new IllegalStateException("Model can only be initialized once");
+        }
+        this.player = playerModel;
+
+        informationLabel.textProperty().bindBidirectional(player.nameProperty());
+        wonderDisplayControl.wonderObjectPropertyProperty().bindBidirectional(player.wonderProperty());
+        leftDeckDisplay.imageObjectProperty().bindBidirectional(player.selfDeckProperty().get().topDeckImageProperty());
+        leftDeckDisplay.nbCardsProperty().bindBidirectional(player.selfDeckProperty().get().nbCardsProperty());
+        rightDeckDisplay.imageObjectProperty().bindBidirectional(player.rightDeckProperty().get().topDeckImageProperty());
+        rightDeckDisplay.nbCardsProperty().bindBidirectional(player.rightDeckProperty().get().nbCardsProperty());
+    }
+
+    public PlayerModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerModel player) {
+        this.player = player;
     }
 }
