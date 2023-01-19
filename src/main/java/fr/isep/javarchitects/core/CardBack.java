@@ -1,24 +1,23 @@
 package fr.isep.javarchitects.core;
 
+import fr.isep.javarchitects.utils.CardImage;
+import javafx.scene.image.Image;
+
 public enum CardBack {
 
-	Extra(null), //
-	
-	Alexandrie(WonderFactory.Alexandria), //
-	Halicarnassus(WonderFactory.Halicarnassus),
-	Ephesus(WonderFactory.Ephesus), //
-	Olympia(WonderFactory.Olympia), //,
-	Babylon(WonderFactory.Babylon), //
-	Rhodes(WonderFactory.Rhodes), //
-	Gizeh(WonderFactory.Gizeh); //
-	
-	public final boolean centralDeck;
-	// set only when not centralDeck
-	public final WonderFactory wonderDeck;
-	
-	CardBack(WonderFactory wonderDeck) {
-		this.centralDeck = (wonderDeck == null);
-		this.wonderDeck = wonderDeck;
+	Extra(CardImage.BACK_CENTER), //
+	Alexandrie(CardImage.BACK_ALEXANDRIA), //
+	Halicarnassus(CardImage.BACK_HALICARNASSUS),
+	Ephesus(CardImage.BACK_EPHESUS), //
+	Olympia(CardImage.BACK_OLYMPIA), //,
+	Babylon(CardImage.BACK_BABYLON), //
+	Rhodes(CardImage.BACK_RHODES), //
+	Gizeh(CardImage.BACK_GIZEH); //
+
+	public final Image image;
+
+	CardBack(CardImage cardImage) {
+		this.image = cardImage.image;
 	}
 	
 }

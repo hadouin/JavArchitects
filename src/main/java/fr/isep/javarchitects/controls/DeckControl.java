@@ -4,34 +4,39 @@ import fr.isep.javarchitects.components.NumberCircle;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
-public class DeckControl extends AnchorPane {
+public class DeckControl extends VBox {
 
+    private final AnchorPane root = new AnchorPane();
     private ImageView cardImageView;
     private NumberCircle numberCircle;
     private SimpleIntegerProperty nbCards = new SimpleIntegerProperty();
     private ObjectProperty<Image> imageObject = new SimpleObjectProperty<>();
 
     public DeckControl(){
-        this.numberCircle = new NumberCircle(nbCards.get());
-        AnchorPane.setBottomAnchor(numberCircle, -10.);
-        AnchorPane.setRightAnchor(numberCircle, -10.);
+        this.setAlignment(Pos.CENTER);
+        this.getChildren().add(root);
 
         this.cardImageView = new ImageView(imageObject.get());
         cardImageView.setFitWidth(75);
         cardImageView.setPreserveRatio(true);
-        AnchorPane.setBottomAnchor(cardImageView, 0.);
 
-        this.getChildren().addAll(cardImageView, numberCircle);
+        this.numberCircle = new NumberCircle(nbCards.get());
+        AnchorPane.setBottomAnchor(numberCircle, -10.);
+        AnchorPane.setRightAnchor(numberCircle, -10.);
+
+        root.getChildren().addAll(cardImageView, numberCircle);
 
         nbCards.addListener((observableValue, oldNumber, newNumber) -> {
             if (newNumber.intValue() <= 1){
-                this.getChildren().remove(numberCircle);
+                root.getChildren().remove(numberCircle);
             } else if (oldNumber.intValue() <= 1){
-                this.getChildren().set(1, numberCircle);
+                root.getChildren().set(1, numberCircle);
             }
             numberCircle.setNumber(newNumber.intValue());
         });

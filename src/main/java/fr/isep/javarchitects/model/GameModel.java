@@ -1,9 +1,10 @@
 package fr.isep.javarchitects.model;
 
+import fr.isep.javarchitects.core.DeckFactory;
 import fr.isep.javarchitects.core.GameUtils;
+import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.model.command.DrawCard;
 import fr.isep.javarchitects.model.command.GameAction;
-import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -16,6 +17,7 @@ import java.util.List;
 public class GameModel {
     private final ObservableList<PlayerModel> playerList = FXCollections.observableArrayList();
     private final ObjectProperty<PlayerModel> currentPlayer = new SimpleObjectProperty<>(null);
+    private final ObjectProperty<DeckModel> centerDeck = new SimpleObjectProperty<>();
     private int currentPlayerIndex = 0;
     private ObservableList<GameAction> gameActionList = FXCollections.observableArrayList();
     
@@ -28,6 +30,7 @@ public class GameModel {
         }
         GameUtils.setRandomWonder(initPlayerList);
         GameUtils.setDecks(initPlayerList);
+        centerDeck.setValue(DeckFactory.Extra.createDeck());
         playerList.setAll(initPlayerList);
         currentPlayer.set(playerList.get(currentPlayerIndex));
         setDrawActions();
@@ -35,7 +38,7 @@ public class GameModel {
 
     public void setDrawActions() {
         DrawCard currentPlayerDrawLeft = new DrawCard(this, "Draw Left", currentPlayer.get(), currentPlayer.get().getSelfDeck().getCards());
-        DrawCard currentPlayerDrawCenter = new DrawCard(this, "Draw Center", currentPlayer.get(), currentPlayer.get().getOwnedCardList());
+        DrawCard currentPlayerDrawCenter = new DrawCard(this, "Draw Center", currentPlayer.get(), centerDeck.get().getCards());
         DrawCard currentPlayerDrawRight = new DrawCard(this, "Draw Right", currentPlayer.get(), currentPlayer.get().getRightDeck().getCards());
 
         gameActionList.setAll(Arrays.asList(
@@ -74,6 +77,10 @@ public class GameModel {
 
     public void setGameActionList(GameAction... gameActions) {
         this.gameActionList.setAll(gameActions);
+    }
+
+    public ObjectProperty<DeckModel> centerDeckProperty() {
+        return centerDeck;
     }
 
     public void nextPlayer() {

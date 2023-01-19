@@ -35,6 +35,7 @@ public class PlayerViewController {
 
     DeckControl leftDeckDisplay = new DeckControl();
     DeckControl rightDeckDisplay = new DeckControl();
+    DeckControl centerDeckDisplay = new DeckControl();
     WonderDisplayControl wonderDisplayControl = new WonderDisplayControl();
 
     private PlayerModel player;
@@ -86,12 +87,17 @@ public class PlayerViewController {
         wonderVBox.getChildren().add(parent);
         this.generalHBox.getChildren().addAll(leftDeckDisplay, wonderVBox, rightDeckDisplay);
 
-        informationLabel.textProperty().bindBidirectional(player.nameProperty());
-        wonderDisplayControl.wonderObjectPropertyProperty().bindBidirectional(player.wonderProperty());
-        leftDeckDisplay.imageObjectProperty().bindBidirectional(player.selfDeckProperty().get().topDeckImageProperty());
-        leftDeckDisplay.nbCardsProperty().bindBidirectional(player.selfDeckProperty().get().nbCardsProperty());
-        rightDeckDisplay.imageObjectProperty().bindBidirectional(player.rightDeckProperty().get().topDeckImageProperty());
-        rightDeckDisplay.nbCardsProperty().bindBidirectional(player.rightDeckProperty().get().nbCardsProperty());
+        informationLabel.textProperty().bind(player.nameProperty());
+        wonderDisplayControl.wonderObjectPropertyProperty().bind(player.wonderProperty());
+        leftDeckDisplay.imageObjectProperty().bind(player.selfDeckProperty().get().topDeckImageProperty());
+        leftDeckDisplay.nbCardsProperty().bind(player.selfDeckProperty().get().nbCardsProperty());
+        rightDeckDisplay.imageObjectProperty().bind(player.rightDeckProperty().get().topDeckImageProperty());
+        rightDeckDisplay.nbCardsProperty().bind(player.rightDeckProperty().get().nbCardsProperty());
+
+        centerDeckDisplay.imageObjectProperty().setValue(model.centerDeckProperty().get().getCardBack().image);
+        centerDeckDisplay.nbCardsProperty().bind(model.centerDeckProperty().get().nbCardsProperty());
+        centerDeckDisplay.setFitWidth(50);
+        this.headerHBox.getChildren().set(1, centerDeckDisplay);
     }
 
     public PlayerModel getPlayer() {
