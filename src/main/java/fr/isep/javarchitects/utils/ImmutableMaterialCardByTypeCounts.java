@@ -64,6 +64,18 @@ public class ImmutableMaterialCardByTypeCounts {
 		}
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ImmutableMaterialCardByTypeCounts that = (ImmutableMaterialCardByTypeCounts) o;
+		return woodCount == that.woodCount &&
+				paperCount == that.paperCount &&
+				brickCount == that.brickCount &&
+				stoneCount == that.stoneCount &&
+				glassCount == that.glassCount &&
+				goldCount == that.goldCount;
+	}
 	
 	// ------------------------------------------------------------------------
 	
