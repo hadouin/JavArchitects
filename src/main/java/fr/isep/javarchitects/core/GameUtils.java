@@ -1,19 +1,21 @@
 package fr.isep.javarchitects.core;
 
 import fr.isep.javarchitects.model.DeckModel;
+import fr.isep.javarchitects.model.PlayerModel;
+import javafx.collections.ObservableList;
 
 import java.util.*;
 
 public class GameUtils {
 
-    public static void setRandomWonder(List<Player> listePlayers) {
+    public static void setRandomWonder(ObservableList<PlayerModel> listePlayers) {
         Random R = new Random();
         ArrayList<Wonder> listeWonder = new ArrayList<>();
         for (WonderFactory W : WonderFactory.values()) {
             listeWonder.add(W.createWonder());
         }
 
-        for (Player J : listePlayers) {
+        for (PlayerModel J : listePlayers) {
             int C = R.nextInt(listeWonder.size());
             J.setWonder(listeWonder.remove(C));
         }
@@ -24,10 +26,10 @@ public class GameUtils {
      * et le deck de son voisin de droite
      * @param listePlayers liste des joueurs ordonnée dans l'ordre
      */
-    public static void setDecks(List<Player> listePlayers) {
+    public static void setDecks(ObservableList<PlayerModel> listePlayers) {
 
         // set self deck in function of wonder
-        for (Player player : listePlayers) {
+        for (PlayerModel player : listePlayers) {
             DeckModel deck = player.getWonder().createDeck();
             player.setSelfDeck(deck);
         }
@@ -35,7 +37,7 @@ public class GameUtils {
         // set right deck to i+1 in the list
         // if last get right deck of first player
         for( int i = 0; i < listePlayers.size(); i++) {
-            Player player = listePlayers.get(i);
+            PlayerModel player = listePlayers.get(i);
             if (i != listePlayers.size() - 1){
                 player.setRightDeck(listePlayers.get(i + 1).getSelfDeck());
             } else {

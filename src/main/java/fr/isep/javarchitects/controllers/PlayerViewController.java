@@ -32,6 +32,7 @@ public class PlayerViewController {
     DeckControl rightDeckDisplay = new DeckControl();
     WonderDisplayControl wonderDisplayControl = new WonderDisplayControl();
 
+
     GameModel model; // DataModel
 
     @FXML

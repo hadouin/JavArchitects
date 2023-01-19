@@ -32,8 +32,6 @@ public class Game {
         for(int i = 0; i < this.nbPlayers; i++){
             players.add(new Player(playerNames.get(i), i, WonderFactory.Alexandria.createWonder()));
         }
-        GameUtils.setRandomWonder(players);
-        GameUtils.setDecks(players);
         this.centerDeck = DeckFactory.Extra.createDeck();
     }
 
