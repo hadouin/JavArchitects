@@ -4,6 +4,7 @@ import fr.isep.javarchitects.model.command.GameAction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class GameStateVisible {
             Arrays.asList(
                     new PlayerVisible.Builder()
                             .setName("Player 1")
-                            .setWonder(WonderFactory.Alexandria.createWonder())
+                            .setWonder(WonderFactory.Halicarnassus.createWonder())
                             .setRightDeck(Card.CardMaterialGold, 20)
                             .setLeftDeck(Card.CardMaterialStone, 20)
                             .setHasCat(true)
@@ -32,10 +33,10 @@ public class GameStateVisible {
             0,
             Arrays.asList(
                     new ConflictToken(false),
-                    new ConflictToken(true),
-                    new ConflictToken(true)
+                    new ConflictToken(false),
+                    new ConflictToken(false)
             ),
-            new ArrayList<>(ProgressTokens.TOKENS).subList(0,3)
+            new ArrayList<>(ProgressTokens.createTokenList()).subList(0,3)
     );
 
     public final List<PlayerVisible> players;
@@ -44,6 +45,15 @@ public class GameStateVisible {
     public final List<ConflictToken> conflictTokens;
     public final List<ProgressToken> visibleProgressTokens;
     public final List<GameAction> gameActionList;
+
+    public GameStateVisible(Game game) {
+        this.players = setUpPlayers(game);
+        this.conflictTokens = game.conflictTokens;
+        this.currentPlayerID = 0;
+        this.visibleProgressTokens = ProgressTokens.TOKENS;
+        this.gameActionList = null;
+
+    }
 
     GameStateVisible(List<PlayerVisible> players, int currentPlayerID, List<ConflictToken> conflictTokens, List<ProgressToken> visibleProgressTokens){
         this.players = players;
@@ -66,5 +76,32 @@ public class GameStateVisible {
                 .filter(PlayerVisible::getHasCat)
                 .findFirst()
                 .orElse(null);
+    }
+
+    private List<PlayerVisible> setUpPlayers (Game game) {
+        List<PlayerVisible> playerVisibleList = new ArrayList<>();
+
+        for (Player player : game.getPlayers()) {
+            playerVisibleList.add(new PlayerVisible.Builder()
+                    .setName(player.getName())
+                    .setWonder(player.getWonder())
+                    .setRightDeck(player.getRightDeck().getFirstCard(), 20)
+                    .setLeftDeck(player.getSelfDeck().getFirstCard(), 20)
+                    .setHasCat(true)
+                    .build());
+        }
+
+        return playerVisibleList;
+    }
+
+    private List<ProgressToken> setVisibleProgressToken() {
+        List<ProgressToken> progressTokenList = new ArrayList<>(ProgressTokens.TOKENS);
+        List<ProgressToken> progressTokenListShuffled = new ArrayList<>();
+        for (ProgressToken progressToken : progressTokenList) {
+            progressTokenListShuffled.add(progressToken);
+        }
+        Collections.shuffle(progressTokenListShuffled);
+
+        return progressTokenListShuffled;
     }
 }

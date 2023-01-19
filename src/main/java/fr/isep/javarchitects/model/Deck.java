@@ -1,6 +1,7 @@
 package fr.isep.javarchitects.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Deck {
@@ -9,6 +10,7 @@ public class Deck {
 
     public Deck(CardBack cardBack, Card... cards) {
         this.cards = new ArrayList<>(List.of(cards));
+        Collections.shuffle(this.cards);
         this.cardBack = cardBack;
     }
 
@@ -18,6 +20,9 @@ public class Deck {
 
     public void setCards(List<Card> cards) {
         this.cards = cards;
+    }
+    public Card getFirstCard() {
+        return cards.get(0);
     }
 
     public CardBack getCardBack() {

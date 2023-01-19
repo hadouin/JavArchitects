@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProgressTokenPane extends VBox {
@@ -19,7 +20,7 @@ public class ProgressTokenPane extends VBox {
     HBox tokenHBox = new HBox();
 
     /**
-     * a VBox that has the Hbox of tken images and the description label
+     * a VBox that has the Hbox of token images and the description label
      * @param visibletokens list of the three visible tokens
      */
     public ProgressTokenPane(List<ProgressToken> visibletokens){
@@ -43,14 +44,15 @@ public class ProgressTokenPane extends VBox {
     }
 
     private void addTokensToView() {
+        System.out.println(visibletokens.size());
         for (ProgressToken token: visibletokens) {
             Image tokenImage = new Image(getClass().getResourceAsStream(token.imageResource));
             ImageView tokenImageView = new ImageView(tokenImage);
-            tokenImageView.setOnMouseEntered(event -> {
+            tokenImageView.setOnMouseClicked(event -> {
                 descriptionLabel.setText(token.effectDescription);
             });
 
-            tokenImageView.setOnMouseExited(event1 -> {
+            tokenImageView.setOnMouseEntered(event1 -> {
                 descriptionLabel.setText("");
             });
 

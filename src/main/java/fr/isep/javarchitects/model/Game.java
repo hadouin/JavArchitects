@@ -18,8 +18,8 @@ public class Game {
     private Deck centerDeck;
 
     public List<ConflictToken> conflictTokens = Arrays.asList(
-            new ConflictToken(false),
-            new ConflictToken(false),
+            new ConflictToken(true),
+            new ConflictToken(true),
             new ConflictToken(true)
     );
     private List<ProgressToken> progressTokenList = ProgressTokens.TOKENS.subList(5,11);
@@ -29,7 +29,7 @@ public class Game {
         this.nbPlayers = nbPlayers;
         this.players = new ArrayList<>();
         for(int i = 0; i < this.nbPlayers; i++){
-            players.add(new Player(playerNames.get(i), i, WonderFactory.Alexandria.createWonder()));
+            players.add(new Player(playerNames.get(i), i, WonderFactory.Ephesus.createWonder()));
         }
         setWonder(players);
         setDecks(players);

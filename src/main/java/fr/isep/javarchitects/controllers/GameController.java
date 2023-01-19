@@ -21,10 +21,11 @@ import java.util.List;
  */
 public class GameController {
     private Game game;
-    private GameStateVisible gameStateVisible = GameStateVisible.BASE_STATE;
+    private GameStateVisible gameStateVisible;
 
     public GameController(Game game){
         this.game = game;
+        this.gameStateVisible = new GameStateVisible(this.game);
         game.setController(this);
         GameUI gameUI = new GameUI(this.gameStateVisible);
         subscribe(gameUI);

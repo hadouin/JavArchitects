@@ -1,6 +1,7 @@
 package fr.isep.javarchitects.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -115,6 +116,7 @@ public class Player {
     }
 
     public Deck getSelfDeck() {
+        // Collections.shuffle(selfDeck.getCards());
         return selfDeck;
     }
 

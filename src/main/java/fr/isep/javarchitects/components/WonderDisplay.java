@@ -38,9 +38,6 @@ public class WonderDisplay extends VBox {
             case 6:
                 setGiseh();
                 break;
-            default:
-                setEphese();
-                break;
         }
     }
     
@@ -68,7 +65,7 @@ public class WonderDisplay extends VBox {
             imageView.setPreserveRatio(true);
             if(fragment.getFloorNumber() == 2) {
                 floor2.getChildren().add(imageView);
-                HBox.setMargin(imageView, new Insets(0, 5, -12., 5));
+                HBox.setMargin(imageView, new Insets(0, -28, -12., 37));
                 if(floor2.getChildren().size() == 2) {
                     this.getChildren().add(floor2);
                 }
