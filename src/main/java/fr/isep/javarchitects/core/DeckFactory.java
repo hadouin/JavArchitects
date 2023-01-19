@@ -3,6 +3,7 @@ package fr.isep.javarchitects.core;
 import fr.isep.javarchitects.model.DeckModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public enum DeckFactory {
@@ -34,6 +35,7 @@ public enum DeckFactory {
                 cards.add(cardQuantityType.card);
             }
         }
+        Collections.shuffle(cards);
         return cards.toArray(new Card[0]);
     }
 }
