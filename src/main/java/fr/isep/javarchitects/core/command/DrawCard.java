@@ -1,16 +1,17 @@
 package fr.isep.javarchitects.core.command;
 
 import fr.isep.javarchitects.core.Card;
-import fr.isep.javarchitects.core.Game;
 import fr.isep.javarchitects.core.Player;
+import fr.isep.javarchitects.model.GameModel;
+import fr.isep.javarchitects.model.PlayerModel;
 
 import java.util.List;
 
 public class DrawCard extends GameAction{
-    private final Player source;
+    private final PlayerModel source;
     private final List<Card> target;
 
-    public DrawCard(Game game, String name, Player source, List<Card> target) {
+    public DrawCard(GameModel game, String name, PlayerModel source, List<Card> target) {
         super(name, game);
         this.source = source;
         this.target = target;
@@ -20,7 +21,6 @@ public class DrawCard extends GameAction{
     public void execute() {
         Card card = target.remove(0);
         source.addCard(card);
-        game.startDrawPhase();
         System.out.println(source.getName() + " drew " + card.cardDisplayName);
     }
 }

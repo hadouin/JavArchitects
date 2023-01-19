@@ -1,17 +1,21 @@
 package fr.isep.javarchitects.model;
 
+import fr.isep.javarchitects.core.Card;
 import fr.isep.javarchitects.core.Deck;
 import fr.isep.javarchitects.core.DeckFactory;
 import fr.isep.javarchitects.core.Wonder;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class PlayerModel {
     private final SimpleStringProperty name = new SimpleStringProperty(null);
     private final ObjectProperty<Wonder> wonder = new SimpleObjectProperty<>(null);
     private final ObjectProperty<DeckModel> selfDeck = new SimpleObjectProperty<>(null);
     private final ObjectProperty<DeckModel> rightDeck = new SimpleObjectProperty<>(null);
+    private final ObservableList<Card> ownedCardList = FXCollections.observableArrayList();
 
 
     public void setName(String name){
@@ -59,5 +63,12 @@ public class PlayerModel {
 
     public void setSelfDeck(DeckModel selfDeck) {
         this.selfDeck.set(selfDeck);
+    }
+
+    public ObservableList<Card> getOwnedCardList(){
+        return ownedCardList;
+    }
+    public void addCard(Card card) {
+        ownedCardList.add(card);
     }
 }

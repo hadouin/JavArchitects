@@ -3,6 +3,7 @@ package fr.isep.javarchitects;
 import fr.isep.javarchitects.controllers.PlayerViewController;
 import fr.isep.javarchitects.core.DeckFactory;
 import fr.isep.javarchitects.core.WonderFactory;
+import fr.isep.javarchitects.core.command.DrawCard;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import javafx.application.Application;
@@ -35,6 +36,13 @@ public class MVCtest extends Application {
         hadouin.setRightDeck(DeckFactory.Babylon.createDeck());
         model.setPlayers(hadouin);
         model.setCurrentPlayer(hadouin);
+
+        // game action
+        DrawCard currentPlayerDrawLeft = new DrawCard(model, "Draw Left", hadouin, hadouin.getSelfDeck().getCards());
+//        DrawCard currentPlayerDrawCenter = new DrawCard(this,"Draw Center", hadouin, centerDeck.getCards());
+        DrawCard currentPlayerDrawRight = new DrawCard(model,"Draw Right", hadouin, hadouin.getRightDeck().getCards());
+        model.setGameActionList(currentPlayerDrawLeft, currentPlayerDrawRight);
+
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -1,11 +1,11 @@
 package fr.isep.javarchitects.core.command;
 
-import fr.isep.javarchitects.core.Game;
+import fr.isep.javarchitects.model.GameModel;
 
 public abstract class GameAction {
     public final String name;
-    public final Game game;
-    GameAction(String name, Game game){
+    public final GameModel game;
+    GameAction(String name, GameModel game){
         this.name = name;
         this.game = game;
     }

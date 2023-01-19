@@ -37,20 +37,6 @@ public class Game {
         this.centerDeck = DeckFactory.Extra.createDeck();
     }
 
-    public void startDrawPhase() {
-        activeActionsList.clear();
-        DrawCard currentPlayerDrawLeft = new DrawCard(this, "Draw Left", getCurrentPlayer(), getCurrentPlayer().getSelfDeck().getCards());
-        DrawCard currentPlayerDrawCenter = new DrawCard(this,"Draw Center", getCurrentPlayer(), centerDeck.getCards());
-        DrawCard currentPlayerDrawRight = new DrawCard(this,"Draw Right", getCurrentPlayer(), getCurrentPlayer().getRightDeck().getCards());
-
-        activeActionsList.addAll(Arrays.asList(
-                currentPlayerDrawLeft,
-                currentPlayerDrawCenter,
-                currentPlayerDrawRight
-        ));
-        gameController.setVisibleState(getVisibleState());
-    }
-
     private Player getCurrentPlayer() {
         return players.get(currentPlayerID);
     }
