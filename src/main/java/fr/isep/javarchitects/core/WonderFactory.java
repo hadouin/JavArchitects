@@ -33,7 +33,7 @@ public enum WonderFactory {
                             new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_2), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_2), 1, true, 3, 2, true),
                             new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_3), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_3), 2, true, 5, 3, true),
                             new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_4), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_4), 2, false, 6, 3, false),
-                            new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_5), WonderImage.Alexandria.getImage(WonderImageType.BACK_5), 3, false, 7, 4, false)
+                            new WonderFragment(WonderImage.Halicarnassus.getImage(WonderImageType.FRONT_5), WonderImage.Halicarnassus.getImage(WonderImageType.BACK_5), 3, false, 7, 4, false)
                     ));
         }
     },
