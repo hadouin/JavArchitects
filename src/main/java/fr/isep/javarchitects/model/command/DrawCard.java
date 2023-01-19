@@ -27,6 +27,10 @@ public class DrawCard extends GameAction{
             game.buildWonder();
             return true;
         }
+        if (card.cardCategory == CardCategory.ProgressCard) {
+            game.chooseProgress();
+            return true;
+        }
         game.nextPlayer();
         game.setDrawActions();
         return true;

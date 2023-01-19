@@ -1,8 +1,10 @@
 package fr.isep.javarchitects.controllers;
 
+import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.controls.DeckControl;
 import fr.isep.javarchitects.controls.InventoryControl;
 import fr.isep.javarchitects.controls.WonderDisplayControl;
+import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.model.command.GameAction;
@@ -40,6 +42,8 @@ public class PlayerViewController {
     DeckControl centerDeckDisplay = new DeckControl();
     WonderDisplayControl wonderDisplayControl = new WonderDisplayControl();
 
+    ProgressTokenPane progressTokenPane;
+
     private PlayerModel player;
 
     GameModel model; // DataModel
@@ -50,6 +54,16 @@ public class PlayerViewController {
             throw new IllegalStateException("Model can only be initialized once");
         }
         this.model = model;
+
+        this.progressTokenPane = new ProgressTokenPane(model.getVisibleTokens());
+        headerHBox.getChildren().add(2, progressTokenPane);
+        model.getProgressTokensList().addListener(new ListChangeListener<ProgressToken>() {
+            @Override
+            public void onChanged(Change<? extends ProgressToken> change) {
+                progressTokenPane.setVisibleTokens(model.getVisibleTokens());
+            }
+        });
+
         logListView.setCellFactory(param -> new ListCell<GameAction>(){
             @Override
             protected void updateItem(GameAction item, boolean empty) {

@@ -1,8 +1,6 @@
 package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.core.Card;
-import fr.isep.javarchitects.core.Material;
-import fr.isep.javarchitects.core.Wonder;
+import fr.isep.javarchitects.core.*;
 import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 import javafx.beans.property.ObjectProperty;
@@ -17,6 +15,7 @@ public class PlayerModel {
     private final ObjectProperty<DeckModel> selfDeck = new SimpleObjectProperty<>();
     private final ObjectProperty<DeckModel> rightDeck = new SimpleObjectProperty<>();
     private final ObservableList<Card> ownedCardList = FXCollections.observableArrayList();
+    private final ObservableList<ProgressToken> ownedProgressTokensList = FXCollections.observableArrayList();
 
 
     public void setName(String name){
@@ -92,5 +91,22 @@ public class PlayerModel {
                 }
             }
         }
+    }
+
+    public void removeCardByTypeCounts(ImmutableCardByTypeCounts cardsUsed) {
+        for (Card cardType : Card.values()){
+            for (int i = 0; i < cardsUsed.get(cardType); i++) {
+                for (Card card : ownedCardList) {
+                    if (card == cardType){
+                        ownedCardList.remove(card);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void addProgress(ProgressToken token) {
+        this.ownedProgressTokensList.add(token);
     }
 }

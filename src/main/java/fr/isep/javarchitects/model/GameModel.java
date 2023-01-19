@@ -1,11 +1,8 @@
 package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.core.DeckFactory;
-import fr.isep.javarchitects.core.GameUtils;
-import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
-import fr.isep.javarchitects.model.command.DrawCard;
-import fr.isep.javarchitects.model.command.GameAction;
-import fr.isep.javarchitects.model.command.GameActionHistory;
+import fr.isep.javarchitects.core.*;
+import fr.isep.javarchitects.model.command.*;
+import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableObjectValue;
@@ -22,8 +19,8 @@ public class GameModel {
     private final ObjectProperty<DeckModel> centerDeck = new SimpleObjectProperty<>();
     private int currentPlayerIndex = 0;
     private final ObservableList<GameAction> gameActionList = FXCollections.observableArrayList();
-
     private final ObservableObjectValue<GameActionHistory> gameActionHistory = new SimpleObjectProperty<>(new GameActionHistory());
+    private final ObservableList<ProgressToken> progressTokensList = FXCollections.observableArrayList(ProgressTokens.getNewList());
     
     public void initializePlayers(String... names){
         ArrayList<PlayerModel> initPlayerList = new ArrayList<>();
@@ -112,6 +109,57 @@ public class GameModel {
     public void executeCommand(GameAction gameAction){
         if (gameAction.execute()){
             gameActionHistory.get().push(gameAction);
+        }
+    }
+
+    public ObservableList<ProgressToken> getProgressTokensList() {
+        return progressTokensList;
+    }
+    public List<ProgressToken> getVisibleTokens(){
+        return progressTokensList.subList(0,3);
+    }
+
+    public void chooseProgress() {
+        ImmutableCardByTypeCounts immutableCardByTypeCounts = currentPlayer.get().getAvailableCardCounters();
+        if (immutableCardByTypeCounts.progressLawCount >= 2) {
+            ArrayList<Card> cards = new ArrayList<Card>(List.of(Card.CardScienceLaw, Card.CardScienceLaw));
+            currentPlayer.get().removeCardByTypeCounts(new ImmutableCardByTypeCounts(cards));
+            this.setProgressChoices();
+            return;
+        }
+        if (immutableCardByTypeCounts.progressArchitectCount >= 2) {
+            ArrayList<Card> cards = new ArrayList<Card>(List.of(Card.CardScienceArchitect, Card.CardScienceArchitect));
+            currentPlayer.get().removeCardByTypeCounts(new ImmutableCardByTypeCounts(cards));
+            this.setProgressChoices();
+            return;
+        }
+        if (immutableCardByTypeCounts.progressMechanicCount >= 2){
+            ArrayList<Card> cards = new ArrayList<Card>(List.of(Card.CardScienceMechanic, Card.CardScienceMechanic));
+            currentPlayer.get().removeCardByTypeCounts(new ImmutableCardByTypeCounts(cards));
+            this.setProgressChoices();
+            return;
+        }
+        if (immutableCardByTypeCounts.progressMechanicCount >= 1 &&
+                immutableCardByTypeCounts.progressArchitectCount >= 1 &&
+                immutableCardByTypeCounts.progressLawCount >= 1){
+            ArrayList<Card> cards = new ArrayList<Card>(List.of(Card.CardScienceMechanic, Card.CardScienceLaw, Card.CardScienceArchitect));
+            currentPlayer.get().removeCardByTypeCounts(new ImmutableCardByTypeCounts(cards));
+            this.setProgressChoices();
+            return;
+        }
+        this.endTurn();
+    }
+
+    private void endTurn() {
+        this.nextPlayer();
+        this.setDrawActions();
+    }
+
+    private void setProgressChoices() {
+        this.gameActionList.clear();
+        for (ProgressToken token :
+                this.getVisibleTokens()) {
+            this.gameActionList.add(new ResearchProgress(this, getCurrentPlayer(), token));
         }
     }
 }

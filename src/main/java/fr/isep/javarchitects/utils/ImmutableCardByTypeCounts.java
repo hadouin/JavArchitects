@@ -64,5 +64,28 @@ public class ImmutableCardByTypeCounts {
 		this.politicEmperorCount = src.politicEmperorCount;
 		this.politicCatCount = src.politicCatCount;
 	}
+
+	public int get(Card cardType) {
+		switch(cardType) {
+			case CardMaterialWood: return materialWoodCount;
+			case CardMaterialPaper: return materialPaperCount;
+			case CardMaterialBrick: return materialBrickCount;
+			case CardMaterialStone: return materialStoneCount;
+			case CardMaterialGlass: return materialGlassCount;
+			case CardMaterialGold: return materialGoldCount;
+			// Science cards
+			case CardScienceLaw: return progressLawCount;
+			case CardScienceMechanic: return progressMechanicCount;
+			case CardScienceArchitect: return progressArchitectCount;
+			// War Cards
+			case CardWar_barbarian: return warBarbarianCardCount;
+			case CardWar_centurion: return warCenturionCardCount;
+			case CardWar_archer: return warArcherCardCount;
+			// Polics Cards
+			case CardPolitic_emperor: return politicEmperorCount;
+			case CardPolitic_cat: return politicEmperorCount;
+			default: throw new IllegalStateException();
+		}
+	}
 	
 }

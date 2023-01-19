@@ -1,9 +1,6 @@
 package fr.isep.javarchitects.core;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ProgressTokens {
 
@@ -14,6 +11,12 @@ public class ProgressTokens {
 		List<ProgressToken> res = new ArrayList<ProgressToken>();
 		res.addAll(Arrays.asList(ProgressToken.values()));
 		res.add(ProgressToken.Culture);
+		return res;
+	}
+
+	public static List<ProgressToken> getNewList(){
+		List<ProgressToken> res = new ArrayList<>(TOKENS);
+		Collections.shuffle(res);
 		return res;
 	}
 

@@ -227,4 +227,6 @@ public class GameUtils {
         }
     }
 
+    // Science
+
 }
