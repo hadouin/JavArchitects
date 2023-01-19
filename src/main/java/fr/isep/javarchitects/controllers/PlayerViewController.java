@@ -3,15 +3,17 @@ package fr.isep.javarchitects.controllers;
 import fr.isep.javarchitects.controls.DeckControl;
 import fr.isep.javarchitects.controls.InventoryControl;
 import fr.isep.javarchitects.controls.WonderDisplayControl;
-import fr.isep.javarchitects.model.command.GameAction;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
+import fr.isep.javarchitects.model.command.GameAction;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -31,7 +33,7 @@ public class PlayerViewController {
     @FXML
     HBox progressTokensHBox;
     @FXML
-    VBox logVBox;
+    ListView<GameAction> logListView;
 
     DeckControl leftDeckDisplay = new DeckControl();
     DeckControl rightDeckDisplay = new DeckControl();
@@ -48,6 +50,29 @@ public class PlayerViewController {
             throw new IllegalStateException("Model can only be initialized once");
         }
         this.model = model;
+        logListView.setCellFactory(param -> new ListCell<GameAction>(){
+            @Override
+            protected void updateItem(GameAction item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item==null) {
+                    setGraphic(null);
+                    setText(null);
+                    // other stuff to do...
+                }else{
+                    // set the width's
+                    setMinWidth(param.getWidth());
+                    setMaxWidth(param.getWidth());
+                    setPrefWidth(param.getWidth());
+
+                    // allow wrapping
+                    setWrapText(true);
+
+                    setText(item.toString());
+                }
+            }
+        });
+
+        logListView.setItems(model.gameActionHistoryProperty().get().historyStack());
 
         model.getGameActionList().addListener(new ListChangeListener<GameAction>() {
             @Override
@@ -59,7 +84,7 @@ public class PlayerViewController {
                 for (GameAction gameAction: change.getList()) {
                     Button button = new Button(gameAction.name);
                     button.setOnAction(actionEvent -> {
-                        gameAction.execute();
+                        model.executeCommand(gameAction);
                     });
                     buttonHBox.getChildren().add(button);
                 }
@@ -98,6 +123,7 @@ public class PlayerViewController {
         centerDeckDisplay.nbCardsProperty().bind(model.centerDeckProperty().get().nbCardsProperty());
         centerDeckDisplay.setFitWidth(50);
         this.headerHBox.getChildren().set(1, centerDeckDisplay);
+
     }
 
     public PlayerModel getPlayer() {

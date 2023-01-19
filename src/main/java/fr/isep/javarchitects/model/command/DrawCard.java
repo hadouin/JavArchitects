@@ -10,6 +10,7 @@ import java.util.List;
 public class DrawCard extends GameAction{
     private final PlayerModel source;
     private final List<Card> target;
+    private Card card;
 
     public DrawCard(GameModel game, String name, PlayerModel source, List<Card> target) {
         super(name, game);
@@ -18,16 +19,21 @@ public class DrawCard extends GameAction{
     }
 
     @Override
-    public void execute() {
-        Card card = target.remove(0);
+    public boolean execute() {
+        card = target.remove(0);
         source.addCard(card);
-        System.out.println(source.getName() + " drew " + card.cardDisplayName);
-
+        
         if (card.cardCategory == CardCategory.MaterialCard) {
             game.buildWonder();
-            return;
+            return true;
         }
         game.nextPlayer();
         game.setDrawActions();
+        return true;
+    }
+
+    @Override
+    public String toString(){
+        return source.getName() + " draw " + card.cardDisplayName;
     }
 }

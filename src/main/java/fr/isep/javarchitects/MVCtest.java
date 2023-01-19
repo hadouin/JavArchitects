@@ -46,7 +46,7 @@ public class MVCtest extends Application {
             }
         });
 
-        model.initializePlayers("Hadouin", "Julie");
+        model.initializePlayers("Hadouin", "Julie", "Romeo");
 
 
         Scene scene = new Scene(root);

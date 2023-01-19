@@ -5,8 +5,10 @@ import fr.isep.javarchitects.core.GameUtils;
 import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.model.command.DrawCard;
 import fr.isep.javarchitects.model.command.GameAction;
+import fr.isep.javarchitects.model.command.GameActionHistory;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableObjectValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,7 +21,9 @@ public class GameModel {
     private final ObjectProperty<PlayerModel> currentPlayer = new SimpleObjectProperty<>(null);
     private final ObjectProperty<DeckModel> centerDeck = new SimpleObjectProperty<>();
     private int currentPlayerIndex = 0;
-    private ObservableList<GameAction> gameActionList = FXCollections.observableArrayList();
+    private final ObservableList<GameAction> gameActionList = FXCollections.observableArrayList();
+
+    private final ObservableObjectValue<GameActionHistory> gameActionHistory = new SimpleObjectProperty<>(new GameActionHistory());
     
     public void initializePlayers(String... names){
         ArrayList<PlayerModel> initPlayerList = new ArrayList<>();
@@ -82,6 +86,9 @@ public class GameModel {
     public ObjectProperty<DeckModel> centerDeckProperty() {
         return centerDeck;
     }
+    public ObservableObjectValue<GameActionHistory> gameActionHistoryProperty(){
+        return gameActionHistory;
+    }
 
     public void nextPlayer() {
         currentPlayerIndex++;
@@ -99,6 +106,12 @@ public class GameModel {
         } else {
             nextPlayer();
             setDrawActions();
+        }
+    }
+
+    public void executeCommand(GameAction gameAction){
+        if (gameAction.execute()){
+            gameActionHistory.get().push(gameAction);
         }
     }
 }

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -39,6 +40,6 @@
       <Label fx:id="informationLabel" text="Informations" BorderPane.alignment="CENTER" />
    </top>
    <right>
-      <VBox fx:id="logVBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="logListView" prefHeight="470.0" prefWidth="150.0" />
    </right>
 </BorderPane>

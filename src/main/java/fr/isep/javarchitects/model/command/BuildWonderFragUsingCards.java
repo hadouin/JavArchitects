@@ -15,10 +15,11 @@ public class BuildWonderFragUsingCards extends GameAction {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         game.getCurrentPlayer().removeMaterialCardByTypeCounts(cardsUsed);
         wonderFragment.build();
         game.nextPlayer();
         game.setDrawActions();
+        return true;
     }
 }

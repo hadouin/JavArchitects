@@ -9,5 +9,6 @@ public abstract class GameAction {
         this.name = name;
         this.game = game;
     }
-    public abstract void execute();
+    public abstract boolean execute();
+
 }
