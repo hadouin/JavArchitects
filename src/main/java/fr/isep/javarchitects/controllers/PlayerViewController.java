@@ -5,6 +5,7 @@ import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.controls.DeckControl;
 import fr.isep.javarchitects.controls.InventoryControl;
 import fr.isep.javarchitects.controls.WonderDisplayControl;
+import fr.isep.javarchitects.core.ConflictToken;
 import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
@@ -62,11 +63,13 @@ public class PlayerViewController {
 
         this.conflictTokensHBox = new ConflictTokensHBox(model.getConflictTokens());
         headerHBox.getChildren().add(0, conflictTokensHBox);
-        model.getProgressTokensList().addListener(new ListChangeListener<ProgressToken>() {
-            @Override
-            public void onChanged(Change<? extends ProgressToken> change) {
-                progressTokenPane.setVisibleTokens(model.getVisibleTokens());
-            }
+
+        model.getProgressTokensList().addListener((ListChangeListener<ProgressToken>) change -> {
+            progressTokenPane.setVisibleTokens(model.getVisibleTokens());
+        });
+
+        model.getConflictTokens().addListener((ListChangeListener<ConflictToken>) change -> {
+            conflictTokensHBox.setConflictTokenList(model.getConflictTokens());
         });
 
         logListView.setCellFactory(param -> new ListCell<GameAction>(){

@@ -13,7 +13,7 @@ public class WonderDisplay extends StackPane {
         update();
     }
 
-    private void update() {
+    public void update() {
         this.getChildren().clear();
         for (WonderFragment fragment :
                 wonder.getWonderFragments()) {

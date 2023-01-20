@@ -31,6 +31,10 @@ public class DrawCard extends GameAction{
             game.chooseProgress();
             return true;
         }
+        if (card == Card.CardWar_barbarian || card == Card.CardWar_archer){
+            game.updateConflictState(card);
+            return true;
+        }
         game.nextPlayer();
         game.setDrawActions();
         return true;
