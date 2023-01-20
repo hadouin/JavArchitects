@@ -6,6 +6,7 @@ import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.utils.CardByTypeCounters;
 import fr.isep.javarchitects.utils.Icons;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -23,6 +24,10 @@ public class InventoryControl {
     HBox vpHBox;
     @FXML
     VBox progressTokenVBox;
+
+
+    PointCounter pointCounter = new PointCounter(Icons.VP, 0);
+    PointCounter battleCounter = new PointCounter(Icons.BATTLE_TOKEN, 0);
 
     PlayerModel model;
 
@@ -48,13 +53,9 @@ public class InventoryControl {
                     progressTokenVBox.getChildren().add(iconDisplay);
                 }
             }
-    });
-
-        model.playerGloryPointsProperty().addListener((obs, oldPoints, newPoints) -> {
-            vpHBox.getChildren().clear();
-            PointCounter pointCounter = new PointCounter(Icons.VP, model.getPlayerGloryPoints());
-            vpHBox.getChildren().add(pointCounter);
         });
+
+
         model.playerWarPointsProperty().addListener((obs, oldPoints, newPoints) -> {
             militaryHBox.getChildren().clear();
             DeckControl iconDisplay = new DeckControl();
@@ -63,6 +64,19 @@ public class InventoryControl {
             iconDisplay.setFitWidth(40);
             militaryHBox.getChildren().add(iconDisplay);
         });
+
+        pointCounter.counter.textProperty().bind(Bindings.convert(model.playerGloryPointsProperty()));
+        model.playerGloryPointsProperty().addListener((obs, oldPoints, newPoints) -> {
+            if (oldPoints.intValue() == 0){
+                vpHBox.getChildren().add(0, pointCounter);
+            }
+        });
+        battleCounter.counter.textProperty().bind(Bindings.convert(model.vpWonInBattleProperty()));
+        model.vpWonInBattleProperty().addListener(((obs, oldNumber, newNumber) -> {
+            if (oldNumber.intValue() == 0){
+                vpHBox.getChildren().add(1,battleCounter);
+            }
+        }));
 
         populateFields();
     }

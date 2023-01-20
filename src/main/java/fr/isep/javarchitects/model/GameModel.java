@@ -181,14 +181,14 @@ public class GameModel {
 
     public void updateConflictState(Card card) {
         for (int i = 0; i < card.cornCount; i++){
-            if (!flipFirstPeaceToken()){
+            flipFirstPeaceToken();
+            if (conflictTokensList.stream().noneMatch(ConflictToken::isPeace)){
                 startWar();
                 playerList.forEach(PlayerModel::removeHorns);
                 conflictTokensList.forEach(ConflictToken::setPeace);
                 break;
             }
         }
-
         endTurn();
     }
 

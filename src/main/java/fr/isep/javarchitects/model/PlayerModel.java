@@ -20,7 +20,7 @@ public class PlayerModel {
     private final ObservableList<ProgressToken> ownedProgressTokensList = FXCollections.observableArrayList();
     private final SimpleIntegerProperty playerGloryPoints = new SimpleIntegerProperty();
     private final SimpleIntegerProperty playerWarPoints = new SimpleIntegerProperty();
-    private final SimpleIntegerProperty wonBattles = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty vpWonInBattle = new SimpleIntegerProperty();
 
 
     public void setName(String name){
@@ -150,18 +150,30 @@ public class PlayerModel {
         this.playerWarPoints.set(warPoints);
     }
 
-    public ObservableIntegerValue wonBattlesProperty(){
-        return wonBattles;
+    public ObservableIntegerValue vpWonInBattleProperty(){
+        return vpWonInBattle;
     }
-    public int getWonBattles(){
-        return wonBattles.get();
+    public int getVpWonInBattle(){
+        return vpWonInBattle.get();
     }
 
     public void addBattleToken(int numberOfTokens) {
-        this.wonBattles.add(numberOfTokens);
+        int old = this.vpWonInBattle.get();
+        this.vpWonInBattle.set(old + (numberOfTokens * 3));
     }
 
     public void removeHorns() {
         ownedCardList.removeIf(card -> card.cardCategory == CardCategory.WarCard && card.cornCount > 0);
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerModel{" +
+                "name=" + name +
+                ", wonder=" + wonder.get().displayName +
+                ", playerGloryPoints=" + playerGloryPoints +
+                ", playerWarPoints=" + playerWarPoints +
+                ", vpWonInBattle=" + vpWonInBattle +
+                '}';
     }
 }

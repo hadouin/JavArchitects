@@ -19,8 +19,6 @@ public class PointCounter extends StackPane {
         image.setFitHeight(40);
         image.setPreserveRatio(true);
         this.getChildren().addAll(image, counter);
-
     }
-
 
 }
