@@ -23,6 +23,7 @@ public class TestInventory extends Application {
         List<ProgressToken> progressTokens = new ArrayList<>();
         cards.add(Card.CardScienceMechanic);
         cards.add(Card.CardWar_centurion);
+        cards.add(Card.CardWar_centurion);
         cards.add(Card.CardWar_barbarian);
         cards.add(Card.CardScienceLaw);
         cards.add(Card.CardMaterialGold);
