@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fr.isep.javarchitects.controllers.MenuController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="468.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.isep.javarchitects.controllers.MenuController">
+   <children>
+      <ImageView fitHeight="484.0" fitWidth="774.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/others/7-wonders-second-edition-board-game-art.jpg" />
+         </image>
+      </ImageView>
+      <VBox fx:id="playerBox" alignment="CENTER" layoutX="557.0" layoutY="167.0" prefHeight="175.0" prefWidth="152.0" style="-fx-background-color: #FFFFFFA0;">
+         <children>
+            <TextField fx:id="P1" opacity="0.51" promptText="Joueur 1">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="P2" opacity="0.51" promptText="Joueur 2">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font></TextField>
+            <TextField fx:id="P3" opacity="0.51" promptText="Joueur 3">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font></TextField>
+            <TextField fx:id="P4" opacity="0.51" promptText="Joueur 4">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font></TextField>
+            <TextField fx:id="P5" opacity="0.51" promptText="Joueur 5">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font></TextField>
+            <TextField fx:id="P6" opacity="0.51" promptText="Joueur 6">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font></TextField>
+            <TextField fx:id="P7" opacity="0.51" promptText="Joueur 7">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font></TextField>
+         </children>
+      </VBox>
+      <Label layoutX="557.0" layoutY="72.0" prefHeight="74.0" prefWidth="152.0" style="-fx-background-color: #FFFFFFA0; -fx-padding: 5px;" text="Noms des joueurs      (2 minimum)" wrapText="true">
+         <font>
+            <Font name="Papyrus" size="15.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="-1.0" layoutY="432.0" prefHeight="37.0" prefWidth="774.0" style="-fx-background-color: lightblue; -fx-spacing: 50px;">
+         <children>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClick" text="Quitter" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#playButtonClick" text="Jouer" />
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

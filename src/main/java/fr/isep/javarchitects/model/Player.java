@@ -77,8 +77,12 @@ public class Player {
     }
 
     public PlayerVisible getVisibleState(){
-        PlayerVisible playerVisible = new PlayerVisible(name, wonder, getTopDeck(), getOwnedCards(), getProgressTokens(), 0, 0, hasCat);
-        return playerVisible;
+        return new PlayerVisible.Builder()
+                .setName(name)
+                .setWonder(wonder)
+                .setRightDeck(getRightTopDeck(), rightDeck.getListeCartes().size())
+                .setLeftDeck(getLeftTopDeck(), selfDeck.getListeCartes().size())
+                .build();
     }
 
 
@@ -162,8 +166,12 @@ public class Player {
         return this.ownedCards;
     }
 
-    private Card getTopDeck(){
+    private Card getLeftTopDeck(){
         return this.selfDeck.getListeCartes().get(0);
+    }
+
+    private Card getRightTopDeck(){
+        return this.rightDeck.getListeCartes().get(0);
     }
 
     private List<ProgressToken> getProgressTokens() {

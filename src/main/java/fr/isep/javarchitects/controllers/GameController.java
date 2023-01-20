@@ -4,6 +4,7 @@ import fr.isep.javarchitects.model.Game;
 import fr.isep.javarchitects.model.GameStateVisible;
 import fr.isep.javarchitects.model.TestState;
 import fr.isep.javarchitects.utils.Subscriber;
+import fr.isep.javarchitects.views.GameUI;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ public class GameController {
     List<Subscriber> subscribers = new ArrayList<>();
 
     private Game game;
-    private GameStateVisible gameStateVisible;
+    private GameStateVisible gameStateVisible = GameStateVisible.BASE_STATE;
     private TestState testState = new TestState();
 
     /**
@@ -60,6 +61,9 @@ public class GameController {
     public GameController(Game game){
         this.game = game;
         game.setController(this);
+        GameUI gameUI = new GameUI(this.gameStateVisible);
+        subscribe(gameUI);
+        gameUI.show();
     }
 
     public void sendFirstTestState(){

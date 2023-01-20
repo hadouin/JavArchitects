@@ -69,7 +69,7 @@ public enum CardType {
 		this.cornCount = cornCount;
 		this.laurelCount = laurelCount;
 		this.cat = cat;
-		this.imageResource = "images/cards/" + imageResource;
+		this.imageResource = "/images/cards/" + imageResource;
 	}
 	
 	// for Material card

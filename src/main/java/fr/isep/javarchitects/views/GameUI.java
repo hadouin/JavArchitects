@@ -44,14 +44,24 @@ public class GameUI extends Stage implements Subscriber {
         } else {
             catImageView.setImage(CAT_IMAGE);
         }
+
+    }
+
+    public String getWindowTitle(){
+        String ret = "JavArchitects ";
+        int nbPlayers = this.gameStateVisible.players.size();
+        ret+= nbPlayers+" joueurs";
+        return ret;
     }
 
     public GameUI(GameStateVisible gameStateVisible){
         this.gameStateVisible = gameStateVisible;
         this.rootPane = new AnchorPane();
         this.mainScene = new Scene(rootPane, WIDTH, HEIGHT);
-        this.setTitle("JavArchitects");
+        this.setTitle(getWindowTitle());
         this.setScene(mainScene);
+        Stage stage = (Stage) this.mainScene.getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icons/appIcon.png")));
         setupGame();
     }
 
@@ -81,20 +91,11 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setLeftAnchor(catImageView, 500.);
         rootPane.getChildren().add(catImageView);
 
-        ImageView iconTestView = new ImageView(Icons.STONE.image);
-        AnchorPane.setTopAnchor(iconTestView, 100.);
-        rootPane.getChildren().add(iconTestView);
-
-        WonderDisplay alexandrieDisplay = new WonderDisplay(WonderFactory.Gizeh.createWonder());
-        AnchorPane.setLeftAnchor(alexandrieDisplay, 200.);
-        AnchorPane.setTopAnchor(alexandrieDisplay, 200.);
-        rootPane.getChildren().add(alexandrieDisplay);
-        { Image image = new Image(getClass().getResourceAsStream("/images/cards/card-progress-law.png"));
-        DeckDisplay deckDisplay = new DeckDisplay(image, 2);
-        deckDisplay.setPrefWidth(200);
-        deckDisplay.setPrefHeight(300);
-        rootPane.getChildren().add(deckDisplay);
-        }
+        PlayerView playerView = new PlayerView(gameStateVisible.players.get(0));
+        AnchorPane.setTopAnchor(playerView, 200.);
+        AnchorPane.setLeftAnchor(playerView, 0.);
+        AnchorPane.setRightAnchor(playerView, 0.);
+        rootPane.getChildren().add(playerView);
     }
 
 }
