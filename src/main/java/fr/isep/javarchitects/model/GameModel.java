@@ -26,7 +26,7 @@ public class GameModel {
     private final ObservableList<ConflictToken> conflictTokensList = FXCollections.observableArrayList(new Callback<ConflictToken, Observable[]>() {
         @Override
         public Observable[] call(ConflictToken conflictToken) {
-            return new Observable[0];
+            return new Observable[] {conflictToken.imageResourceProperty()};
         }
     });
     
@@ -175,7 +175,47 @@ public class GameModel {
         }
     }
 
-    public List<ConflictToken> getConflictTokens() {
+    public ObservableList<ConflictToken> getConflictTokens() {
         return conflictTokensList;
+    }
+
+    public void updateConflictState(Card card) {
+        for (int i = 0; i < card.cornCount; i++){
+            if (!flipFirstPeaceToken()){
+                startWar();
+                playerList.forEach(PlayerModel::removeHorns);
+                conflictTokensList.forEach(ConflictToken::setPeace);
+                break;
+            }
+        }
+
+        endTurn();
+    }
+
+    private void startWar() {
+        for (int i = 0; i < playerList.size(); i++) {
+            PlayerModel currentPlayer = playerList.get(i);
+            PlayerModel prevPlayer = i != 0 ? playerList.get(i - 1) : playerList.get(playerList.size() - 1);
+            PlayerModel nextPlayer = i != playerList.size() - 1 ? playerList.get(i + 1) : playerList.get(0) ;
+            if (currentPlayer.getPlayerWarPoints() > nextPlayer.getPlayerWarPoints()){
+                currentPlayer.addBattleToken(1);
+            }
+            if (currentPlayer.getPlayerWarPoints() > prevPlayer.getPlayerWarPoints()){
+                currentPlayer.addBattleToken(1);
+            }
+        }
+    }
+
+    private boolean flipFirstPeaceToken() {
+
+        ConflictToken firstObject = conflictTokensList.stream()
+                .filter(ConflictToken::isPeace)
+                .findFirst()
+                .orElse(null);
+        if (firstObject == null){
+            return false;
+        }
+        firstObject.setWar();
+        return true;
     }
 }

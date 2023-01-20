@@ -8,9 +8,7 @@ import fr.isep.javarchitects.utils.CardByTypeCounters;
 import fr.isep.javarchitects.utils.Icons;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -35,12 +33,7 @@ public class InventoryControl {
         }
         this.model = model;
 
-        model.getOwnedCardList().addListener(new ListChangeListener<Card>() {
-            @Override
-            public void onChanged(Change<? extends Card> change) {
-                populateFields();
-            }
-        });
+        model.getOwnedCardList().addListener((ListChangeListener<Card>) change -> populateFields());
 
         model.ownedProgressTokensListProperty().addListener(new ListChangeListener<ProgressToken>() {
             @Override

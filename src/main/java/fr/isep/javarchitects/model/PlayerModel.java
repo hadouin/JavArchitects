@@ -20,6 +20,7 @@ public class PlayerModel {
     private final ObservableList<ProgressToken> ownedProgressTokensList = FXCollections.observableArrayList();
     private final SimpleIntegerProperty playerGloryPoints = new SimpleIntegerProperty();
     private final SimpleIntegerProperty playerWarPoints = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty wonBattles = new SimpleIntegerProperty();
 
 
     public void setName(String name){
@@ -147,5 +148,20 @@ public class PlayerModel {
 
     public void setPlayerWarPoints(int warPoints) {
         this.playerWarPoints.set(warPoints);
+    }
+
+    public ObservableIntegerValue wonBattlesProperty(){
+        return wonBattles;
+    }
+    public int getWonBattles(){
+        return wonBattles.get();
+    }
+
+    public void addBattleToken(int numberOfTokens) {
+        this.wonBattles.add(numberOfTokens);
+    }
+
+    public void removeHorns() {
+        ownedCardList.removeIf(card -> card.cardCategory == CardCategory.WarCard && card.cornCount > 0);
     }
 }
