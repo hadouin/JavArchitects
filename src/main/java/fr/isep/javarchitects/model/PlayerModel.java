@@ -4,8 +4,10 @@ import fr.isep.javarchitects.core.*;
 import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,6 +18,8 @@ public class PlayerModel {
     private final ObjectProperty<DeckModel> rightDeck = new SimpleObjectProperty<>();
     private final ObservableList<Card> ownedCardList = FXCollections.observableArrayList();
     private final ObservableList<ProgressToken> ownedProgressTokensList = FXCollections.observableArrayList();
+    private final SimpleIntegerProperty playerGloryPoints = new SimpleIntegerProperty();
+    private final SimpleIntegerProperty playerWarPoints = new SimpleIntegerProperty();
 
 
     public void setName(String name){
@@ -70,6 +74,12 @@ public class PlayerModel {
     }
     public void addCard(Card card) {
         ownedCardList.add(card);
+        if (card.cardCategory == CardCategory.PoliticCard) {
+            this.setPlayerGloryPoints(this.getPlayerGloryPoints() + card.laurelCount);
+        }
+        else if (card.cardCategory == CardCategory.WarCard) {
+            this.setPlayerWarPoints(this.getPlayerWarPoints() + card.shieldCount);
+        }
     }
 
     public ImmutableCardByTypeCounts getAvailableCardCounters() {
@@ -108,5 +118,34 @@ public class PlayerModel {
 
     public void addProgress(ProgressToken token) {
         this.ownedProgressTokensList.add(token);
+    }
+
+    public int getPlayerGloryPoints() {
+        return (int) playerGloryPoints.get();
+    }
+    
+    public void setPlayerGloryPoints(int gloryPoints) {
+        this.playerGloryPoints.set(gloryPoints);
+    }
+
+    public ObservableIntegerValue playerGloryPointsProperty() {
+        return playerGloryPoints;
+    }
+
+    public ObservableIntegerValue playerWarPointsProperty() {
+        return  playerWarPoints;
+    }
+    public ObservableList<ProgressToken> ownedProgressTokensListProperty() {return ownedProgressTokensList;}
+
+    public int getPlayerWarPoints() {
+        return playerWarPoints.get();
+    }
+
+    public ObservableList<ProgressToken> getOwnedProgressTokensList() {
+        return ownedProgressTokensList;
+    }
+
+    public void setPlayerWarPoints(int warPoints) {
+        this.playerWarPoints.set(warPoints);
     }
 }

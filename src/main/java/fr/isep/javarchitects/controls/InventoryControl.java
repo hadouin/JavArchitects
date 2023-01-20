@@ -1,10 +1,16 @@
 package fr.isep.javarchitects.controls;
 
+import fr.isep.javarchitects.components.PointCounter;
 import fr.isep.javarchitects.core.Card;
+import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.utils.CardByTypeCounters;
+import fr.isep.javarchitects.utils.Icons;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -36,6 +42,35 @@ public class InventoryControl {
             }
         });
 
+        model.ownedProgressTokensListProperty().addListener(new ListChangeListener<ProgressToken>() {
+            @Override
+            public void onChanged(Change<? extends ProgressToken> c) {
+                c.next();
+
+                for (ProgressToken token : c.getAddedSubList()) {
+                    DeckControl iconDisplay = new DeckControl();
+                    iconDisplay.setImageObject(new Image(getClass().getResourceAsStream(token.imageResource)));
+                    iconDisplay.setNbCards(model.getPlayerWarPoints());
+                    iconDisplay.setFitWidth(40);
+                    progressTokenVBox.getChildren().add(iconDisplay);
+                }
+            }
+    });
+
+        model.playerGloryPointsProperty().addListener((obs, oldPoints, newPoints) -> {
+            vpHBox.getChildren().clear();
+            PointCounter pointCounter = new PointCounter(Icons.VP, model.getPlayerGloryPoints());
+            vpHBox.getChildren().add(pointCounter);
+        });
+        model.playerWarPointsProperty().addListener((obs, oldPoints, newPoints) -> {
+            militaryHBox.getChildren().clear();
+            DeckControl iconDisplay = new DeckControl();
+            iconDisplay.setImageObject(Icons.SHIELD.image);
+            iconDisplay.setNbCards(model.getPlayerWarPoints());
+            iconDisplay.setFitWidth(40);
+            militaryHBox.getChildren().add(iconDisplay);
+        });
+
         populateFields();
     }
 
@@ -62,7 +97,9 @@ public class InventoryControl {
                     iconDisplay.setFitWidth(40);
                     scienceHBox.getChildren().add(iconDisplay);
                 }
+
             }
+
         }
     }
 

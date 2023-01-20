@@ -246,7 +246,7 @@ public class Inventory extends VBox {
                         addIcons(icon);
                     }
                 } else if (card.cardCategory == CardCategory.PoliticCard) {
-                    pointCounter pointCounter = new pointCounter(Icons.VP, player.gloryPoint);
+                    PointCounter pointCounter = new PointCounter(Icons.VP, player.gloryPoint);
                     gloryWarPoints.getChildren().set(0, pointCounter);
                     if (player.hasCat) {
                         gotTheCatOrNot(true);
@@ -254,7 +254,7 @@ public class Inventory extends VBox {
                 }
             }
         }
-        pointCounter pointCounterW = new pointCounter(Icons.BATTLE_TOKEN, player.warPoints);
+        PointCounter pointCounterW = new PointCounter(Icons.BATTLE_TOKEN, player.warPoints);
         gloryWarPoints.getChildren().set(1, pointCounterW);
         if (player.progressTokens != null) {
             for (ProgressToken progressToken : player.progressTokens) {
