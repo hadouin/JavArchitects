@@ -74,7 +74,7 @@ public class InventoryControl {
         battleCounter.counter.textProperty().bind(Bindings.convert(model.vpWonInBattleProperty()));
         model.vpWonInBattleProperty().addListener(((obs, oldNumber, newNumber) -> {
             if (oldNumber.intValue() == 0){
-                vpHBox.getChildren().add(1,battleCounter);
+                vpHBox.getChildren().add(vpHBox.getChildren().size(), battleCounter);
             }
         }));
 

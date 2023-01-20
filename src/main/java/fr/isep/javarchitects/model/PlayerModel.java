@@ -158,12 +158,17 @@ public class PlayerModel {
     }
 
     public void addBattleToken(int numberOfTokens) {
-        int old = this.vpWonInBattle.get();
-        this.vpWonInBattle.set(old + (numberOfTokens * 3));
+        this.vpWonInBattle.set(this.getVpWonInBattle() + (numberOfTokens * 3));
     }
 
     public void removeHorns() {
-        ownedCardList.removeIf(card -> card.cardCategory == CardCategory.WarCard && card.cornCount > 0);
+        ownedCardList.removeIf(card -> {
+            if (card.cardCategory == CardCategory.WarCard && card.cornCount > 0){
+                playerWarPoints.set(this.getPlayerWarPoints() - 1);
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
