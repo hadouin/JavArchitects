@@ -29,7 +29,6 @@
                <children>
                   <HBox fx:id="warTokensHBox" prefHeight="100.0" prefWidth="200.0" />
                   <StackPane fx:id="centerDeckStackPane" prefHeight="150.0" prefWidth="200.0" />
-                  <HBox fx:id="progressTokensHBox" prefHeight="100.0" prefWidth="200.0" />
                </children>
             </HBox>
             <HBox fx:id="generalHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS" />

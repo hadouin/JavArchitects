@@ -22,7 +22,7 @@ public class ConflictTokensHBox extends HBox {
             String tokenImageString = token.getImage();
             Image image = new Image(getClass().getResourceAsStream(tokenImageString));
             ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(imageView.getImage().getWidth() / 3);
+            imageView.setFitWidth(50);
             imageView.setPreserveRatio(true);
             this.getChildren().add(imageView);
         }

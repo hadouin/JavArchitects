@@ -1,5 +1,6 @@
 package fr.isep.javarchitects.controllers;
 
+import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.controls.DeckControl;
 import fr.isep.javarchitects.controls.InventoryControl;
@@ -43,6 +44,7 @@ public class PlayerViewController {
     WonderDisplayControl wonderDisplayControl = new WonderDisplayControl();
 
     ProgressTokenPane progressTokenPane;
+    ConflictTokensHBox conflictTokensHBox;
 
     private PlayerModel player;
 
@@ -57,6 +59,9 @@ public class PlayerViewController {
 
         this.progressTokenPane = new ProgressTokenPane(model.getVisibleTokens());
         headerHBox.getChildren().add(2, progressTokenPane);
+
+        this.conflictTokensHBox = new ConflictTokensHBox(model.getConflictTokens());
+        headerHBox.getChildren().add(0, conflictTokensHBox);
         model.getProgressTokensList().addListener(new ListChangeListener<ProgressToken>() {
             @Override
             public void onChanged(Change<? extends ProgressToken> change) {

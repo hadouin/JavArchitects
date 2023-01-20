@@ -3,11 +3,13 @@ package fr.isep.javarchitects.model;
 import fr.isep.javarchitects.core.*;
 import fr.isep.javarchitects.model.command.*;
 import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
+import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableObjectValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +23,12 @@ public class GameModel {
     private final ObservableList<GameAction> gameActionList = FXCollections.observableArrayList();
     private final ObservableObjectValue<GameActionHistory> gameActionHistory = new SimpleObjectProperty<>(new GameActionHistory());
     private final ObservableList<ProgressToken> progressTokensList = FXCollections.observableArrayList(ProgressTokens.getNewList());
+    private final ObservableList<ConflictToken> conflictTokensList = FXCollections.observableArrayList(new Callback<ConflictToken, Observable[]>() {
+        @Override
+        public Observable[] call(ConflictToken conflictToken) {
+            return new Observable[0];
+        }
+    });
     
     public void initializePlayers(String... names){
         ArrayList<PlayerModel> initPlayerList = new ArrayList<>();
@@ -29,11 +37,15 @@ public class GameModel {
             player.setName(names[i]);
             initPlayerList.add(player);
         }
+        for (int i = 0; i < GameUtils.getMaxConflictTokens(initPlayerList.size()); i++){
+            this.conflictTokensList.add(new ConflictToken(true));
+        }
         GameUtils.setRandomWonder(initPlayerList);
         GameUtils.setDecks(initPlayerList);
         centerDeck.setValue(DeckFactory.Extra.createDeck());
         playerList.setAll(initPlayerList);
         currentPlayer.set(playerList.get(currentPlayerIndex));
+
         setDrawActions();
     }
 
@@ -161,5 +173,9 @@ public class GameModel {
                 this.getVisibleTokens()) {
             this.gameActionList.add(new ResearchProgress(this, getCurrentPlayer(), token));
         }
+    }
+
+    public List<ConflictToken> getConflictTokens() {
+        return conflictTokensList;
     }
 }

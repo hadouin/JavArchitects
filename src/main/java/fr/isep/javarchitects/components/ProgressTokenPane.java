@@ -26,9 +26,11 @@ public class ProgressTokenPane extends VBox {
         this.setAlignment(Pos.TOP_RIGHT);
         tokenHBox.setAlignment(Pos.TOP_RIGHT);
         this.descriptionLabel = new Label("description");
+        this.descriptionLabel.setWrapText(true);
+        this.descriptionLabel.setMaxWidth(100);
         // Image of unknown progress token
         this.imageIP = new ImageView(new Image(getClass().getResourceAsStream("/images/tokens-progress/back/token-back.png")));
-        imageIP.setFitWidth(imageIP.getImage().getWidth() / 3);
+        imageIP.setFitWidth(50);
         imageIP.setPreserveRatio(true);
 
         this.getChildren().add(tokenHBox);
