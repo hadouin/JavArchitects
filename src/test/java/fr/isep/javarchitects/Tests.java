@@ -1,6 +1,7 @@
 package fr.isep.javarchitects;
 
-import fr.isep.javarchitects.model.*;
+import fr.isep.javarchitects.core.*;
+import fr.isep.javarchitects.model.DeckModel;
 import org.junit.Test;
 
 import java.util.*;
@@ -10,8 +11,8 @@ public class Tests {
     @Test
     public void test() {
 
-        Deck deck = DeckFactory.Extra.createDeck();
-        Deck deck2 = DeckFactory.Halicarnassus.createDeck();
+        DeckModel deck = DeckFactory.Extra.createDeck();
+        DeckModel deck2 = DeckFactory.Halicarnassus.createDeck();
 
         System.out.println(deck.getCards().size());
         System.out.println(deck2.getCards().size());

@@ -1,11 +1,6 @@
 package fr.isep.javarchitects.controllers;
 
-import fr.isep.javarchitects.model.Game;
-import fr.isep.javarchitects.model.GameStateVisible;
-import fr.isep.javarchitects.utils.IVoidComplete;
-import fr.isep.javarchitects.views.GameUI;
-import fr.isep.javarchitects.views.MenuView;
-import javafx.animation.PauseTransition;
+import fr.isep.javarchitects.core.Game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,9 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MenuController {

@@ -1,8 +1,8 @@
 package fr.isep.javarchitects;
 
-import fr.isep.javarchitects.model.Player;
-import fr.isep.javarchitects.model.WonderFactory;
-import fr.isep.javarchitects.model.WonderFragment;
+import fr.isep.javarchitects.core.Player;
+import fr.isep.javarchitects.core.WonderFactory;
+import fr.isep.javarchitects.core.WonderFragment;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

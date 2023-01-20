@@ -3,6 +3,7 @@ module fr.isep.javarchitects {
     requires javafx.fxml;
     requires junit;
     requires java.desktop;
+    requires com.google.common;
 
 
     opens fr.isep.javarchitects to javafx.fxml;
@@ -15,4 +16,11 @@ module fr.isep.javarchitects {
     opens fr.isep.javarchitects.utils to javafx.fxml;
     exports fr.isep.javarchitects.controllers;
     opens fr.isep.javarchitects.controllers to javafx.fxml;
+    exports fr.isep.javarchitects.core;
+    opens fr.isep.javarchitects.core to javafx.fxml;
+    exports fr.isep.javarchitects.controls;
+    opens fr.isep.javarchitects.controls to javafx.fxml;
+    exports fr.isep.javarchitects.model.command;
+    opens fr.isep.javarchitects.model.command to javafx.fxml;
+
 }

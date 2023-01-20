@@ -1,11 +1,10 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.model.ConflictToken;
+import fr.isep.javarchitects.core.ConflictToken;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConflictTokensHBox extends HBox {
@@ -23,7 +22,7 @@ public class ConflictTokensHBox extends HBox {
             String tokenImageString = token.getImage();
             Image image = new Image(getClass().getResourceAsStream(tokenImageString));
             ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(imageView.getImage().getWidth() / 3);
+            imageView.setFitWidth(50);
             imageView.setPreserveRatio(true);
             this.getChildren().add(imageView);
         }

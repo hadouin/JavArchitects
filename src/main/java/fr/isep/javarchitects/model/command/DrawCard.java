@@ -1,26 +1,43 @@
 package fr.isep.javarchitects.model.command;
 
-import fr.isep.javarchitects.model.Card;
-import fr.isep.javarchitects.model.Game;
-import fr.isep.javarchitects.model.Player;
+import fr.isep.javarchitects.core.Card;
+import fr.isep.javarchitects.core.CardCategory;
+import fr.isep.javarchitects.model.GameModel;
+import fr.isep.javarchitects.model.PlayerModel;
 
 import java.util.List;
 
 public class DrawCard extends GameAction{
-    private final Player source;
+    private final PlayerModel source;
     private final List<Card> target;
+    private Card card;
 
-    public DrawCard(Game game, String name, Player source, List<Card> target) {
+    public DrawCard(GameModel game, String name, PlayerModel source, List<Card> target) {
         super(name, game);
         this.source = source;
         this.target = target;
     }
 
     @Override
-    public void execute() {
-        Card card = target.remove(0);
+    public boolean execute() {
+        card = target.remove(0);
         source.addCard(card);
-        game.startDrawPhase();
-        System.out.println(source.getName() + " drew " + card.cardDisplayName);
+        
+        if (card.cardCategory == CardCategory.MaterialCard) {
+            game.buildWonder();
+            return true;
+        }
+        if (card.cardCategory == CardCategory.ProgressCard) {
+            game.chooseProgress();
+            return true;
+        }
+        game.nextPlayer();
+        game.setDrawActions();
+        return true;
+    }
+
+    @Override
+    public String toString(){
+        return source.getName() + " draw " + card.cardDisplayName;
     }
 }

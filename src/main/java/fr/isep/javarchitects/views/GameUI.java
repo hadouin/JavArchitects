@@ -1,17 +1,20 @@
 package fr.isep.javarchitects.views;
 
-import fr.isep.javarchitects.components.*;
-import fr.isep.javarchitects.model.GameStateVisible;
-import fr.isep.javarchitects.model.PlayerVisible;
+import fr.isep.javarchitects.components.ChoiceDisplayHBox;
+import fr.isep.javarchitects.components.ConflictTokensHBox;
+import fr.isep.javarchitects.components.PlayerViewHBox;
+import fr.isep.javarchitects.components.ProgressTokenPane;
+import fr.isep.javarchitects.core.GameStateVisible;
+import fr.isep.javarchitects.core.PlayerVisible;
 import fr.isep.javarchitects.utils.Subscriber;
-import fr.isep.javarchitects.model.WonderFactory;
-import fr.isep.javarchitects.utils.Icons;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.Iterator;
@@ -56,7 +59,7 @@ public class GameUI extends Stage implements Subscriber {
         // update players
         Iterator<PlayerVisible> iterator = gameStateVisible.players.iterator();
         for (Node node : playersVBOX.getChildren()) {
-            if (node instanceof PlayerView playerView) {
+            if (node instanceof PlayerViewHBox playerView) {
                 if (iterator.hasNext()) {
                     playerView.setPlayer(iterator.next());
                 } else {
@@ -112,7 +115,7 @@ public class GameUI extends Stage implements Subscriber {
         AnchorPane.setRightAnchor(playersVBOX, 0.);
         for (PlayerVisible player :
                 gameStateVisible.players) {
-            playersVBOX.getChildren().add(new PlayerView(player));
+            playersVBOX.getChildren().add(new PlayerViewHBox(player));
         }
         rootPane.getChildren().add(playersVBOX);
     }
