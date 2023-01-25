@@ -1,9 +1,11 @@
 package fr.isep.javarchitects.controllers;
 
-import fr.isep.javarchitects.core.Game;
+import fr.isep.javarchitects.components.SplashScreen;
+import fr.isep.javarchitects.model.GameModel;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -36,8 +38,18 @@ public class MenuController {
     }
 
     private void openGameView() {
-        Game game = new Game(playerNames.size(), playerNames);
-        GameController gameController = new GameController(game);
+        SplashScreen splashScreen = new SplashScreen(() ->{
+            Stage stage = new Stage();
+            GameModel gameModel = new GameModel();
+            GameViewController gameViewController = new GameViewController();
+            gameViewController.init(gameModel, stage);
+
+            stage.setScene(new Scene(gameViewController.getRootComponent()));
+            gameModel.initializePlayers(playerNames.toArray(new String[0]));
+            stage.show();
+        });
+        splashScreen.show();
+        splashScreen.startLoading();
     }
 
     public void cancelButtonClick(ActionEvent e)
