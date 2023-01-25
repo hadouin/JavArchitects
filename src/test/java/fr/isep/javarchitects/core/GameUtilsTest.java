@@ -31,6 +31,7 @@ class GameUtilsTest {
         expected.add(new BuildWonderFragUsingCards(game, frag, immutableMaterialCardByTypeCounts ));
         List<BuildWonderFragUsingCards> result = GameUtils.listMoveBuildWonderFragment(playerModel, frag, game);
         // Assert
+        Assertions.assertEquals(expected.size(), result.size());
         Assertions.assertEquals(expected.get(0).cardsUsed.stoneCount, result.get(0).cardsUsed.stoneCount);
     }
 

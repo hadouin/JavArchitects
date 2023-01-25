@@ -139,7 +139,7 @@ public class GameUtils {
 
     public static List<BuildWonderFragUsingCards> listMoveBuildWonderFragment(
             PlayerModel p, WonderFragment frag, GameModel game) {
-        ArrayList res = new ArrayList<BuildWonderFragUsingCards>();
+        ArrayList<BuildWonderFragUsingCards> res = new ArrayList<>();
         boolean fragNeedSameMaterial = frag.isMatchingResources();
         int requiredCount = frag.getResourceCount();
 
@@ -154,16 +154,17 @@ public class GameUtils {
             listMoveBuildWonderFragment_similarMaterial(frag, res, requiredCount, availableMaterialCardCounts, game);
         } else {
             ImmutableMaterialCardByTypeCounts.Builder currUsedCounts = ImmutableMaterialCardByTypeCounts.builder();
-            recursiveListMoveBuildWonderFragment_differentMaterials(res, frag, 0, // currMaterialIndex
-                    currUsedCounts, requiredCount, availableMaterialCardCounts, game);
+            recursiveListMoveBuildWonderFragment_differentMaterials(res, frag, 0, currUsedCounts, requiredCount, availableMaterialCardCounts, game);
         }
         return res;
     }
 
-    private static void listMoveBuildWonderFragment_similarMaterial(WonderFragment frag,
-                                                                    final List<BuildWonderFragUsingCards> res,
-                                                                    final int requiredCount,
-                                                                    final ImmutableMaterialCardByTypeCounts availableMaterialCardCounts, GameModel game) {
+    private static void listMoveBuildWonderFragment_similarMaterial(
+            WonderFragment frag,
+            final List<BuildWonderFragUsingCards> res,
+            final int requiredCount,
+            final ImmutableMaterialCardByTypeCounts availableMaterialCardCounts, GameModel game) {
+
         int goldCount = availableMaterialCardCounts.goldCount;
         for(Material material: materialExceptGolds) {
             int count = availableMaterialCardCounts.get(material);
@@ -203,11 +204,12 @@ public class GameUtils {
             // selecting 1 card of this material
             ImmutableMaterialCardByTypeCounts.Builder nextUsedCounts = currUsedCounts.cloneBuilderWithSelect(material);
             int nextRemainingRequiredTypes = remainingRequiredTypeCount - 1;
-            remainingRequiredTypeCount--;
             if (nextRemainingRequiredTypes == 0) {
                 // no need to recurse
                 ImmutableMaterialCardByTypeCounts usedCards = nextUsedCounts.build();
-                res.add(new BuildWonderFragUsingCards(game, frag, usedCards));
+                if (usedCards.getTotalCount() == frag.getResourceCount()){
+                    res.add(new BuildWonderFragUsingCards(game, frag, usedCards));
+                }
             } else {
                 int nextIndex = currMaterialIndex + 1;
                 if (nextIndex <= materialExceptGolds.size() - 1) {
