@@ -2,6 +2,8 @@ package fr.isep.javarchitects.utils;
 
 import fr.isep.javarchitects.core.Material;
 
+import java.util.HashMap;
+
 public class ImmutableMaterialCardByTypeCounts {
 
 	public final int woodCount;
@@ -76,7 +78,41 @@ public class ImmutableMaterialCardByTypeCounts {
 				glassCount == that.glassCount &&
 				goldCount == that.goldCount;
 	}
-	
+
+	public int getUniqueTotal() {
+		int count = 0;
+		if (this.woodCount > 0){
+			count++;
+		};
+		if (this.paperCount > 0){
+			count++;
+		};
+		if (this.brickCount > 0){
+			count++;
+		};
+		if (this.stoneCount > 0){
+			count++;
+		};
+		if (this.glassCount > 0){
+			count++;
+		};
+		if (this.goldCount > 0){
+			count++;
+		};
+		return count;
+	}
+
+	public HashMap<Material, Integer> getHashMap(){
+		// Create a hashmap that contains unique cards and their number of occurrence
+		HashMap<Material, Integer> map = new HashMap<>();
+		for (Material material : Material.values()) {
+			if (this.get(material) > 0){
+				map.put(material, this.get(material));
+			}
+		}
+		return map;
+	}
+
 	// ------------------------------------------------------------------------
 	
 	public static class Builder {
@@ -117,6 +153,19 @@ public class ImmutableMaterialCardByTypeCounts {
 
 		public Builder cloneBuilderWithSelect(Material material) {
 			return new Builder(this).with(material, 1);
+		}
+
+		public Builder add(Material material) {
+			switch (material) {
+				case Wood -> this.woodCount++;
+				case Paper -> this.paperCount++;
+				case Brick -> this.brickCount++;
+				case Stone -> this.stoneCount++;
+				case Glass -> this.glassCount++;
+				case Gold -> this.goldCount++;
+				default -> throw new IllegalStateException();
+			}
+			return this;
 		}
 	}
 	

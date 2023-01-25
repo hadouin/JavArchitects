@@ -70,9 +70,12 @@ public class Wonder {
 		if (floorNumber == 0){
 			return true;
 		}
-		List<WonderFragment> previousFloorNotbuiltFragments = wonderFragments.stream()
-				.filter(fragment -> !fragment.isBuilt() && fragment.getFloorNumber() == floorNumber - 1).toList();
-		return previousFloorNotbuiltFragments.isEmpty();
+		List<WonderFragment> previousFloorNotBuiltFragments = wonderFragments.stream()
+				.filter(fragment -> {
+					boolean isUnderFloor = fragment.getFloorNumber() == floorNumber - 1;
+					return isUnderFloor && !fragment.isBuilt();
+				}).toList();
+		return previousFloorNotBuiltFragments.isEmpty();
 	}
 
 	@Override
