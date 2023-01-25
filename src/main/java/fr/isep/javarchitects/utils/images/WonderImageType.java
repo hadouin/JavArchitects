@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.utils;
+package fr.isep.javarchitects.utils.images;
 
 public enum WonderImageType {
     FULL,

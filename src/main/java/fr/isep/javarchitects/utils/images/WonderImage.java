@@ -1,8 +1,6 @@
-package fr.isep.javarchitects.utils;
+package fr.isep.javarchitects.utils.images;
 
 import javafx.scene.image.Image;
-
-import java.awt.*;
 
 public enum WonderImage {
     Alexandria("/images/wonder_alexandria.png"),

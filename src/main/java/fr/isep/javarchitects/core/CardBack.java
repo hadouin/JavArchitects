@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.core;
 
-import fr.isep.javarchitects.utils.CardImage;
+import fr.isep.javarchitects.utils.images.CardImage;
 import javafx.scene.image.Image;
 
 public enum CardBack {
