@@ -1,8 +1,8 @@
 package fr.isep.javarchitects.core;
 
-import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
+import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -68,6 +68,46 @@ class GameUtilsTest {
         WonderFragment frag = playerModel.getWonder().getWonderFragments().get(0);
         // Act
         List<BuildWonderFragUsingCards> result = GameUtils.getBuildingCombinations(playerModel, game);
+        // Assert
+        System.out.println(result);
+    }
+
+
+    @Test
+    void findCombinations() {
+        //Arrange
+        GameModel game = new GameModel();
+        PlayerModel playerModel = new PlayerModel();
+        playerModel.addCard(Card.CardMaterialGold);
+        playerModel.addCard(Card.CardMaterialGold);
+        playerModel.addCard(Card.CardMaterialGold);
+        playerModel.addCard(Card.CardMaterialStone);
+        playerModel.addCard(Card.CardMaterialBrick);
+        playerModel.setWonder(WonderFactory.Alexandria.createWonder());
+        game.addPlayer(playerModel);
+        game.setCurrentPlayer(playerModel);
+        WonderFragment frag = playerModel.getWonder().getWonderFragments().get(2);
+        ImmutableMaterialCardByTypeCounts materialsMap = new ImmutableMaterialCardByTypeCounts(playerModel.getAvailableCardCounters());
+        // Act
+        List<BuildWonderFragUsingCards> result = GameUtils.findCombinations(materialsMap.getHashMap(), frag, game);
+        // Assert
+        System.out.println(result);
+    }
+
+    @Test
+    void findInequalCombinationGold() {
+        //Arrange
+        GameModel game = new GameModel();
+        PlayerModel playerModel = new PlayerModel();
+        playerModel.addCard(Card.CardMaterialGold);
+        playerModel.addCard(Card.CardMaterialStone);
+        playerModel.setWonder(WonderFactory.Alexandria.createWonder());
+        game.addPlayer(playerModel);
+        game.setCurrentPlayer(playerModel);
+        WonderFragment frag = playerModel.getWonder().getWonderFragments().get(0);
+        ImmutableMaterialCardByTypeCounts materialsMap = new ImmutableMaterialCardByTypeCounts(playerModel.getAvailableCardCounters());
+        // Act
+        List<BuildWonderFragUsingCards> result = GameUtils.findCombinations(materialsMap.getHashMap(), frag, game);
         // Assert
         System.out.println(result);
     }

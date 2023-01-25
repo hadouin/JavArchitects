@@ -122,16 +122,7 @@ public class GameUtils {
         for (WonderFragment fragment: buildableFragments) {
             List<BuildWonderFragUsingCards> moves =  listMoveBuildWonderFragment(player, fragment, game);
             // Iterate through the list and remove elements with the same card counts
-            Iterator<BuildWonderFragUsingCards> it = moves.iterator();
-            while (it.hasNext()) {
-                BuildWonderFragUsingCards current = it.next();
-                for (BuildWonderFragUsingCards bwfc : moves) {
-                    if (current != bwfc && current.cardsUsed.equals(bwfc.cardsUsed)) {
-                        it.remove();
-                        break;
-                    }
-                }
-            }
+            filterSimilarMoves(moves);
             res.addAll(moves);
         }
         return res;
@@ -141,20 +132,20 @@ public class GameUtils {
             PlayerModel p, WonderFragment frag, GameModel game) {
         ArrayList<BuildWonderFragUsingCards> res = new ArrayList<>();
         boolean fragNeedSameMaterial = frag.isMatchingResources();
-        int requiredCount = frag.getResourceCount();
+        int requiredAmount = frag.getResourceCount();
 
         // available material card counts
         ImmutableMaterialCardByTypeCounts availableMaterialCardCounts = p.getAvailableMaterialCardCounts();
 
-        if (availableMaterialCardCounts.getTotalCount() < requiredCount) {
+        if (availableMaterialCardCounts.getTotalCount() < requiredAmount) {
             return res;
         }
 
         if (fragNeedSameMaterial) {
-            listMoveBuildWonderFragment_similarMaterial(frag, res, requiredCount, availableMaterialCardCounts, game);
+            listMoveBuildWonderFragment_similarMaterial(frag, res, requiredAmount, availableMaterialCardCounts, game);
         } else {
-            ImmutableMaterialCardByTypeCounts.Builder currUsedCounts = ImmutableMaterialCardByTypeCounts.builder();
-            recursiveListMoveBuildWonderFragment_differentMaterials(res, frag, 0, currUsedCounts, requiredCount, availableMaterialCardCounts, game);
+//          recursiveListMoveBuildWonderFragment_differentMaterials(res, frag, 0, currUsedCounts, requiredAmount, availableMaterialCardCounts, game);
+            res.addAll(findCombinations(availableMaterialCardCounts.getHashMap(), frag, game));
         }
         return res;
     }
@@ -195,16 +186,15 @@ public class GameUtils {
             WonderFragment frag,
             int currMaterialIndex, //
             ImmutableMaterialCardByTypeCounts.Builder currUsedCounts,
-            int remainingRequiredTypeCount, //
+            int remainingRequiredAmount, //
             ImmutableMaterialCardByTypeCounts materialCardCounts, GameModel game) {
-
         Material material = materialExceptGolds.get(currMaterialIndex);
         int count = materialCardCounts.get(material);
         if (count > 0) {
             // selecting 1 card of this material
             ImmutableMaterialCardByTypeCounts.Builder nextUsedCounts = currUsedCounts.cloneBuilderWithSelect(material);
-            int nextRemainingRequiredTypes = remainingRequiredTypeCount - 1;
-            if (nextRemainingRequiredTypes == 0) {
+            int nextRemainingRequiredAmount = remainingRequiredAmount - 1;
+            if (nextRemainingRequiredAmount == 0) {
                 // no need to recurse
                 ImmutableMaterialCardByTypeCounts usedCards = nextUsedCounts.build();
                 if (usedCards.getTotalCount() == frag.getResourceCount()){
@@ -215,20 +205,95 @@ public class GameUtils {
                 if (nextIndex <= materialExceptGolds.size() - 1) {
                     // recurse
                     recursiveListMoveBuildWonderFragment_differentMaterials(res, frag,
-                            nextIndex, nextUsedCounts, nextRemainingRequiredTypes, materialCardCounts, game);
+                            nextIndex, nextUsedCounts, nextRemainingRequiredAmount, materialCardCounts, game);
                 }
-
             }
         }
+        // handle gold each time
+        int currTotal = currUsedCounts.build().getTotalCount();
+        if (materialCardCounts.goldCount + currTotal>= frag.getResourceCount()){
+            // complete with some joker Gold(s)
+            ImmutableMaterialCardByTypeCounts usedCardsWithGolds = ImmutableMaterialCardByTypeCounts.builder()
+                    .with(Material.Gold, frag.getResourceCount() - currTotal)
+                    .build();
+            if (usedCardsWithGolds.getTotalCount() == frag.getResourceCount()){
+                res.add(new BuildWonderFragUsingCards(game, frag, usedCardsWithGolds));
+            }
+        }
+
         // recurse when not selecting this material
         int nextIndex = currMaterialIndex + 1;
         if (nextIndex <= materialExceptGolds.size() - 1) {
             // recurse
             recursiveListMoveBuildWonderFragment_differentMaterials(res, frag,
-                    nextIndex, currUsedCounts, remainingRequiredTypeCount, materialCardCounts, game);
+                    nextIndex, currUsedCounts, remainingRequiredAmount, materialCardCounts, game);
         }
     }
 
-    // Science
+    public static List<BuildWonderFragUsingCards> findCombinations(HashMap<Material, Integer> map, WonderFragment frag, GameModel game) {
+        List<BuildWonderFragUsingCards> combinations = new ArrayList<>();
 
+        // Get all values from the map
+        List<Material> materials = new ArrayList<>(map.keySet());
+
+        if (map.containsKey(Material.Gold)){
+            for (int i = 1; i < map.get(Material.Gold); i++){
+                materials.add(Material.Gold);
+            }
+        }
+
+        // Call the recursive helper function
+        findCombinationsHelper(materials, frag, new ArrayList<>(), combinations, game);
+
+        // Iterate through the list and remove elements with the same card counts
+        filterSimilarMoves(combinations);
+
+        return combinations;
+    }
+
+    private static void filterSimilarMoves(List<BuildWonderFragUsingCards> combinations) {
+        Iterator<BuildWonderFragUsingCards> it = combinations.iterator();
+        while (it.hasNext()) {
+            BuildWonderFragUsingCards current = it.next();
+            for (BuildWonderFragUsingCards bwfc : combinations) {
+                if (current != bwfc && current.cardsUsed.equals(bwfc.cardsUsed)) {
+                    it.remove();
+                    break;
+                }
+            }
+        }
+    }
+
+    private static void findCombinationsHelper(List<Material> materials, WonderFragment frag, List<Material> current, List<BuildWonderFragUsingCards> combinations, GameModel game) {
+        if (current.size() == frag.getResourceCount()) {
+            // If the current combination has the desired number of values, add it to the list of combinations
+            ImmutableMaterialCardByTypeCounts.Builder builder = new ImmutableMaterialCardByTypeCounts.Builder();
+            for (Material material :
+                    current) {
+                builder.add(material);
+            }
+            combinations.add(new BuildWonderFragUsingCards(game, frag, builder.build()));
+            return;
+        }
+
+        for (int i = 0; i < materials.size(); i++) {
+            // Choose a value
+            Material material = materials.get(i);
+
+            // Add it to the current combination
+            current.add(material);
+
+            // Remove it from the list of available materials
+            materials.remove(i);
+
+            // Recursively find more combinations
+            findCombinationsHelper(materials, frag, current, combinations, game);
+
+            // Backtrack - add the material back to the list of available materials
+            materials.add(i, material);
+
+            // Remove the value from the current combination
+            current.remove(current.size() - 1);
+        }
+    }
 }

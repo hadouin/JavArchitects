@@ -2,9 +2,7 @@ package fr.isep.javarchitects.components;
 
 import fr.isep.javarchitects.utils.IVoidComplete;
 import javafx.animation.*;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -17,8 +15,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
-import java.io.IOException;
 
 public class SplashScreen extends Stage {
 
@@ -50,7 +46,7 @@ public class SplashScreen extends Stage {
                         new KeyValue(progressBar.progressProperty(), 0)
                 ),
                 new KeyFrame(
-                        Duration.seconds(2),
+                        Duration.seconds(5),
                         new KeyValue(progressBar.progressProperty(), 1)
                 )
         );
