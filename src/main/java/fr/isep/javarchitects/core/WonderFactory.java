@@ -59,7 +59,7 @@ public enum WonderFactory {
                     DeckFactory.Olympia,
                     List.of(
                             new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_1), WonderImage.Olympia.getImage(WonderImageType.BACK_1), 0, false, 3, 2, false),
-                            new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_2), WonderImage.Olympia.getImage(WonderImageType.BACK_2), 2, true, 2, 2, true),
+                            new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_2), WonderImage.Olympia.getImage(WonderImageType.BACK_2), 1, true, 2, 2, true),
                             new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_3), WonderImage.Olympia.getImage(WonderImageType.BACK_3), 1, false, 5, 3, false),
                             new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_4), WonderImage.Olympia.getImage(WonderImageType.BACK_4), 2, true, 5, 3, true),
                             new WonderFragment(WonderImage.Olympia.getImage(WonderImageType.FRONT_5), WonderImage.Olympia.getImage(WonderImageType.BACK_5), 3, false, 7, 4, false)
