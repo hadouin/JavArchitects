@@ -1,7 +1,7 @@
 package fr.isep.javarchitects.core;
 
-import fr.isep.javarchitects.utils.WonderImage;
-import fr.isep.javarchitects.utils.WonderImageType;
+import fr.isep.javarchitects.utils.images.WonderImage;
+import fr.isep.javarchitects.utils.images.WonderImageType;
 
 import java.util.List;
 

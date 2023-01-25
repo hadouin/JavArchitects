@@ -4,7 +4,7 @@ import fr.isep.javarchitects.core.Card;
 import fr.isep.javarchitects.core.CardCategory;
 import fr.isep.javarchitects.core.PlayerVisible;
 import fr.isep.javarchitects.core.ProgressToken;
-import fr.isep.javarchitects.utils.Icons;
+import fr.isep.javarchitects.utils.images.Icons;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

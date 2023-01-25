@@ -1,8 +1,6 @@
 package fr.isep.javarchitects.core;
 
-import fr.isep.javarchitects.utils.Icons;
-
-import java.util.function.IntConsumer;
+import fr.isep.javarchitects.utils.images.Icons;
 
 public enum ScienceCategory {
 

@@ -1,7 +1,7 @@
 package fr.isep.javarchitects.core;
 
 import com.google.common.collect.ImmutableList;
-import fr.isep.javarchitects.utils.Icons;
+import fr.isep.javarchitects.utils.images.Icons;
 
 public enum Material {
 	Wood(Icons.WOOD), //

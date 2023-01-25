@@ -5,7 +5,7 @@ import fr.isep.javarchitects.core.Card;
 import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.utils.CardByTypeCounters;
-import fr.isep.javarchitects.utils.Icons;
+import fr.isep.javarchitects.utils.images.Icons;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;

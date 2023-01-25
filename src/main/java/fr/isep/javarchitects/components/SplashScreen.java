@@ -1,9 +1,7 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.controllers.MenuController;
 import fr.isep.javarchitects.utils.IVoidComplete;
 import javafx.animation.*;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -13,7 +11,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -25,6 +22,7 @@ import java.io.IOException;
 
 public class SplashScreen extends Stage {
 
+    private final IVoidComplete doafter;
     private VBox root = new VBox();
     private ImageView splashImage = new ImageView();
     private ProgressBar progressBar = new ProgressBar();
@@ -35,7 +33,8 @@ public class SplashScreen extends Stage {
     private int width = 730;
     private int height = 900;
 
-    public SplashScreen() {
+    public SplashScreen(IVoidComplete doafter) {
+        this.doafter = doafter;
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         this.setX(bounds.getMinX() + bounds.getWidth() / 2 - width / 2);
         this.setY(bounds.getMinY() + bounds.getHeight() / 2 - height / 2);
@@ -56,7 +55,7 @@ public class SplashScreen extends Stage {
                 )
         );
         loadingTransition.setOnFinished(e -> {
-            openMenu();
+            this.doafter.complete();
         });
 
         FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.2), root);
@@ -69,19 +68,6 @@ public class SplashScreen extends Stage {
 
         SequentialTransition sequentialTransition = new SequentialTransition(loadingTransition, fadeSplash);
         this.mainTransition = sequentialTransition;
-    }
-
-    private void openMenu(){
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/views/MenuView.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Choose Players");
-        stage.show();
     }
 
     public void startLoading(){
