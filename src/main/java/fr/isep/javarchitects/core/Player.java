@@ -191,4 +191,8 @@ public class Player {
                 ", victoryPoints=" + victoryPoints +
                 '}';
     }
+
+    public Integer getTotalPoints() {
+        return victoryPoints + warPoints;
+    }
 }

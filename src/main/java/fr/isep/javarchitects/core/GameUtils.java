@@ -6,6 +6,7 @@ import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
+import javafx.scene.control.IndexRange;
 
 import java.util.*;
 
@@ -295,5 +296,22 @@ public class GameUtils {
             // Remove the value from the current combination
             current.remove(current.size() - 1);
         }
+    }
+
+    private static HashMap<String, Integer> scoresAtTheEndOfTheGame(Game game) {
+        HashMap<String, Integer> pointMap = new HashMap<>();
+        int i = 0;
+        for (Player player : game.getPlayers()) {
+            int points = player.getTotalPoints();
+            Wonder wonder = player.getWonder();
+            for(WonderFragment wonderFragment : wonder.getWonderFragments()) {
+                if (wonderFragment.isBuilt()){
+                    points += wonderFragment.getVP();
+                }
+            }
+            pointMap.put(player.getName(), points);
+        }
+
+        return pointMap;
     }
 }
