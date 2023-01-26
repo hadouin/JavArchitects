@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="468.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.isep.javarchitects.controllers.MenuController">
+<AnchorPane prefHeight="468.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.isep.javarchitects.controllers.MenuViewController">
    <children>
       <ImageView fitHeight="484.0" fitWidth="774.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/others/7-wonders-second-edition-board-game-art.jpg" />
+            <Image url="@../../../../../resources/images/others/7-wonders-second-edition-board-game-art.jpg" />
          </image>
       </ImageView>
       <VBox fx:id="playerBox" alignment="CENTER" layoutX="557.0" layoutY="167.0" prefHeight="175.0" prefWidth="152.0" style="-fx-background-color: #FFFFFFA0;">
