@@ -1,6 +1,7 @@
-package fr.isep.javarchitects.controls;
+package fr.isep.javarchitects.controls.inventory;
 
 import fr.isep.javarchitects.components.PointCounter;
+import fr.isep.javarchitects.components.DeckControl;
 import fr.isep.javarchitects.core.Card;
 import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.model.PlayerModel;

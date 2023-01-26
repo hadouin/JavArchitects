@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.controls;
+package fr.isep.javarchitects.components;
 
 import fr.isep.javarchitects.core.Wonder;
 import fr.isep.javarchitects.core.WonderFragment;

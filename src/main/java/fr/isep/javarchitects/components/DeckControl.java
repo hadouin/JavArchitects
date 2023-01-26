@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.controls;
+package fr.isep.javarchitects.components;
 
 import fr.isep.javarchitects.components.NumberCircle;
 import javafx.beans.property.ObjectProperty;
