@@ -13,7 +13,7 @@ public class GameChoiceComponent extends VBox {
     private final Label instructionsLabel = new Label();
     private final HBox buttonsHBox = new HBox();
     private GameModel gameModel;
-    private PlayerModel currentPlayer;
+    private PlayerModel renderedPlayer;
 
     public GameChoiceComponent(){
         this.getChildren().addAll(instructionsLabel, buttonsHBox);
@@ -28,7 +28,7 @@ public class GameChoiceComponent extends VBox {
 
         gameModel.getGameActionList().addListener((ListChangeListener<GameAction>) change -> {
             buttonsHBox.getChildren().clear();
-            if (currentPlayer != null && gameModel.getCurrentPlayer() != currentPlayer){
+            if (renderedPlayer != null && gameModel.getCurrentPlayer() != renderedPlayer){
                 return;
             }
             instructionsLabel.setText("Actions for: " + gameModel.getCurrentPlayer().getName());
@@ -43,7 +43,7 @@ public class GameChoiceComponent extends VBox {
         });
     }
 
-    public void setCurrentPlayer(PlayerModel playerModel){
-        this.currentPlayer = playerModel;
+    public void setRenderedPlayer(PlayerModel playerModel){
+        this.renderedPlayer = playerModel;
     }
 }

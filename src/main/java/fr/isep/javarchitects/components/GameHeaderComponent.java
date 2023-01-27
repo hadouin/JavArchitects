@@ -23,6 +23,13 @@ public class GameHeaderComponent extends HBox {
             conflictTokensHBox.setConflictTokenList(gameModel.getConflictTokens());
         });
 
+        // set center deck
+        DeckControl centerDeckDisplay = new DeckControl();
+        centerDeckDisplay.imageObjectProperty().setValue(gameModel.centerDeckProperty().get().getCardBack().image);
+        centerDeckDisplay.nbCardsProperty().bind(gameModel.centerDeckProperty().get().nbCardsProperty());
+        centerDeckDisplay.setFitWidth(50);
+        this.getChildren().add(1, centerDeckDisplay);
+
         // set progress token
         ProgressTokenPane progressTokenPane = new ProgressTokenPane(gameModel.getVisibleTokens());
         this.getChildren().add(2, progressTokenPane);
@@ -30,5 +37,6 @@ public class GameHeaderComponent extends HBox {
         gameModel.getProgressTokensList().addListener((ListChangeListener<ProgressToken>) change -> {
             progressTokenPane.setVisibleTokens(gameModel.getVisibleTokens());
         });
+
     }
 }
