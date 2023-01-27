@@ -4,8 +4,8 @@ import fr.isep.javarchitects.command.GameAction;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
-public class GameActionLogComponent extends ListView<GameAction> {
-    public GameActionLogComponent(){
+public class GameLogComponent extends ListView<GameAction> {
+    public GameLogComponent(){
         this.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(GameAction item, boolean empty) {
