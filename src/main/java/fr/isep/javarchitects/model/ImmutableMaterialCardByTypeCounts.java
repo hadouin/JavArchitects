@@ -1,6 +1,4 @@
-package fr.isep.javarchitects.utils;
-
-import fr.isep.javarchitects.model.Material;
+package fr.isep.javarchitects.model;
 
 import java.util.HashMap;
 

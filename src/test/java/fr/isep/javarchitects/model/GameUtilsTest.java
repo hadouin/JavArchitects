@@ -1,7 +1,6 @@
 package fr.isep.javarchitects.model;
 
 import fr.isep.javarchitects.command.BuildWonderFragUsingCards;
-import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

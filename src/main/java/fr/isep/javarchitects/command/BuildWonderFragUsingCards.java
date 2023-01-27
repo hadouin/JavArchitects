@@ -4,7 +4,7 @@ import fr.isep.javarchitects.model.Material;
 import fr.isep.javarchitects.model.WonderFragment;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
-import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
+import fr.isep.javarchitects.model.ImmutableMaterialCardByTypeCounts;
 
 public class BuildWonderFragUsingCards extends GameAction {
     public final WonderFragment wonderFragment;

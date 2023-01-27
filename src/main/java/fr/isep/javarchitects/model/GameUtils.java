@@ -2,7 +2,6 @@ package fr.isep.javarchitects.model;
 
 import com.google.common.collect.ImmutableList;
 import fr.isep.javarchitects.command.BuildWonderFragUsingCards;
-import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 
 import java.util.*;
 

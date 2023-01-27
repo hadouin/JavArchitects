@@ -1,6 +1,4 @@
-package fr.isep.javarchitects.utils;
-
-import fr.isep.javarchitects.model.Card;
+package fr.isep.javarchitects.model;
 
 import java.util.List;
 

@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
 public class PointCounter extends StackPane {
-
     public final Icons icon;
     public final Label counter;
 
@@ -20,5 +19,4 @@ public class PointCounter extends StackPane {
         image.setPreserveRatio(true);
         this.getChildren().addAll(image, counter);
     }
-
 }

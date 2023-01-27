@@ -10,5 +10,4 @@ public abstract class GameAction {
         this.game = game;
     }
     public abstract boolean execute();
-
 }
