@@ -1,6 +1,6 @@
-package fr.isep.javarchitects.model.command;
+package fr.isep.javarchitects.command;
 
-import fr.isep.javarchitects.core.ProgressToken;
+import fr.isep.javarchitects.model.ProgressToken;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 

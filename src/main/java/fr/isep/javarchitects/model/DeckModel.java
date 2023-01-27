@@ -1,15 +1,11 @@
 package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.core.Card;
-import fr.isep.javarchitects.core.CardBack;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableIntegerValue;
 import javafx.collections.*;
 import javafx.scene.image.Image;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DeckModel {

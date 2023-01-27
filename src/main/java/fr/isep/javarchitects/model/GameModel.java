@@ -1,7 +1,6 @@
 package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.core.*;
-import fr.isep.javarchitects.model.command.*;
+import fr.isep.javarchitects.command.*;
 import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;

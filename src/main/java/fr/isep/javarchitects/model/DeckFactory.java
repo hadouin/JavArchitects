@@ -1,6 +1,4 @@
-package fr.isep.javarchitects.core;
-
-import fr.isep.javarchitects.model.DeckModel;
+package fr.isep.javarchitects.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,7 +1,7 @@
-package fr.isep.javarchitects.model.command;
+package fr.isep.javarchitects.command;
 
-import fr.isep.javarchitects.core.Card;
-import fr.isep.javarchitects.core.CardCategory;
+import fr.isep.javarchitects.model.Card;
+import fr.isep.javarchitects.model.CardCategory;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 

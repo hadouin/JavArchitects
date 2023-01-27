@@ -1,6 +1,5 @@
 package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.core.*;
 import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 import javafx.beans.property.ObjectProperty;

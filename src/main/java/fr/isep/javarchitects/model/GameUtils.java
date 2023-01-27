@@ -1,10 +1,7 @@
-package fr.isep.javarchitects.core;
+package fr.isep.javarchitects.model;
 
 import com.google.common.collect.ImmutableList;
-import fr.isep.javarchitects.model.DeckModel;
-import fr.isep.javarchitects.model.GameModel;
-import fr.isep.javarchitects.model.PlayerModel;
-import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
+import fr.isep.javarchitects.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 
 import java.util.*;

@@ -1,7 +1,7 @@
-package fr.isep.javarchitects.model.command;
+package fr.isep.javarchitects.command;
 
-import fr.isep.javarchitects.core.Material;
-import fr.isep.javarchitects.core.WonderFragment;
+import fr.isep.javarchitects.model.Material;
+import fr.isep.javarchitects.model.WonderFragment;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;

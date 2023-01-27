@@ -2,8 +2,8 @@ package fr.isep.javarchitects.controls;
 
 import fr.isep.javarchitects.components.PointCounter;
 import fr.isep.javarchitects.components.DeckControl;
-import fr.isep.javarchitects.core.Card;
-import fr.isep.javarchitects.core.ProgressToken;
+import fr.isep.javarchitects.model.Card;
+import fr.isep.javarchitects.model.ProgressToken;
 import fr.isep.javarchitects.model.PlayerModel;
 import fr.isep.javarchitects.utils.CardByTypeCounters;
 import fr.isep.javarchitects.utils.images.Icons;

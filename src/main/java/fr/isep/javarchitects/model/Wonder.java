@@ -1,6 +1,5 @@
-package fr.isep.javarchitects.core;
+package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.model.DeckModel;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

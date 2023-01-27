@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.model.command;
+package fr.isep.javarchitects.command;
 
 import fr.isep.javarchitects.model.GameModel;
 

@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.core;
+package fr.isep.javarchitects.model;
 
 import com.google.common.collect.ImmutableList;
 import fr.isep.javarchitects.utils.images.Icons;

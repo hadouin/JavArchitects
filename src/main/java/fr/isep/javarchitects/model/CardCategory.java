@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.core;
+package fr.isep.javarchitects.model;
 
 public enum CardCategory {
 

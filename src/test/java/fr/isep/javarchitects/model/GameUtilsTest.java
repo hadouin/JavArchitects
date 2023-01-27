@@ -1,8 +1,6 @@
-package fr.isep.javarchitects.core;
+package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.model.GameModel;
-import fr.isep.javarchitects.model.PlayerModel;
-import fr.isep.javarchitects.model.command.BuildWonderFragUsingCards;
+import fr.isep.javarchitects.command.BuildWonderFragUsingCards;
 import fr.isep.javarchitects.utils.ImmutableMaterialCardByTypeCounts;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.core.Wonder;
-import fr.isep.javarchitects.core.WonderFragment;
+import fr.isep.javarchitects.model.Wonder;
+import fr.isep.javarchitects.model.WonderFragment;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
