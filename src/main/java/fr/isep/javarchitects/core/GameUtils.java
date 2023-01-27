@@ -54,9 +54,9 @@ public class GameUtils {
      * @param playerList list to query
      * @return the first player that owns the cat. If none have the Cat returns null
      */
-    public static Player getCatOwner(List<Player> playerList){
+    public static PlayerModel getCatOwner(List<PlayerModel> playerList){
         return playerList.stream()
-                .filter(Player::getHasCat)
+                .filter(PlayerModel::hasCat)
                 .findFirst()
                 .orElse(null);
     }

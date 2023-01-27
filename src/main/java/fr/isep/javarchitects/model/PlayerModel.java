@@ -181,4 +181,8 @@ public class PlayerModel {
                 ", vpWonInBattle=" + vpWonInBattle +
                 '}';
     }
+
+    public boolean hasCat() {
+        return false;
+    }
 }
