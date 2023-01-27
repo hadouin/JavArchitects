@@ -20,9 +20,9 @@ module fr.isep.javarchitects {
     opens fr.isep.javarchitects.model.command to javafx.fxml;
     exports fr.isep.javarchitects.utils.images;
     opens fr.isep.javarchitects.utils.images to javafx.fxml;
-    exports fr.isep.javarchitects.controls.inventory;
-    opens fr.isep.javarchitects.controls.inventory to javafx.fxml;
     exports fr.isep.javarchitects.components;
     opens fr.isep.javarchitects.components to javafx.fxml;
+    exports fr.isep.javarchitects.controls;
+    opens fr.isep.javarchitects.controls to javafx.fxml;
 
 }
