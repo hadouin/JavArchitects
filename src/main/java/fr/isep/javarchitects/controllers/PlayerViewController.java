@@ -2,9 +2,9 @@ package fr.isep.javarchitects.controllers;
 
 import fr.isep.javarchitects.components.ConflictTokensHBox;
 import fr.isep.javarchitects.components.ProgressTokenPane;
-import fr.isep.javarchitects.controls.DeckControl;
+import fr.isep.javarchitects.components.DeckControl;
 import fr.isep.javarchitects.controls.InventoryControl;
-import fr.isep.javarchitects.controls.WonderDisplayControl;
+import fr.isep.javarchitects.components.WonderDisplayControl;
 import fr.isep.javarchitects.core.ConflictToken;
 import fr.isep.javarchitects.core.ProgressToken;
 import fr.isep.javarchitects.model.GameModel;
@@ -122,7 +122,7 @@ public class PlayerViewController {
 
         VBox wonderVBox = new VBox();
         wonderVBox.getChildren().add(wonderDisplayControl);
-        FXMLLoader inventoryLoader = new FXMLLoader(getClass().getResource("/views/InventoryControl.fxml"));
+        FXMLLoader inventoryLoader = new FXMLLoader(getClass().getResource("/controls/inventory/InventoryControl.fxml"));
         Parent parent = null;
         try {
             parent = inventoryLoader.load();
