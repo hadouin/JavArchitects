@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class MenuController {
+public class MenuViewController {
 
     ArrayList<String> playerNames = new ArrayList<String>();
 
@@ -38,7 +38,7 @@ public class MenuController {
     }
 
     private void openGameView() {
-        SplashScreen splashScreen = new SplashScreen(() ->{
+        SplashScreen splashScreen = new SplashScreen(() -> {
             Stage stage = new Stage();
             GameModel gameModel = new GameModel();
             GameViewController gameViewController = new GameViewController();
