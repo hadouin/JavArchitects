@@ -1,4 +1,4 @@
-package fr.isep.javarchitects.controls.inventory;
+package fr.isep.javarchitects.controls;
 
 import fr.isep.javarchitects.components.PointCounter;
 import fr.isep.javarchitects.components.DeckControl;
