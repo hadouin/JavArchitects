@@ -5,11 +5,11 @@ import fr.isep.javarchitects.components.ProgressTokenPane;
 import fr.isep.javarchitects.components.DeckControl;
 import fr.isep.javarchitects.controls.InventoryControl;
 import fr.isep.javarchitects.components.WonderDisplayControl;
-import fr.isep.javarchitects.core.ConflictToken;
-import fr.isep.javarchitects.core.ProgressToken;
+import fr.isep.javarchitects.model.ConflictToken;
+import fr.isep.javarchitects.model.ProgressToken;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
-import fr.isep.javarchitects.model.command.GameAction;
+import fr.isep.javarchitects.command.GameAction;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,8 +34,6 @@ public class PlayerViewController {
     HBox headerHBox;
     @FXML
     HBox warTokensHBox;
-    @FXML
-    HBox progressTokensHBox;
     @FXML
     ListView<GameAction> logListView;
 
@@ -72,6 +70,7 @@ public class PlayerViewController {
             conflictTokensHBox.setConflictTokenList(model.getConflictTokens());
         });
 
+        // set log
         logListView.setCellFactory(param -> new ListCell<GameAction>(){
             @Override
             protected void updateItem(GameAction item, boolean empty) {
@@ -122,7 +121,7 @@ public class PlayerViewController {
 
         VBox wonderVBox = new VBox();
         wonderVBox.getChildren().add(wonderDisplayControl);
-        FXMLLoader inventoryLoader = new FXMLLoader(getClass().getResource("/controls/inventory/InventoryControl.fxml"));
+        FXMLLoader inventoryLoader = new FXMLLoader(getClass().getResource("/controls/InventoryControl.fxml"));
         Parent parent = null;
         try {
             parent = inventoryLoader.load();

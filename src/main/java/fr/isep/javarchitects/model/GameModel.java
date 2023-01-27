@@ -28,6 +28,10 @@ public class GameModel {
             return new Observable[] {conflictToken.imageResourceProperty()};
         }
     });
+
+    public GameModel(){
+        centerDeck.setValue(DeckFactory.Extra.createDeck());
+    }
     
     public void initializePlayers(String... names){
         ArrayList<PlayerModel> initPlayerList = new ArrayList<>();
@@ -41,7 +45,6 @@ public class GameModel {
         }
         GameUtils.setRandomWonder(initPlayerList);
         GameUtils.setDecks(initPlayerList);
-        centerDeck.setValue(DeckFactory.Extra.createDeck());
         playerList.setAll(initPlayerList);
         currentPlayer.set(playerList.get(currentPlayerIndex));
 

@@ -6,8 +6,6 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 public class GameViewController {
@@ -15,7 +13,7 @@ public class GameViewController {
     GameModel model;
     TabPane root = new TabPane();
     private Stage stage;
-    GridPane globalContent = new GridPane();
+    PlayerGlobalViewController playerGlobalViewController = new PlayerGlobalViewController();
     Tab globalTab = new Tab();
     private static final int COLUMNS = 3;
 
@@ -24,23 +22,15 @@ public class GameViewController {
         this.stage = stage;
 
         root.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-
-        globalContent.addColumn(3);
-        globalContent.addRow(3);
         root.setMaxWidth(820);
         root.setMaxHeight(600);
+
+        playerGlobalViewController.initGameModel(model);
         globalTab.setText("Global");
-
-        Scale scale = new Scale();
-        scale.setX(0.33);
-        scale.setY(0.33);
-        globalContent.getTransforms().add(scale);
-
-        globalTab.setContent(globalContent);
-
-
+        globalTab.setContent(playerGlobalViewController.getRootComponent());
 
         root.getTabs().add(globalTab);
+
 
         model.getPlayerList().addListener(new ListChangeListener<PlayerModel>() {
             @Override
@@ -57,33 +47,16 @@ public class GameViewController {
                     tab.setContent(playerSoloViewController.getRootComponent());
                     root.getTabs().add(tab);
 
-//
-//                    // Add another to global view
-//                    FXMLLoader playerGlobalViewLoader = new FXMLLoader(getClass().getResource("/views/PlayerView.fxml"));
-//                    Node playerGlobalView = null;
-//                    try {
-//                        playerGlobalView = playerGlobalViewLoader.load();
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//
-//                    playerGlobalView.getTransforms();
-//
-//                    //add content
-//                    int ordinal = model.getPlayerList().indexOf(player);
-//                    int x = ordinal % COLUMNS;
-//                    int y = ordinal / COLUMNS;
-//                    globalContent.add(playerGlobalView, x, y);
-//
-//                    PlayerViewController playerGlobalViewController = playerGlobalViewLoader.getController();
-//                    playerGlobalViewController.initModel(model);
-//                    playerGlobalViewController.initPlayer(player);
+                    playerGlobalViewController.addPlayer(player);
+
                 }
             }
         });
 
         model.currentPlayerProperty().addListener((obs, oldPlayer, newPlayer) -> {
-            root.getSelectionModel().select(model.getPlayerList().indexOf(newPlayer) + 1);
+            if (root.getSelectionModel().getSelectedIndex() != 0){
+                root.getSelectionModel().select(model.getPlayerList().indexOf(newPlayer) + 1);
+            }
         });
 
     }
