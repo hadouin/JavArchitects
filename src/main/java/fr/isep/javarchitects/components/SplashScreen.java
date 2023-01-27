@@ -45,7 +45,7 @@ public class SplashScreen extends Stage {
                         new KeyValue(progressBar.progressProperty(), 0)
                 ),
                 new KeyFrame(
-                        Duration.seconds(5),
+                        Duration.seconds(1),
                         new KeyValue(progressBar.progressProperty(), 1)
                 )
         );

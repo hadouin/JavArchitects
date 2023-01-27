@@ -4,6 +4,8 @@ import fr.isep.javarchitects.command.GameAction;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.PlayerModel;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -16,7 +18,12 @@ public class GameChoiceComponent extends VBox {
     private PlayerModel renderedPlayer;
 
     public GameChoiceComponent(){
+        this.setAlignment(Pos.CENTER);
+        this.buttonsHBox.setAlignment(Pos.CENTER);
+        this.buttonsHBox.setSpacing(10.);
+        HBox.setMargin(this.buttonsHBox, new Insets(10.));
         this.getChildren().addAll(instructionsLabel, buttonsHBox);
+
     }
 
     public void initGameModel(GameModel gameModel){

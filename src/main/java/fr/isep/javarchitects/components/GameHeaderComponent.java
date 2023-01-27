@@ -4,10 +4,16 @@ import fr.isep.javarchitects.model.ConflictToken;
 import fr.isep.javarchitects.model.GameModel;
 import fr.isep.javarchitects.model.ProgressToken;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
 public class GameHeaderComponent extends HBox {
     GameModel gameModel;
+
+    public GameHeaderComponent(){
+        this.setAlignment(Pos.CENTER);
+        this.setSpacing(10.);
+    }
 
     public void initGameModel(GameModel gameModel){
         if (this.gameModel != null ){
