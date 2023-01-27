@@ -1,8 +1,6 @@
 package fr.isep.javarchitects.model;
 
-import fr.isep.javarchitects.core.*;
-import fr.isep.javarchitects.model.command.*;
-import fr.isep.javarchitects.utils.ImmutableCardByTypeCounts;
+import fr.isep.javarchitects.command.*;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -29,6 +27,10 @@ public class GameModel {
             return new Observable[] {conflictToken.imageResourceProperty()};
         }
     });
+
+    public GameModel(){
+        centerDeck.setValue(DeckFactory.Extra.createDeck());
+    }
     
     public void initializePlayers(String... names){
         ArrayList<PlayerModel> initPlayerList = new ArrayList<>();
@@ -42,7 +44,6 @@ public class GameModel {
         }
         GameUtils.setRandomWonder(initPlayerList);
         GameUtils.setDecks(initPlayerList);
-        centerDeck.setValue(DeckFactory.Extra.createDeck());
         playerList.setAll(initPlayerList);
         currentPlayer.set(playerList.get(currentPlayerIndex));
 

@@ -10,19 +10,17 @@ module fr.isep.javarchitects {
     exports fr.isep.javarchitects;
     exports fr.isep.javarchitects.model;
     opens fr.isep.javarchitects.model to javafx.fxml;
-    exports fr.isep.javarchitects.views;
-    opens fr.isep.javarchitects.views to javafx.fxml;
     exports fr.isep.javarchitects.utils;
     opens fr.isep.javarchitects.utils to javafx.fxml;
     exports fr.isep.javarchitects.controllers;
     opens fr.isep.javarchitects.controllers to javafx.fxml;
-    exports fr.isep.javarchitects.core;
-    opens fr.isep.javarchitects.core to javafx.fxml;
-    exports fr.isep.javarchitects.controls;
-    opens fr.isep.javarchitects.controls to javafx.fxml;
-    exports fr.isep.javarchitects.model.command;
-    opens fr.isep.javarchitects.model.command to javafx.fxml;
+    exports fr.isep.javarchitects.command;
+    opens fr.isep.javarchitects.command to javafx.fxml;
     exports fr.isep.javarchitects.utils.images;
     opens fr.isep.javarchitects.utils.images to javafx.fxml;
+    exports fr.isep.javarchitects.components;
+    opens fr.isep.javarchitects.components to javafx.fxml;
+    exports fr.isep.javarchitects.controls;
+    opens fr.isep.javarchitects.controls to javafx.fxml;
 
 }

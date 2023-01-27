@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="468.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.isep.javarchitects.controllers.MenuController">
+<AnchorPane prefHeight="468.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.isep.javarchitects.controllers.MenuViewController">
    <children>
       <ImageView fitHeight="484.0" fitWidth="774.0" pickOnBounds="true" preserveRatio="true">
          <image>

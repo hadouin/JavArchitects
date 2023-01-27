@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.core.ProgressToken;
+import fr.isep.javarchitects.model.ProgressToken;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

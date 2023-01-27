@@ -33,8 +33,7 @@ public class SplashScreen extends Stage {
         this.doafter = doafter;
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
         this.setX(bounds.getMinX() + bounds.getWidth() / 2 - width / 2);
-        this.setY(bounds.getMinY() + bounds.getHeight() / 2 - height / 2);
-        this.setAlwaysOnTop(true);
+        this.setY(bounds.getMinY() + bounds.getHeight() / 2 - height / 2 - 40);
         this.initStyle(StageStyle.TRANSPARENT);
         this.setScene(new Scene(root, Color.TRANSPARENT));
         root.getChildren().addAll(splashImage, progressBar, progressLabel);
@@ -46,7 +45,7 @@ public class SplashScreen extends Stage {
                         new KeyValue(progressBar.progressProperty(), 0)
                 ),
                 new KeyFrame(
-                        Duration.seconds(5),
+                        Duration.seconds(1),
                         new KeyValue(progressBar.progressProperty(), 1)
                 )
         );

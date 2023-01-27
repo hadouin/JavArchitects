@@ -1,6 +1,6 @@
 package fr.isep.javarchitects.components;
 
-import fr.isep.javarchitects.core.ConflictToken;
+import fr.isep.javarchitects.model.ConflictToken;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
